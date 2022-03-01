@@ -1,0 +1,101 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.card
+{
+  overflow: scroll; /* Scrollbar are always visible */
+overflow: auto;   /* Scrollbar is displayed as it's needed */
+}
+.checked
+{
+  color:orange
+}
+.navlinkcustom
+{
+  display: block;
+  padding: 0.5rem 1rem;
+  color: white;
+}
+.navlinkcustom .navitemcustom
+{
+  display:contents;
+  margin-top: 0;
+  margin-bottom: 0rem;
+  cursor: context-menu;
+}
+@media(min-width: 992px)
+{
+  .sidebar-mini.sidebar-collapse .main-sidebar
+  {
+    margin-left: 0;
+    width: 0rem;
+  }
+}
+@media (min-width: 992px)
+{
+  .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .main-footer, .sidebar-mini.sidebar-collapse .main-header {
+    margin-left: 0rem!important;
+}
+.main-sidebar:hover
+{
+  overflow-y: scroll;
+  overflow-x:hidden;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height:10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #343a40; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+}
+
