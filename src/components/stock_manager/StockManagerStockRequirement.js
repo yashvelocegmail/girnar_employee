@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 import React, { useEffect, useState } from 'react'
 import Header from '../../Header'
 import Menu from '../../Menu'
@@ -49,7 +50,7 @@ function StockManagerStockRequirement() {
     
     //Read
     useEffect(() => {
-        axios.post("http://localhost/girnar_backend/api/read_stock_request.php", readStockRequest)
+        axios.post(api_url+"read_stock_request.php", readStockRequest)
             .then((res) => {
                 setReadStockRequest(res.data);
             })
@@ -89,16 +90,16 @@ function StockManagerStockRequirement() {
     const onModalFormSubmit=(e)=>{
         console.log(modalStockRequest);
         e.preventDefault();
-        axios.post("http://localhost/girnar_backend/api/update_stock_request_stock_manager.php",modalStockRequest)
+        axios.post(api_url+"update_stock_request_stock_manager.php",modalStockRequest)
         .then(()=>{
             toast.configure();
             toast.warning("Successfully Updated");
-            axios.post("http://localhost/girnar_backend/api/read_stock_request.php", readStockRequest)
+            axios.post(api_url+"read_stock_request.php", readStockRequest)
                     .then((res) => {
                         setReadStockRequest(res.data);
                     })
         })
-        axios.post("http://localhost/girnar_backend/api/update_stock_available.php",modalStockRequest)
+        axios.post(api_url+"update_stock_available.php",modalStockRequest)
         handleClose();
     }
     //Delete
@@ -181,15 +182,15 @@ function StockManagerStockRequirement() {
     const rows = readStockRequest.data;
     //Option Fields
     useEffect(() => {
-        axios.get("http://localhost/girnar_backend/api/read_material_type.php")
+        axios.get(api_url+"read_material_type.php")
             .then((res) => {
                 setMaterialTypeOption(res.data);
             })
-        axios.get("http://localhost/girnar_backend/api/read_material_thickness.php")
+        axios.get(api_url+"read_material_thickness.php")
             .then((res) => {
                 setMaterialThicknessOption(res.data);
             })
-        axios.get("http://localhost/girnar_backend/api/read_material_grade.php")
+        axios.get(api_url+"read_material_grade.php")
             .then((res) => {
                 setMaterialGradeOption(res.data);
             })

@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom';
 function Header() {
   const removeStorageData=()=>{
     
-    localStorage.setItem('authenticated',false);
-    localStorage.setItem('property','none')
-    localStorage.clear();
-
+    // localStorage.setItem('authenticated',false);
+    // localStorage.setItem('property','none')
+    // localStorage.clear();
+    localStorage.removeItem('property')
+    localStorage.removeItem('user_type')
+    localStorage.removeItem('employee_id')
+    localStorage.removeItem('authenticated')
+    localStorage.removeItem('check_in')
+    localStorage.removeItem('check_out')
   }
 
 //   const [property,setProperty]=useState();

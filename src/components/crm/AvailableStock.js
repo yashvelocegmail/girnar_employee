@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 import React, { useEffect, useState } from 'react'
 import Header from '../../Header'
 import Menu from '../../Menu'
@@ -16,7 +17,7 @@ function AvailableStock() {
     });
 
     useEffect(() => {
-        axios.get("http://localhost/girnar_backend/api/read_stock_available.php")
+        axios.get(api_url+"read_stock_available.php")
             .then((res) => {
                 setStockAvailable(res.data)
             })

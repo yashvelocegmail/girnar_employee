@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 import React, { useEffect, useState } from 'react'
 import Header from '../../Header'
 import Menu from '../../Menu'
@@ -37,9 +38,9 @@ function MaterialTypeMaster() {
     }
     const onFormSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost/girnar_backend/api/create_material_type.php", materialType)
+        axios.post(api_url+"create_material_type.php", materialType)
             .then(() => {
-                axios.get("http://localhost/girnar_backend/api/read_material_type.php")
+                axios.get(api_url+"read_material_type.php")
                     .then((res) => {
                         toast.configure();
                         toast.success("Inserted Successfully");
@@ -49,7 +50,7 @@ function MaterialTypeMaster() {
     }
     //Read
     useEffect(() => {
-        axios.get("http://localhost/girnar_backend/api/read_material_type.php")
+        axios.get(api_url+"read_material_type.php")
             .then((res) => {
                 setReadMaterialType(res.data);
             })
@@ -77,11 +78,11 @@ function MaterialTypeMaster() {
     const onModalFormSubmit=(e)=>
     {
         e.preventDefault();
-        axios.post("http://localhost/girnar_backend/api/update_material_type.php",modalMaterialType)
+        axios.post(api_url+"update_material_type.php",modalMaterialType)
         .then((res) => {
             toast.configure();
             toast.warning("Updated Successfully");
-            axios.get("http://localhost/girnar_backend/api/read_material_type.php")
+            axios.get(api_url+"read_material_type.php")
                 .then((res) => {
                     setReadMaterialType(res.data);
                 })
@@ -90,11 +91,11 @@ function MaterialTypeMaster() {
     }
     //Delete
     const onDelete = (rowid) => {
-        axios.post("http://localhost/girnar_backend/api/delete_material_type.php",{id:rowid})
+        axios.post(api_url+"delete_material_type.php",{id:rowid})
         .then((res) => {
             toast.configure();
             toast.error("Deleted Successfully");
-            axios.get("http://localhost/girnar_backend/api/read_material_type.php")
+            axios.get(api_url+"read_material_type.php")
                 .then((res) => {
                     setReadMaterialType(res.data);
                 })

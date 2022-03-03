@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../Header';
 import Menu from '../../Menu';
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 import { DataGrid } from '@mui/x-data-grid';
 import { Modal, Button } from "react-bootstrap";
 
@@ -147,7 +148,7 @@ function CompanyContactCopy() {
     });
     //Get Query
     useEffect(() => {
-        axios.get("http://localhost/girnar_backend/api/read_company_customer.php", {
+        axios.get(api_url+"read_company_customer.php", {
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -168,9 +169,9 @@ function CompanyContactCopy() {
         //setContact({ ...contact, contact_person_designation: formValues })
         e.preventDefault();
         console.log(contact);
-        axios.post("http://localhost/girnar_backend/api/register_company_customer.php", contact)
+        axios.post(api_url+"register_company_customer.php", contact)
             .then((res) => {
-                axios.get("http://localhost/girnar_backend/api/read_company_customer.php", {
+                axios.get(api_url+"read_company_customer.php", {
                     headers: {
                         'Content-Type': 'application/json',
                     }
@@ -244,9 +245,9 @@ function CompanyContactCopy() {
     const onModalFormSubmit = (e) => {
         e.preventDefault();
         console.log(modalContact);
-        axios.post("http://localhost/girnar_backend/api/update_company_customer.php", modalContact)
+        axios.post(api_url+"update_company_customer.php", modalContact)
             .then((res) => {
-                axios.get("http://localhost/girnar_backend/api/read_company_customer.php", {
+                axios.get(api_url+"read_company_customer.php", {
                     headers: {
                         'Content-Type': 'application/json',
                     }
@@ -261,9 +262,9 @@ function CompanyContactCopy() {
 
 
     const onDelete = (rowid) => {
-        axios.post("http://localhost/girnar_backend/api/delete_company_customer.php", { id: rowid })
+        axios.post(api_url+"delete_company_customer.php", { id: rowid })
             .then(() => {
-                axios.get("http://localhost/girnar_backend/api/read_company_customer.php", {
+                axios.get(api_url+"read_company_customer.php", {
                     headers: {
                         'Content-Type': 'application/json',
                     }

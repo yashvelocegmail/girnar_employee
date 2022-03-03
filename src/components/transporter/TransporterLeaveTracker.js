@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Header from '../../Header'
 import Menu from '../../Menu'
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 import { DataGrid } from '@mui/x-data-grid';
 import { toast } from 'react-toastify';
 import { Modal, Button } from "react-bootstrap";
@@ -25,7 +26,7 @@ function TransporterLeaveTracker() {
         attachment: ""
     });
     useEffect(() => {
-        axios.post("http://localhost/girnar_backend/api/read_leave_tracker_employee.php", { employee: localStorage.getItem("employee_id") })
+        axios.post(api_url+"read_leave_tracker_employee.php", { employee: localStorage.getItem("employee_id") })
             .then((res) => {
                 console.log(res);
                 setLeaveTracker(res.data);
@@ -50,11 +51,11 @@ function TransporterLeaveTracker() {
         // formData.append('approval', leaveTracker.approval);
         //formData.append('applied_on', leaveTracker.applied_on);
         formData.append('attachment', leaveTracker.attachment);
-        axios.post("http://localhost/girnar_backend/api/create_leave_tracker.php", formData)
+        axios.post(api_url+"create_leave_tracker.php", formData)
             .then(() => {
                 toast.configure();
                 toast.success('Successfully Inserted');
-                axios.post("http://localhost/girnar_backend/api/read_leave_tracker_employee.php", { employee: localStorage.getItem("employee_id") })
+                axios.post(api_url+"read_leave_tracker_employee.php", { employee: localStorage.getItem("employee_id") })
                     .then((res) => {
                         console.log(res);
                         setLeaveTracker(res.data);

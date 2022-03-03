@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 import React, { useEffect, useState } from 'react'
 import Header from '../../Header'
 import Menu from '../../Menu'
@@ -41,12 +42,12 @@ function Attendance() {
         const interval = setInterval(() => {
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        axios.post("http://localhost/girnar_backend/api/read_check_in_approval.php",{date:date})
+        axios.post(api_url+"read_check_in_approval.php",{date:date})
             .then((res) => {
                 console.log(res.data)
                 setAttendance(res.data);
             })
-        axios.post("http://localhost/girnar_backend/api/read_check_out_approval.php",{date:date})
+        axios.post(api_url+"read_check_out_approval.php",{date:date})
             .then((res) => {
                 console.log(res.data)
                 setCheckOutAttendance(res.data);
@@ -57,13 +58,13 @@ function Attendance() {
     }, [attendance,checkOutAttendance])
     //Check In Approval
     const onCheckInApproval=(id)=>{
-        axios.post("http://localhost/girnar_backend/api/check_in_approval.php",{id:id})
+        axios.post(api_url+"check_in_approval.php",{id:id})
         .then(()=>{
             console.log("Checked In");
         })
     }
     const onCheckOutApproval=(id)=>{
-        axios.post("http://localhost/girnar_backend/api/check_out_approval.php",{id:id})
+        axios.post(api_url+"check_out_approval.php",{id:id})
         .then(()=>{
             console.log("Checked Out");
         })

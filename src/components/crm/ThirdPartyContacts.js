@@ -5,6 +5,7 @@ import Menu from '../../Menu';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from "axios";
 import { toast } from 'react-toastify';
+import { api_url } from '../ApiUrl';
 
 function ThirdPartyContacts() {
     const [showModal, setShow] = useState(false);
@@ -48,11 +49,11 @@ function ThirdPartyContacts() {
     //Create Operation
     const onFormSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost/girnar_backend/api/create_third_party.php", thirdParty)
+        axios.post(api_url+"create_third_party.php", thirdParty)
             .then(() => {
                 toast.configure();
                 toast.success("Inserted Successfully");
-                axios.get("http://localhost/girnar_backend/api/read_third_party.php")
+                axios.get(api_url+"read_third_party.php")
                     .then((res) => {
                         console.log(res.data);
                         setReadThirdParty(res.data)
@@ -61,7 +62,7 @@ function ThirdPartyContacts() {
     }
     //Read Operation
     useEffect(() => {
-        axios.get("http://localhost/girnar_backend/api/read_third_party.php")
+        axios.get(api_url+"read_third_party.php")
             .then((res) => {
                 console.log(res.data);
                 setReadThirdParty(res.data)
@@ -96,12 +97,12 @@ function ThirdPartyContacts() {
     //Update Operation
     const onModalFormSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost/girnar_backend/api/update_third_party.php", modalThirdParty)
+        axios.post(api_url+"update_third_party.php", modalThirdParty)
             .then(() => {
                 toast.configure();
                 toast.warning("Updated Successfully")
                 handleClose();
-                axios.get("http://localhost/girnar_backend/api/read_third_party.php")
+                axios.get(api_url+"read_third_party.php")
                     .then((res) => {
                         console.log(res.data);
                         setReadThirdParty(res.data)
@@ -110,11 +111,11 @@ function ThirdPartyContacts() {
     }
     //Delete Operation
     const onDelete = (rowid) => {
-        axios.post("http://localhost/girnar_backend/api/delete_third_party.php",{id:rowid})
+        axios.post(api_url+"delete_third_party.php",{id:rowid})
         .then(()=>{
             toast.configure();
             toast.error("Deleted Successfully")
-            axios.get("http://localhost/girnar_backend/api/read_third_party.php")
+            axios.get(api_url+"read_third_party.php")
                     .then((res) => {
                         console.log(res.data);
                         setReadThirdParty(res.data)

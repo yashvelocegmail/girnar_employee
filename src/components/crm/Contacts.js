@@ -5,6 +5,7 @@ import axios from "axios";
 import { DataGrid } from '@mui/x-data-grid';
 import { toast } from 'react-toastify';
 import { Modal, Button } from "react-bootstrap";
+import { api_url } from '../ApiUrl';
 
 function Contacts() {
     const [showModal, setShow] = useState(false);
@@ -83,7 +84,7 @@ function Contacts() {
     });
     useEffect(() => {
         setTimeout(() => {
-            axios.get("http://localhost/girnar_backend/api/read_customer.php")
+            axios.get(api_url+"read_customer.php")
             .then((res) => {
                 setReadContact(res.data);
             })
@@ -96,12 +97,12 @@ function Contacts() {
     }
     const onFormSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost/girnar_backend/api/register_customer.php", contact)
+        axios.post(api_url+"register_customer.php", contact)
             .then((res) => {
                 toast.configure();
                 toast.success("Record Inserted")
                 console.log(res.data.messsage);
-                axios.get("http://localhost/girnar_backend/api/read_customer.php")
+                axios.get(api_url+"read_customer.php")
                     .then((res) => {
                         setReadContact(res.data);
                     })
@@ -157,12 +158,12 @@ function Contacts() {
     const onModalFormSubmit=(e)=>{
         e.preventDefault();
         console.log(modalContact)
-        axios.post("http://localhost/girnar_backend/api/update_customer.php",modalContact)
+        axios.post(api_url+"update_customer.php",modalContact)
         .then((res) => {
             toast.configure();
             toast.warning("Record Updated")
             console.log(res.data.messsage);
-            axios.get("http://localhost/girnar_backend/api/read_customer.php")
+            axios.get(api_url+"read_customer.php")
                 .then((res) => {
                     setReadContact(res.data);
                 })
@@ -170,12 +171,12 @@ function Contacts() {
         handleClose();
     }
     const onDelete = (rowid) => {
-        axios.post("http://localhost/girnar_backend/api/delete_customer.php",{id:rowid})
+        axios.post(api_url+"delete_customer.php",{id:rowid})
         .then((res) => {
             toast.configure();
             toast.error("Record Deleted")
             console.log(res.data.messsage);
-            axios.get("http://localhost/girnar_backend/api/read_customer.php")
+            axios.get(api_url+"read_customer.php")
                 .then((res) => {
                     setReadContact(res.data);
                 })

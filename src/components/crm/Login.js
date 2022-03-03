@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link,useHistory   } from 'react-router-dom'
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 
 function Login() {
   const history = useHistory();
@@ -16,7 +17,7 @@ function Login() {
     axios({
   
       // Endpoint to send files
-      url: "http://localhost/girnar_backend/api/login_employee.php",
+      url: api_url+"login_employee.php",
       method: "POST",
       data: credentials,
       // headers: {

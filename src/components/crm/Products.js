@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Header from '../../Header';
 import Menu from '../../Menu';
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 import { DataGrid } from '@mui/x-data-grid';
 import { toast } from 'react-toastify';
 import { Modal, Button } from "react-bootstrap";
@@ -67,12 +68,12 @@ function Products() {
         formData.append('uom', products.uom);
         formData.append('price', products.price);
         formData.append('product_file', products.product_file);
-        axios.post("http://localhost/girnar_backend/api/create_products.php", formData)
+        axios.post(api_url+"create_products.php", formData)
             .then(() => {
                 console.log("Inserted")
                 toast.configure();
                 toast.success("Successfully Inserted");
-                axios.get("http://localhost/girnar_backend/api/read_products.php")
+                axios.get(api_url+"read_products.php")
                     .then((res) => {
                         setReadProducts(res.data);
                     })
@@ -80,7 +81,7 @@ function Products() {
     }
     //Read
     useEffect(() => {
-        axios.get("http://localhost/girnar_backend/api/read_products.php")
+        axios.get(api_url+"read_products.php")
             .then((res) => {
                 setReadProducts(res.data);
             })
@@ -126,12 +127,12 @@ function Products() {
         modalFormData.append('uom', modalProducts.uom);
         modalFormData.append('price', modalProducts.price);
         modalFormData.append('product_file', modalProducts.product_file);
-        axios.post("http://localhost/girnar_backend/api/update_products.php", modalFormData)
+        axios.post(api_url+"update_products.php", modalFormData)
             .then(() => {
                 console.log("Updated")
                 toast.configure();
                 toast.warning("Successfully Updated");
-                axios.get("http://localhost/girnar_backend/api/read_products.php")
+                axios.get(api_url+"read_products.php")
                     .then((res) => {
                         setReadProducts(res.data);
                     })
@@ -141,12 +142,12 @@ function Products() {
 
     //Delete
     const onDelete = (rowid) => {
-        axios.post("http://localhost/girnar_backend/api/delete_products.php", { id: rowid })
+        axios.post(api_url+"delete_products.php", { id: rowid })
             .then(() => {
                 console.log("Deletyefd")
                 toast.configure();
                 toast.error("Successfully Deleted");
-                axios.get("http://localhost/girnar_backend/api/read_products.php")
+                axios.get(api_url+"read_products.php")
                     .then((res) => {
                         setReadProducts(res.data);
                     })

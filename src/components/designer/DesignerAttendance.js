@@ -3,12 +3,22 @@ import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import Header from '../../Header'
 import Menu from '../../Menu'
+// import Timer from './Timer/Timer';
+
 function DesignerAttendance() {
+    //timer settings
+    const [time, setTime] = useState({hour: "00", minutes: "00", seconds: "00"});
+
+    // useEffect(() => {
+    //   start()
+    // }, [time])
+    //timer settings
     const [employeeAttendance,setEmployeeAttendance] = useState();
     const [checkOutButton, setCheckOutButton] = useState("none");
     const [checkInButton, setCheckInButton] = useState("none");
     const [checkIn, setCheckIn] = useState();
     const [todaydate, setTodaydate] = useState();
+    const [timer,setTimer] = useState();
     useEffect(() => {
         const interval = setInterval(() => {
             console.log('Logs every minute');
@@ -57,6 +67,7 @@ function DesignerAttendance() {
                         }
                     }
                 }
+                setCheckIn(res.data.data[0]===undefined?"":res.data.data[0].check_in);
             })
           }, 1000);
         
@@ -65,27 +76,56 @@ function DesignerAttendance() {
     },[employeeAttendance])
     
     const onCheckIn = (e) => {
+        
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var check_in = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        
         var employee = localStorage.getItem('employee_id');
         axios.post("http://localhost/girnar_backend/api/employee_check_in.php", { date: date, check_in: check_in, employee: employee })
             .then((res) => {
+                const obj = new Date();
+                localStorage.seconds = obj.getHours() * 60 * 60 + obj.getMinutes() * 60 + obj.getSeconds()
                 //timer
                 // setIsStartTimer(true);
                 // setIsStopTimer(false);
                 //timer
-
-                setCheckIn(check_in);
+                
+                //new timer
+                // setInterval(function () {
+                //     const obj1 = new Date()
+                //     const secs = obj1.getHours() * 60 * 60 + obj1.getMinutes() * 60 + obj1.getSeconds()
+                //     var n = secs - localStorage.seconds
+                //     var hour = parseInt(n / 3600);
+                //     if(hour < 10){
+                //       hour = "0" + hour
+                //     }
+              
+                //     n %= 3600;
+                //     var minutes = parseInt(n / 60);
+                //     if(minutes < 10){
+                //       minutes = "0" + parseInt(minutes)
+                //     }
+              
+                //     n %= 60;
+                //     var seconds = parseInt(n);
+                //     if(seconds < 10){
+                //       seconds = "0" + parseInt(seconds)
+                //     }
+                //     setTime({hour: hour+"", minutes: minutes+"", seconds: seconds+""})
+                //   }, 1000);
+                
             })
+        console.log(time)
     }
     
     const onCheckOut = (e) => {
+        //console.log(checkIn)
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var check_out = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         var employee = localStorage.getItem('employee_id');
-        axios.post("http://localhost/girnar_backend/api/employee_check_out.php", { date: date, check_in: checkIn, check_out: check_out, employee: employee })
+        axios.post("http://localhost/girnar_backend/api/employee_check_out.php", { date: date, check_in:checkIn, check_out: check_out, employee: employee })
             .then((res) => {
                 //timer
                 // setIsStopTimer(true);
@@ -100,6 +140,7 @@ function DesignerAttendance() {
                 // {
                 //     setCheckInButton("inline");
                 // }
+                clearInterval()
             })
     }
     
@@ -115,7 +156,30 @@ function DesignerAttendance() {
     //     })
     // })
     //Timer
-    
+    // var interval = 3240000;
+
+    //             function reset()
+    //             {
+    //                 localStorage.endTime = +new Date + interval;
+    //             }
+                
+    //             if(!localStorage.endTime)
+    //             {
+    //                 reset();
+    //             }
+                
+    //             setInterval(function()
+    //             {
+    //                 var remaining = localStorage.endTime - new Date;
+    //                 if( remaining >= 0 )
+    //                 {
+    //                     setTimer(Math.floor( remaining / 1000 ));
+    //                 } else
+    //                 {
+    //                     reset();
+    //                 }
+    //             }, 100);
+              
     //   const [renderedStreamDuration, setRenderedStreamDuration] = useState(
     //     "00:00:00"
     //   ),
@@ -160,7 +224,7 @@ function DesignerAttendance() {
 
 
     //New timer
-
+    
     return (
         <>
             <Header />
@@ -187,7 +251,8 @@ function DesignerAttendance() {
                                         <Button className="btn btn-danger" onClick={onCheckOut} style={{ display: checkOutButton }}>Check Out</Button><br /><br />
                                         <Card.Text>
                                             {/* <h4>1:23:23</h4> */}
-
+                                            {/* <h4>{time.seconds}</h4> */}
+                                            {/* <Timer/> */}
                                             {/* <h4>{renderedStreamDuration}</h4><br /> */}
                                             <h6>{todaydate}</h6>
                                             {/* <h6 style={{ color: 'red' }}>Late by 1:00</h6> */}

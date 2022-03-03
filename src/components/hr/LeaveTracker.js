@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Header from '../../Header'
 import Menu from '../../Menu'
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 import { DataGrid } from '@mui/x-data-grid';
 import { toast } from 'react-toastify';
 import { Modal, Button } from "react-bootstrap";
@@ -39,7 +40,7 @@ function DesignerLeaveTracker() {
         attachment: ""
     });
     useEffect(() => {
-        axios.post("http://localhost/girnar_backend/api/read_leave_tracker_hr.php")
+        axios.post(api_url+"read_leave_tracker_hr.php")
             .then((res) => {
                 console.log(res);
                 setLeaveTracker(res.data);
@@ -83,9 +84,9 @@ function DesignerLeaveTracker() {
         formData.append('approval', modalLeaveTracker.approval);
         formData.append('applied_on', modalLeaveTracker.applied_on);
         formData.append('attachment', modalLeaveTracker.attachment);
-        axios.post("http://localhost/girnar_backend/api/update_leave_tracker_hr.php",formData)
+        axios.post(api_url+"update_leave_tracker_hr.php",formData)
         .then(()=>{
-            axios.post("http://localhost/girnar_backend/api/read_leave_tracker_hr.php")
+            axios.post(api_url+"read_leave_tracker_hr.php")
             .then((res) => {
                 toast.configure();
                 toast.warning("Record Updated");
@@ -98,7 +99,7 @@ function DesignerLeaveTracker() {
     const onDelete=(rowid)=>{
         axios.post('http://localhost/girnar_backend/api/delete_leave_tracker_hr.php',{id:rowid})
         .then(()=>{
-            axios.post("http://localhost/girnar_backend/api/read_leave_tracker_hr.php")
+            axios.post(api_url+"read_leave_tracker_hr.php")
             .then((res) => {
                 toast.configure();
                 toast.error("Record Deleted");

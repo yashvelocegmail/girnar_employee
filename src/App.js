@@ -54,6 +54,8 @@ import TransporterDashboard from './components/transporter/TransporterDashboard'
 import HrmsEmployeeMaster from './components/hr/HrmsEmployeeMaster';
 import CompanyContactCopy from './components/crm/CompanyContactCopy';
 import MaterialGradeMaster from './components/crm/MaterialGradeMaster';
+import AttendanceReport from './components/hr/AttendanceReport';
+import HrmsVacancies from './components/hr/HrmsVacancies';
 
 
 function App() {
@@ -96,6 +98,8 @@ function App() {
             <ProtectedRoute path='/hrms_attendance' component={Attendance }></ProtectedRoute>
             <ProtectedRoute path='/hrms_leave_tracker' component={LeaveTracker }></ProtectedRoute>
             <ProtectedRoute path='/hrms_employee_master' component={HrmsEmployeeMaster }></ProtectedRoute>
+            <ProtectedRoute path='/hrms_attendance_report' component={AttendanceReport }></ProtectedRoute>
+            <ProtectedRoute path='/hrms_vacancies' component={HrmsVacancies }></ProtectedRoute>
 
             <ProtectedRoute path='/designer_production' component={DesignerProduction }></ProtectedRoute>
             <ProtectedRoute path='/designer_attendance' component={DesignerAttendance }></ProtectedRoute>

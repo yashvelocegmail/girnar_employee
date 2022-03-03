@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 import React, { useEffect, useState } from 'react'
 import Header from '../../Header'
 import Menu from '../../Menu'
@@ -56,12 +57,12 @@ function StockRequest() {
     }
     const onFormSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost/girnar_backend/api/create_stock_request.php", stockRequest)
+        axios.post(api_url+"create_stock_request.php", stockRequest)
             .then((res) => {
                 console.log(res);
                 toast.configure();
                 toast.success("Successfully Inserted");
-                axios.post("http://localhost/girnar_backend/api/read_stock_request.php", readStockRequest)
+                axios.post(api_url+"read_stock_request.php", readStockRequest)
                     .then((res) => {
                         setReadStockRequest(res.data);
                     })
@@ -69,7 +70,7 @@ function StockRequest() {
     }
     //Read
     useEffect(() => {
-        axios.post("http://localhost/girnar_backend/api/read_stock_request.php", readStockRequest)
+        axios.post(api_url+"read_stock_request.php", readStockRequest)
             .then((res) => {
                 setReadStockRequest(res.data);
             })
@@ -106,11 +107,11 @@ function StockRequest() {
     const onModalFormSubmit=(e)=>{
         console.log(modalStockRequest);
         e.preventDefault();
-        axios.post("http://localhost/girnar_backend/api/update_stock_request.php",modalStockRequest)
+        axios.post(api_url+"update_stock_request.php",modalStockRequest)
         .then(()=>{
             toast.configure();
             toast.warning("Successfully Updated");
-            axios.post("http://localhost/girnar_backend/api/read_stock_request.php", readStockRequest)
+            axios.post(api_url+"read_stock_request.php", readStockRequest)
                     .then((res) => {
                         setReadStockRequest(res.data);
                     })
@@ -119,11 +120,11 @@ function StockRequest() {
     }
     //Delete
     const onDelete = (rowid) => {
-        axios.post("http://localhost/girnar_backend/api/delete_stock_request.php",{id:rowid})
+        axios.post(api_url+"delete_stock_request.php",{id:rowid})
         .then(()=>{
             toast.configure();
             toast.error("Successfully Deleted");
-            axios.post("http://localhost/girnar_backend/api/read_stock_request.php", readStockRequest)
+            axios.post(api_url+"read_stock_request.php", readStockRequest)
                     .then((res) => {
                         setReadStockRequest(res.data);
                     })
@@ -131,15 +132,15 @@ function StockRequest() {
     }
     //Option Fields
     useEffect(() => {
-        axios.get("http://localhost/girnar_backend/api/read_material_type.php")
+        axios.get(api_url+"read_material_type.php")
             .then((res) => {
                 setMaterialTypeOption(res.data);
             })
-        axios.get("http://localhost/girnar_backend/api/read_material_thickness.php")
+        axios.get(api_url+"read_material_thickness.php")
             .then((res) => {
                 setMaterialThicknessOption(res.data);
             })
-        axios.get("http://localhost/girnar_backend/api/read_material_grade.php")
+        axios.get(api_url+"read_material_grade.php")
             .then((res) => {
                 setMaterialGradeOption(res.data);
             })

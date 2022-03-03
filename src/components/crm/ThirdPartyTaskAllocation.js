@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Modal, Button } from "react-bootstrap";
 import Header from '../../Header';
 import Menu from '../../Menu';
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 import { DataGrid } from '@mui/x-data-grid';
 import { toast } from 'react-toastify';
 
@@ -66,11 +67,11 @@ function ThirdPartyTaskAllocation() {
         formData.append('file_upload', thirdPartyTask.file_upload);
         formData.append('time_required', thirdPartyTask.time_required);
         formData.append('remarks', thirdPartyTask.remarks);
-        axios.post("http://localhost/girnar_backend/api/create_third_party_task.php", formData)
+        axios.post(api_url+"create_third_party_task.php", formData)
             .then(() => {
                 toast.configure();
                 toast.success('Successfully Inserted');
-                axios.get("http://localhost/girnar_backend/api/read_third_party_task.php")
+                axios.get(api_url+"read_third_party_task.php")
                     .then((res) => {
                         setReadThirdPartyTask(res.data)
                     })
@@ -78,7 +79,7 @@ function ThirdPartyTaskAllocation() {
     }
     //Read All
     useEffect(() => {
-        axios.get("http://localhost/girnar_backend/api/read_third_party_task.php")
+        axios.get(api_url+"read_third_party_task.php")
             .then((res) => {
                 setReadThirdPartyTask(res.data);
                 console.log(readThirdPartyTask);
@@ -127,11 +128,11 @@ function ThirdPartyTaskAllocation() {
         formData.append('file_upload', modalThirdPartyTask.file_upload);
         formData.append('time_required', modalThirdPartyTask.time_required);
         formData.append('remarks', modalThirdPartyTask.remarks);
-        axios.post("http://localhost/girnar_backend/api/update_third_party_task.php", formData)
+        axios.post(api_url+"update_third_party_task.php", formData)
             .then(() => {
                 toast.configure();
                 toast.warning('Successfully Updated');
-                axios.get("http://localhost/girnar_backend/api/read_third_party_task.php")
+                axios.get(api_url+"read_third_party_task.php")
                     .then((res) => {
                         setReadThirdPartyTask(res.data)
                     })
@@ -140,11 +141,11 @@ function ThirdPartyTaskAllocation() {
     }
     //Delete
     const onDelete = (rowid) => {
-        axios.post("http://localhost/girnar_backend/api/delete_third_party_task.php", { id: rowid })
+        axios.post(api_url+"delete_third_party_task.php", { id: rowid })
             .then(() => {
                 toast.configure();
                 toast.error('Successfully deleted');
-                axios.get("http://localhost/girnar_backend/api/read_third_party_task.php")
+                axios.get(api_url+"read_third_party_task.php")
                     .then((res) => {
                         setReadThirdPartyTask(res.data)
                     })
@@ -153,7 +154,7 @@ function ThirdPartyTaskAllocation() {
     }
     //Read third party
     useEffect(() => {
-        axios.get("http://localhost/girnar_backend/api/read_third_party.php")
+        axios.get(api_url+"read_third_party.php")
             .then((res) => {
                 console.log(res.data);
                 setThirdParty(res.data)

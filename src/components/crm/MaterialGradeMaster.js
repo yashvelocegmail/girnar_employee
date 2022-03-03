@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 import React, { useEffect, useState } from 'react'
 import Header from '../../Header'
 import Menu from '../../Menu'
@@ -37,9 +38,9 @@ function MaterialGradeMaster() {
     }
     const onFormSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost/girnar_backend/api/create_material_grade.php", materialGrade)
+        axios.post(api_url+"create_material_grade.php", materialGrade)
             .then(() => {
-                axios.get("http://localhost/girnar_backend/api/read_material_grade.php")
+                axios.get(api_url+"read_material_grade.php")
                     .then((res) => {
                         toast.configure();
                         toast.success("Inserted Successfully");
@@ -49,7 +50,7 @@ function MaterialGradeMaster() {
     }
     //Read
     useEffect(() => {
-        axios.get("http://localhost/girnar_backend/api/read_material_grade.php")
+        axios.get(api_url+"read_material_grade.php")
             .then((res) => {
                 setReadMaterialGrade(res.data);
             })
@@ -77,11 +78,11 @@ function MaterialGradeMaster() {
     const onModalFormSubmit=(e)=>
     {
         e.preventDefault();
-        axios.post("http://localhost/girnar_backend/api/update_material_grade.php",modalMaterialGrade)
+        axios.post(api_url+"update_material_grade.php",modalMaterialGrade)
         .then((res) => {
             toast.configure();
             toast.warning("Updated Successfully");
-            axios.get("http://localhost/girnar_backend/api/read_material_grade.php")
+            axios.get(api_url+"read_material_grade.php")
                 .then((res) => {
                     setReadMaterialGrade(res.data);
                 })
@@ -90,11 +91,11 @@ function MaterialGradeMaster() {
     }
     //Delete
     const onDelete = (rowid) => {
-        axios.post("http://localhost/girnar_backend/api/delete_material_grade.php",{id:rowid})
+        axios.post(api_url+"delete_material_grade.php",{id:rowid})
         .then((res) => {
             toast.configure();
             toast.error("Deleted Successfully");
-            axios.get("http://localhost/girnar_backend/api/read_material_grade.php")
+            axios.get(api_url+"read_material_grade.php")
                 .then((res) => {
                     setReadMaterialGrade(res.data);
                 })

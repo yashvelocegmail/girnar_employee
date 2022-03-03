@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Header from '../../Header'
 import Menu from '../../Menu'
 import { DataGrid } from '@mui/x-data-grid';
-import axios from 'axios';
+import axios from 'axios'
+import { api_url } from '../ApiUrl';
 import { Modal, Button } from "react-bootstrap";
 import { toast } from 'react-toastify';
 
@@ -77,7 +78,7 @@ function HrmsEmployeeMaster() {
         salary: "",
     });
     useEffect(() => {
-        axios.get("http://localhost/girnar_backend/api/read_employee_user.php")
+        axios.get(api_url+"read_employee_user.php")
             .then((res) => {
                 console.log(res.data);
                 setReadEmployee(res.data)
@@ -118,7 +119,7 @@ function HrmsEmployeeMaster() {
             .then(() => {
                 toast.configure();
                 toast.success('Successfully Inserted');
-                axios.get("http://localhost/girnar_backend/api/read_employee_user.php")
+                axios.get(api_url+"read_employee_user.php")
                     .then((res) => {
                         console.log(res.data);
                         setReadEmployee(res.data)
@@ -181,7 +182,7 @@ function HrmsEmployeeMaster() {
         modalFormData.append('salary', modalEmployee.salary);
         axios.post('http://localhost/girnar_backend/api/update_employee_user.php', modalFormData)
             .then(() => {
-                axios.get("http://localhost/girnar_backend/api/read_employee_user.php")
+                axios.get(api_url+"read_employee_user.php")
                     .then((res) => {
                         toast.warning('Successfully Updated');
                         console.log(res.data);
@@ -193,7 +194,7 @@ function HrmsEmployeeMaster() {
     const onDelete = (row) => {
         axios.post('http://localhost/girnar_backend/api/delete_employee_user.php', { id: row })
             .then(() => {
-                axios.get("http://localhost/girnar_backend/api/read_employee_user.php")
+                axios.get(api_url+"read_employee_user.php")
                     .then((res) => {
                         toast.error('Successfully Deleted');
                         console.log(res.data);

@@ -394,9 +394,17 @@ function Menu() {
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Leave Tracker</p>
                                             </Link>
+                                            <Link to="hrms_attendance_report" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Attendance And Leave Report</p>
+                                            </Link>
                                             <Link to="hrms_employee_master" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Employee Master</p>
+                                            </Link>
+                                            <Link to="hrms_vacancies" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Vacancies</p>
                                             </Link>
                                         </li>
                                     </ul> : null}
