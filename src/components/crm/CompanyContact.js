@@ -455,9 +455,9 @@ function CompanyContact() {
                     {formValues1 === null ? [] : formValues1.map((element, index) => (
                         <div className="form-group" key={index}>
                             <label>Contact Person</label>
-                            <input name="contact_person" className="form-control" type="text" name="contact_person" value={element.contact_person || ""} onChange={e => handleChange1(index, e)} />
+                            <input name="contact_person" className="form-control" type="text" value={element.contact_person || ""} onChange={e => handleChange1(index, e)} />
                             <label>Designation</label>
-                            <input name="designation" className="form-control" type="text" name="designation" value={element.designation || ""} onChange={e => handleChange1(index, e)} />
+                            <input name="designation" className="form-control" type="text" value={element.designation || ""} onChange={e => handleChange1(index, e)} />
                             {
                                 index ?
                                     <button type="button" className="btn btn-danger" onClick={() => removeFormFields1(index)}>Remove</button>
@@ -553,9 +553,9 @@ function CompanyContact() {
                     {formValues2 === null ? [] : formValues2.map((element, index) => (
                         <div className="form-group" key={index}>
                             <label>Contact Person</label>
-                            <input name="contact_person" className="form-control" type="text" name="contact_person" value={element.contact_person || ""} onChange={e => handleChange2(index, e)} readOnly />
+                            <input name="contact_person" className="form-control" type="text"  value={element.contact_person || ""} onChange={e => handleChange2(index, e)} readOnly />
                             <label>Designation</label>
-                            <input name="designation" className="form-control" type="text" name="designation" value={element.designation || ""} onChange={e => handleChange2(index, e)} readOnly />
+                            <input name="designation" className="form-control" type="text" value={element.designation || ""} onChange={e => handleChange2(index, e)} readOnly />
 
                         </div>
                     ))}
@@ -663,9 +663,9 @@ function CompanyContact() {
                                         {formValues.map((element, index) => (
                                             <div className="form-inline" key={index}>
                                                 <label>Contact Person</label>
-                                                <input name="contact_person" className="form-control" type="text" name="contact_person" value={element.contact_person || ""} onChange={e => handleChange(index, e)} />
+                                                <input name="contact_person" className="form-control" type="text"  value={element.contact_person || ""} onChange={e => handleChange(index, e)} />
                                                 <label>Designation</label>
-                                                <input name="designation" className="form-control" type="text" name="designation" value={element.designation || ""} onChange={e => handleChange(index, e)} />
+                                                <input name="designation" className="form-control" type="text"  value={element.designation || ""} onChange={e => handleChange(index, e)} />
                                                 {
                                                     index ?
                                                         <button type="button" className="btn btn-danger" onClick={() => removeFormFields(index)}>Remove</button>

@@ -206,7 +206,7 @@ function MaterialGradeMaster() {
                                         <div className="card-body">
                                             <div className="form-group">
                                                 <label >Material Grade</label>
-                                                <input onChange={onInputChange} name="material_grade" type="text" className="form-control"  title="Please enter Alphabets." required pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
+                                                <input onChange={onInputChange} name="material_grade" type="text" className="form-control"  title="Please enter Alphabets." required pattern="^[a-zA-Z\s-]+$" />
                                             </div>
                                         </div>
                                         {/* /.card-body */}

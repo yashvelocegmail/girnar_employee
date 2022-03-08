@@ -86,6 +86,7 @@ function DesignerLeaveTracker() {
         formData.append('attachment', modalLeaveTracker.attachment);
         axios.post(api_url+"update_leave_tracker_hr.php",formData)
         .then(()=>{
+            axios.post(api_url+"create_monthly_leaves.php",{employee:modalLeaveTracker.employee,leave_from:modalLeaveTracker.leave_from,leave_to:modalLeaveTracker.leave_to})
             axios.post(api_url+"read_leave_tracker_hr.php")
             .then((res) => {
                 toast.configure();
