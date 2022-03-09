@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Form } from "react-bootstrap";
 import Header from '../../Header';
 import Menu from '../../Menu';
 import { api_url } from '../ApiUrl';
@@ -16,22 +16,6 @@ function QuotationMaster() {
 
         setFormValues(newFormValues);
         console.log(formValues);
-        // if(e.target.name==="total_rate")
-        // {   
-        //     //console.log(formValues[i-1].total_rate)
-        //    // console.log(i)
-        //     if(i-1===-1)
-        //     {
-        //         //formValues.total_rate=0;
-        //         setTotal(parseInt(0 + parseInt(e.target.value)));
-        //     }
-        //     else
-        //     {
-        //         setTotal(parseInt(formValues[i-1].total_rate) + parseInt(e.target.value));
-        //     }
-
-        //    console.log(total)
-        // }
         setQuotation({ ...quotation, des_quant_rate: formValues })
     }
 
@@ -43,6 +27,28 @@ function QuotationMaster() {
         let newFormValues = [...formValues];
         newFormValues.splice(i, 1);
         setFormValues(newFormValues)
+    }
+    //Modal dynamic form
+    const [formValues1, setFormValues1] = useState([{ description: "", quantity: "", total_rate: "" }])
+    let handleChange1 = (i, e) => {
+        let newFormValues = [...formValues1];
+        newFormValues[i][e.target.name] = e.target.value;
+
+        setFormValues1(newFormValues);
+        //console.log(formValues);
+        setEditQuotation({ ...editQuotation, des_quant_rate: formValues1 })
+    }
+
+    let addFormFields1 = () => {
+        setFormValues1([...formValues1, { description: "", quantity: "", total_rate: "" }])
+    }
+
+    let removeFormFields1 = (i) => {
+        let newFormValues = [...formValues1];
+        newFormValues.splice(i, 1);
+        setFormValues1(newFormValues)
+        console.log(newFormValues)
+        setEditQuotation({ ...editQuotation, des_quant_rate: newFormValues })
     }
 
 
@@ -56,12 +62,19 @@ function QuotationMaster() {
     //States
     const [customerOption, setCustomerOption] = useState();
     const [total, setTotal] = useState(0);
+    const [total1, setTotal1] = useState(0);
     const [quotation, setQuotation] = useState({
         customer_enquiry: "",
         des_quant_rate: [],
         total: 0
     });
     const [readQuotation, setReadQuotation] = useState({
+        id: "",
+        customer_enquiry: "",
+        des_quant_rate: [],
+        total: 0
+    });
+    const [editQuotation, setEditQuotation] = useState({
         id: "",
         customer_enquiry: "",
         des_quant_rate: [],
@@ -75,10 +88,11 @@ function QuotationMaster() {
     //     total_rate:"",
     //     total: 0
     // });
-    const [printId,setPrintId] = useState();
-    const [printCustomerEnquiry,setPrintCustomerEnquiry] = useState();
-    const [printTotal,setPrintTotal] = useState();
-    const [printDesQuantRate,setPrintDesQuantRate] = useState([]);
+    const [printId, setPrintId] = useState();
+    const [printCustomerEnquiry, setPrintCustomerEnquiry] = useState();
+    const [printTotal, setPrintTotal] = useState();
+    const [printCustomerName, setPrintCustomerName] = useState();
+    const [printDesQuantRate, setPrintDesQuantRate] = useState([]);
 
     //Customer option
     useEffect(() => {
@@ -109,6 +123,10 @@ function QuotationMaster() {
         axios.post(api_url + "create_quotation.php", quotation)
             .then(() => {
                 console.log("Created")
+                axios.post(api_url + "read_quotation.php")
+                    .then((res) => {
+                        setReadQuotation(res.data)
+                    })
             })
     }
     //Read Operation
@@ -158,7 +176,7 @@ function QuotationMaster() {
 
     // }
     const exportPDF = async (row) => {
-
+        console.log(row.customer_name)
         const description = JSON.parse(row.des_quant_rate).map(a => a.description);
         //setPrintQuotation(description:description[0])
 
@@ -176,16 +194,18 @@ function QuotationMaster() {
         //     quantity:quantity[0],
         //     total_rate:total_rate[0]
         // })
-        
+
         await setPrintId(row.id)
         await setPrintCustomerEnquiry(row.customer_enquiry)
         await setPrintTotal(row.total)
-        var arr=[]
-        for(var i=0;i<description.length;i++)
-        {
-            arr.push({description:description[i],
-                quantity:quantity[i],
-                total_rate:total_rate[i]})
+        await setPrintCustomerName(row.customer_name)
+        var arr = []
+        for (var i = 0; i < description.length; i++) {
+            arr.push({
+                description: description[i],
+                quantity: quantity[i],
+                total_rate: total_rate[i]
+            })
         }
         setPrintDesQuantRate(arr)
         console.log(printDesQuantRate)
@@ -193,39 +213,41 @@ function QuotationMaster() {
         const size = "A4"; // Use A1, A2, A3 or A4
         const orientation = "portrait"; // portrait or landscape
 
-        const marginLeft =85;
+        const marginLeft = 85;
         const doc = new jsPDF();
         var image = "http://localhost/girnar_backend/assets/images/girnar_logo.jpg";
 
-        var imageData="data:image/png;base64,'+Base64.encode('http://localhost/girnar_backend/assets/images/download.png')";
-        
+        var imageData = "data:image/png;base64,'+Base64.encode('http://localhost/girnar_backend/assets/images/download.png')";
 
-        doc.setFontSize(20);
+        const current = new Date();
+        const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+        doc.setFontSize(10);
         //doc.text("Girnar Laser",marginLeft,5);
-        doc.addImage(image,'JPG',75,5,50,10)
-        doc.text("Girnar Laser",marginLeft,25);
+        doc.addImage(image, 'JPG', 75, 5, 50, 10)
+        doc.text("Date-" + date, 180, 25);
+        doc.text("Customer-" + row.customer_name, 180, 30);
         doc.setFontSize(10);
-        doc.text("Girnar Laser",15,30)
-        doc.text("C-61 Shiroli MIDC,",15,35)
-        doc.text("Kolhapur - 416122,",15,40)
-        doc.text("Mobile No. 9423860561 , 7020598766,",15,45)
-        doc.text("girnarlaser@gmail.com,",15,50)
-        doc.text("www.girnarlaser.com,",15,55)
-        doc.text("Mobile No. 9423860561 , 7020598766",15,60)
+        doc.text("Girnar Laser", 15, 35)
+        doc.text("C-61 Shiroli MIDC,", 15, 40)
+        doc.text("Kolhapur - 416122,", 15, 45)
+        doc.text("Mobile No. 9423860561 , 7020598766,", 15, 50)
+        doc.text("girnarlaser@gmail.com,", 15, 55)
+        doc.text("www.girnarlaser.com,", 15, 60)
+        doc.text("Mobile No. 9423860561 , 7020598766", 15, 65)
         doc.setFontSize(20);
-        doc.text("Terms & Conditions: -",15,205);
+        doc.text("Terms & Conditions: -", 15, 205);
         doc.setFontSize(10);
-        doc.text("1)Above cost includes cost With Material Laser Cutting and Bending.",15,210)
-        doc.text("2)Quotation Validity for Seven Days.",15,215)
-        doc.text("3)Laser Cutting as per Auto Cad drawing provided by you.",15,220)
-        doc.text("4)We Reserve the Right to Amend the Delivery as Per Our Production Plan ",15,225)
-        doc.text("  And Same Will Be Informed To You Well In Advance.",15,230)
-        doc.text("5)Job Inspection and Material Testing Should Be Done By You before Processing",15,235)
-        doc.text("  , Or Else We Will Not Be Responsible For Defects.",15,240)
-        doc.text("6)GST (18%), Packing, Transportation etc. not considered in above costing.",15,245)
-        doc.text("7)Payment Terms: - 100% Advance.",15,250)
-        doc.text("Signature",15,275);
-        doc.autoTable({ html: document.getElementById('mytable') ,theme: 'grid',startY: 75})
+        doc.text("1)Above cost includes cost With Material Laser Cutting and Bending.", 15, 210)
+        doc.text("2)Quotation Validity for Seven Days.", 15, 215)
+        doc.text("3)Laser Cutting as per Auto Cad drawing provided by you.", 15, 220)
+        doc.text("4)We Reserve the Right to Amend the Delivery as Per Our Production Plan ", 15, 225)
+        doc.text("  And Same Will Be Informed To You Well In Advance.", 15, 230)
+        doc.text("5)Job Inspection and Material Testing Should Be Done By You before Processing", 15, 235)
+        doc.text("  , Or Else We Will Not Be Responsible For Defects.", 15, 240)
+        doc.text("6)GST (18%), Packing, Transportation etc. not considered in above costing.", 15, 245)
+        doc.text("7)Payment Terms: - 100% Advance.", 15, 250)
+        doc.text("Signature", 15, 275);
+        doc.autoTable({ html: document.getElementById('mytable'), theme: 'grid', startY: 75 })
         doc.save('table.pdf')
     }
     // function exportPDF() {
@@ -246,6 +268,52 @@ function QuotationMaster() {
 
     //     pdf.save(pdfsize + ".pdf");
     //   };
+    //Edit option
+    const onEdit = (row) => {
+        handleShow();
+        setEditQuotation({
+            id: row.id,
+            customer_enquiry: row.customer_enquiry,
+            des_quant_rate: JSON.parse(row.des_quant_rate),
+            total: row.total
+        })
+        setFormValues1(JSON.parse(row.des_quant_rate))
+    }
+    const calculateTotal1 = (e) => {
+        var totalvalue = 0
+        for (var key in formValues1) {
+            console.log(parseInt(totalvalue))
+            totalvalue = parseInt(totalvalue) + parseInt(formValues1[key].total_rate)
+            setTotal1(totalvalue)
+            setEditQuotation({ ...editQuotation, total: totalvalue })
+            console.log(totalvalue)
+        }
+        //setQuotation({ ...quotation, total: totalvalue })
+    }
+    const onModalFormSubmit = (e) => {
+        e.preventDefault()
+        console.log(editQuotation)
+        axios.post(api_url + "update_quotation.php", editQuotation)
+            .then(() => {
+                console.log("Edited")
+                axios.post(api_url + "read_quotation.php")
+                    .then((res) => {
+                        setReadQuotation(res.data)
+                    })
+            })
+        handleClose()
+    }
+    //Delete
+    const onDelete = (id) => {
+        axios.post(api_url + "delete_quotation.php", { id: id })
+            .then(() => {
+                console.log("deleted")
+                axios.post(api_url + "read_quotation.php")
+                    .then((res) => {
+                        setReadQuotation(res.data)
+                    })
+            })
+    }
     const columns = [
         {
             field: 'id',
@@ -270,7 +338,16 @@ function QuotationMaster() {
             renderCell: (params) => {
                 return (
                     <div className="">
-                        <button onClick={() => exportPDF(params.row)} data-toggle="tooltip" title="Read" type="button" className="btn btn-primary"  ><i class="far fa-eye"></i></button>
+                        <button onClick={() => exportPDF(params.row)} data-toggle="tooltip" title="Read" type="button" className="btn btn-primary"  ><i class="fas fa-download"></i></button>
+                        <button onClick={() => onEdit(params.row)} data-toggle="tooltip" title="Edit" style={{ marginLeft: '20%' }} type="button" className="btn btn-warning"  ><i class="far fa-edit"></i></button>
+                        <button onClick={() => {
+                            const confirmBox = window.confirm(
+                                "Do you really want to delete?"
+                            )
+                            if (confirmBox === true) {
+                                onDelete(params.row.id)
+                            }
+                        }} data-toggle="tooltip" title="Delete" style={{ marginLeft: '20%' }} className="btn btn-danger" ><i className="fas fa-trash"></i></button>
                     </div>
                 );
             }
@@ -280,87 +357,92 @@ function QuotationMaster() {
     return (
 
         <>
-        <div style={{display:'none'}}>
-        <table className="tbl tbl-bordered" id="mytable">
-            
-            <tr>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Total Rate</th>
-            </tr>
-            {/* {printDesQuantRate===undefined?[]:printDesQuantRate.map((des)=>(
+            <div style={{ display: 'none' }}>
+                <table className="tbl tbl-bordered" id="mytable">
+
+                    <tr>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Total Rate</th>
+                    </tr>
+                    {/* {printDesQuantRate===undefined?[]:printDesQuantRate.map((des)=>(
             <tr>
                 <td>{des.description}</td>
                 <td>{des.quantity}</td>
                 <td>{des.total_rate}</td>
             </tr>
             ))} */}
-            {printDesQuantRate===[]?[]:printDesQuantRate.map(des=>{
-                return(
+                    {printDesQuantRate === [] ? [] : printDesQuantRate.map(des => {
+                        return (
+                            <tr>
+                                <td>{des.description}</td>
+                                <td>{des.quantity}</td>
+                                <td>{des.total_rate}</td>
+                            </tr>
+                        )
+                    })}
                     <tr>
-                        <td>{des.description}</td>
-                        <td>{des.quantity}</td>
-                        <td>{des.total_rate}</td>
+                        <th>Total</th>
+                        <td></td>
+                        <th>{printTotal}</th>
                     </tr>
-                )
-            })}
-            <tr>
-                <th>Total</th>
-                <td></td>
-                <th>{printTotal}</th>
-            </tr>
-        </table>
-        </div>
-        
+                </table>
+            </div>
+
             <Header />
             <Menu />
 
             <div className='content-wrapper'>
                 <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header>
-                        <Modal.Title>Quotation Update</Modal.Title>
+                        <Modal.Title>Details Read</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form>
+                        <Form onSubmit={onModalFormSubmit}>
                             <div className="card-body">
                                 <div className="form-group">
-                                    <label>Customer Id</label>
-                                    <input type="text" className="form-control" value="Customer-1" />
+                                    <label>Id</label>
+                                    <input defaultValue={editQuotation.id} name="id" type="text" className="form-control" readOnly />
                                 </div>
-                                <div className="form-group">
-                                    <label>Customer First Name</label>
-                                    <input type="text" className="form-control" value="Yash" />
-                                </div>
-                                <div className="form-group">
-                                    <label>Customer Last Name</label>
-                                    <input type="text" className="form-control" value="Shinde" />
-                                </div>
-                                <div className="form-group">
-                                    <label>Customer Email</label>
-                                    <input type="text" className="form-control" value="yash.s@velocetechinsights.com" />
-                                </div>
-                                <div className="form-group">
-                                    <label>Customer Address</label>
-                                    <input type="text" className="form-control" value="Rajarampuri 12 th lane" />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="exampleInputFile">File Upload</label>
-                                    <div className="input-group">
-                                        <div className="custom-file">
-                                            <input type="file" className="custom-file-input" id="exampleInputFile" />
-                                            <label className="custom-file-label" htmlFor="exampleInputFile">Choose file</label>
-                                        </div>
-                                        <div className="input-group-append">
-                                            <span className="input-group-text">Upload</span>
-                                        </div>
+                                <select defaultValue={editQuotation.customer_enquiry} onChange={onCustomerChange} className='form-control' name="customer_enquiry">
+                                    <option>Select</option>
+                                    {customerOption === undefined ? [] : customerOption.data.map((customer) => (
+                                        <option value={customer.id} key={customer.id}>{customer.id}</option>
+                                    ))}
+                                </select>
+                                <hr />
+                                {formValues1.map((element, index) => (
+                                    <div className="form-group" key={index}>
+                                        <label>Description</label>
+                                        <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange1(index, e)} />
+                                        <label>Quantity</label>
+                                        <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange1(index, e)} />
+                                        <label>Total Rate</label>
+                                        <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange1(index, e)} />
+                                        {
+                                            index ?
+                                                <button type="button" className="btn btn-danger" onClick={() => removeFormFields1(index)}>Remove</button>
+                                                : null
+                                        }
                                     </div>
+                                ))}
+                                <div className="button-section">
+                                    <button className="btn btn-info" type="button" onClick={() => addFormFields1()}>Add</button>
+
+                                </div><br />
+                                <div className="button-section">
+                                    <button onClick={calculateTotal1} className="btn btn-success" type="button">Calculate Total</button>
+
+                                </div>
+                                <div className="form-group">
+                                    <label>Total</label>
+                                    <input value={editQuotation.total} type='number' name="total" className='form-control' />
+                                </div>
+                                <div className="card-footer">
+                                    <button type="submit" className="btn btn-primary">Submit</button>
                                 </div>
                             </div>
-
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
+                        </Form>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
@@ -368,6 +450,7 @@ function QuotationMaster() {
                         </Button>
                     </Modal.Footer>
                 </Modal>
+
 
                 <section class="content">
                     <div className="container-fluid">
@@ -390,19 +473,36 @@ function QuotationMaster() {
                                                     ))}
                                                 </select>
                                                 {formValues.map((element, index) => (
-                                                    <div className="form-inline" key={index}>
+                                                    <div className=''>
+                                                    <hr />
+                                                    <div className="row" key={index}>
+                                                        <div className='col-md-4'>
                                                         <label>Description</label>
                                                         <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange(index, e)} />
+                                                        </div>
+                                                        <div className='col-md-4'>
                                                         <label>Quantity</label>
                                                         <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange(index, e)} />
+                                                        </div>
+                                                        <div className='col-md-4'>
                                                         <label>Total Rate</label>
                                                         <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange(index, e)} />
+                                                        </div>
+                                                        
+                                                        
+                                                        
                                                         {
                                                             index ?
-                                                                <button type="button" className="btn btn-danger" onClick={() => removeFormFields(index)}>Remove</button>
-                                                                : null
+                                                            <div className="row">
+                                                            <button type="button" style={{marginLeft:'15px'}} className="form-group btn btn-danger" onClick={() => removeFormFields(index)}>Remove</button>
+                                                                
+                                                            </div>
+                                                           : null     
                                                         }
                                                     </div>
+                                                    <hr />
+                                                    </div>
+                                                    
                                                 ))}
                                                 <div className="button-section">
                                                     <button className="btn btn-info" type="button" onClick={() => addFormFields()}>Add</button>
@@ -423,46 +523,6 @@ function QuotationMaster() {
                                             <button type="submit" className="btn btn-primary">Submit</button>
                                         </div>
                                     </form>
-                                </div>
-                            </div>
-                            <div className="col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Quotation</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <table id="example1" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Customer Id</th>
-                                                    <th>Customer First Name</th>
-                                                    <th>Customer Last Name</th>
-                                                    <th>Customer Email</th>
-                                                    <th>Customer Address</th>
-                                                    <th>Quotation File</th>
-                                                    <th>Process</th>
-                                                    <th>Raw Material</th>
-                                                    <th>Description</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Customer-1</td>
-                                                    <th>Yash</th>
-                                                    <td>Shinde</td>
-                                                    <td>yash.s@velocetechinsights.com</td>
-                                                    <td>Rajarampuri 12 th lane</td>
-                                                    <td><img src="https://picsum.photos/200/200" /></td>
-                                                    <td>Laser Cutting</td>
-                                                    <td>Given</td>
-                                                    <td>Square sheet to be cut using laser</td>
-                                                    <td><i onClick={openModal} className="fas fa-edit fa-fw" /></td>
-                                                </tr>
-                                            </tbody>
-
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
                         </div>
