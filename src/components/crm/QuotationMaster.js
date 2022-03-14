@@ -50,6 +50,28 @@ function QuotationMaster() {
         console.log(newFormValues)
         setEditQuotation({ ...editQuotation, des_quant_rate: newFormValues })
     }
+    //Single Read
+    const [formValues2, setFormValues2] = useState([{ description: "", quantity: "", total_rate: "" }])
+    let handleChange2 = (i, e) => {
+        let newFormValues = [...formValues1];
+        newFormValues[i][e.target.name] = e.target.value;
+
+        setFormValues2(newFormValues);
+        //console.log(formValues);
+        setSingleQuotation({ ...editQuotation, des_quant_rate: formValues2 })
+    }
+
+    let addFormFields2 = () => {
+        setFormValues2([...formValues2, { description: "", quantity: "", total_rate: "" }])
+    }
+
+    let removeFormFields2 = (i) => {
+        let newFormValues = [...formValues2];
+        newFormValues.splice(i, 1);
+        setFormValues1(newFormValues)
+        console.log(newFormValues)
+        setReadQuotation({ ...editQuotation, des_quant_rate: newFormValues })
+    }
 
 
     const [showModal, setShow] = useState(false);
@@ -57,6 +79,12 @@ function QuotationMaster() {
     const handleShow = () => setShow(true);
     const openModal = () => {
         handleShow();
+    }
+    const [showModal1, setShow1] = useState(false);
+    const handleClose1 = () => setShow1(false);
+    const handleShow1 = () => setShow1(true);
+    const openModal1 = () => {
+        handleShow1();
     }
 
     //States
@@ -70,12 +98,20 @@ function QuotationMaster() {
     });
     const [readQuotation, setReadQuotation] = useState({
         id: "",
+        quotation: "",
         customer_enquiry: "",
         des_quant_rate: [],
         total: 0
     });
     const [editQuotation, setEditQuotation] = useState({
         id: "",
+        customer_enquiry: "",
+        des_quant_rate: [],
+        total: 0
+    });
+    const [singleQuotation, setSingleQuotation] = useState({
+        id: "",
+        quotation: "",
         customer_enquiry: "",
         des_quant_rate: [],
         total: 0
@@ -222,18 +258,22 @@ function QuotationMaster() {
         const current = new Date();
         const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
         doc.setFontSize(10);
-        //doc.text("Girnar Laser",marginLeft,5);
+        //doc.text("Purchase Order",marginLeft,5);
         doc.addImage(image, 'JPG', 75, 5, 50, 10)
-        doc.text("Date-" + date, 180, 25);
-        doc.text("Customer-" + row.customer_name, 180, 30);
+        doc.text("Date-" + date, 150, 25);
+        doc.text("Customer-" + row.customer_name, 150, 30);
+        var splitTitle = doc.splitTextToSize(row.quotation, 30);
+        doc.text("Quotation No-",150,35)
+        doc.text(150, 40, splitTitle);
+       //doc.text("Quotation No-" + splitTitle, 150, 35);
         doc.setFontSize(10);
-        doc.text("Girnar Laser", 15, 35)
-        doc.text("C-61 Shiroli MIDC,", 15, 40)
-        doc.text("Kolhapur - 416122,", 15, 45)
-        doc.text("Mobile No. 9423860561 , 7020598766,", 15, 50)
-        doc.text("girnarlaser@gmail.com,", 15, 55)
-        doc.text("www.girnarlaser.com,", 15, 60)
-        doc.text("Mobile No. 9423860561 , 7020598766", 15, 65)
+        doc.text("Girnar Laser", 15, 45)
+        doc.text("C-61 Shiroli MIDC,", 15, 50)
+        doc.text("Kolhapur - 416122,", 15, 55)
+        doc.text("Mobile No. 9423860561 , 7020598766,", 15, 60)
+        doc.text("girnarlaser@gmail.com,", 15, 65)
+        doc.text("www.girnarlaser.com,", 15, 70)
+        doc.text("Mobile No. 9423860561 , 7020598766", 15, 75)
         doc.setFontSize(20);
         doc.text("Terms & Conditions: -", 15, 205);
         doc.setFontSize(10);
@@ -247,7 +287,7 @@ function QuotationMaster() {
         doc.text("6)GST (18%), Packing, Transportation etc. not considered in above costing.", 15, 245)
         doc.text("7)Payment Terms: - 100% Advance.", 15, 250)
         doc.text("Signature", 15, 275);
-        doc.autoTable({ html: document.getElementById('mytable'), theme: 'grid', startY: 75 })
+        doc.autoTable({ html: document.getElementById('mytable'), theme: 'grid', startY: 80 })
         doc.save('table.pdf')
     }
     // function exportPDF() {
@@ -273,6 +313,7 @@ function QuotationMaster() {
         handleShow();
         setEditQuotation({
             id: row.id,
+
             customer_enquiry: row.customer_enquiry,
             des_quant_rate: JSON.parse(row.des_quant_rate),
             total: row.total
@@ -314,19 +355,36 @@ function QuotationMaster() {
                     })
             })
     }
+    //Read
+    const onRead = (row) => {
+        handleShow1();
+        setSingleQuotation({
+            id: row.id,
+            quotation: row.quotation,
+            customer_enquiry: row.customer_enquiry,
+            des_quant_rate: JSON.parse(row.des_quant_rate),
+            total: row.total
+        })
+        setFormValues2(JSON.parse(row.des_quant_rate))
+    }
     const columns = [
         {
             field: 'id',
             headerName: 'Id'
         },
         {
-            field: 'customer_enquiry',
-            headerName: 'Customer'
+            field: 'quotation',
+            headerName: 'Quotation Number',
+            width: 200
         },
         {
-            field: 'des_quant_rate',
-            headerName: 'Des_quant_rate'
+            field: 'customer_name',
+            headerName: 'Customer Name'
         },
+        // {
+        //     field: 'des_quant_rate',
+        //     headerName: 'Des_quant_rate'
+        // },
         {
             field: 'total',
             headerName: 'Total'
@@ -334,11 +392,12 @@ function QuotationMaster() {
         {
             field: 'action',
             headerName: 'Action',
-            width: 200,
+            width: 300,
             renderCell: (params) => {
                 return (
                     <div className="">
-                        <button onClick={() => exportPDF(params.row)} data-toggle="tooltip" title="Read" type="button" className="btn btn-primary"  ><i class="fas fa-download"></i></button>
+                        <button onClick={() => onRead(params.row)} data-toggle="tooltip" title="Read" type="button" className="btn btn-success"  ><i class="fas fa-eye"></i></button>
+                        <button onClick={() => exportPDF(params.row)} data-toggle="tooltip" title="Read" style={{ marginLeft: '20%' }} type="button" className="btn btn-primary"  ><i class="fas fa-download"></i></button>
                         <button onClick={() => onEdit(params.row)} data-toggle="tooltip" title="Edit" style={{ marginLeft: '20%' }} type="button" className="btn btn-warning"  ><i class="far fa-edit"></i></button>
                         <button onClick={() => {
                             const confirmBox = window.confirm(
@@ -407,7 +466,7 @@ function QuotationMaster() {
                                 <select defaultValue={editQuotation.customer_enquiry} onChange={onCustomerChange} className='form-control' name="customer_enquiry">
                                     <option>Select</option>
                                     {customerOption === undefined ? [] : customerOption.data.map((customer) => (
-                                        <option value={customer.id} key={customer.id}>{customer.id}</option>
+                                        <option value={customer.id} key={customer.id}>{customer.inquiry}</option>
                                     ))}
                                 </select>
                                 <hr />
@@ -450,6 +509,54 @@ function QuotationMaster() {
                         </Button>
                     </Modal.Footer>
                 </Modal>
+                <Modal show={showModal1} onHide={handleClose1}>
+                    <Modal.Header>
+                        <Modal.Title>Details Read</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form >
+                            <div className="card-body">
+                                <div className="form-group">
+                                    <label>Id</label>
+                                    <input defaultValue={singleQuotation.id} name="id" type="text" className="form-control" readOnly />
+                                </div>
+                                <div className="form-group">
+                                    <label>Quotation</label>
+                                    <input defaultValue={singleQuotation.quotation} name="quotation" type="text" className="form-control" readOnly />
+                                </div>
+                                <select defaultValue={singleQuotation.customer_enquiry} className='form-control' name="customer_enquiry">
+                                    <option>Select</option>
+                                    {customerOption === undefined ? [] : customerOption.data.map((customer) => (
+                                        <option disabled={true} value={customer.id} key={customer.id}>{customer.inquiry}</option>
+                                    ))}
+                                </select>
+                                <hr />
+                                {formValues2.map((element, index) => (
+                                    <div className="form-group" key={index}>
+                                        <label>Description</label>
+                                        <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange2(index, e)} readOnly />
+                                        <label>Quantity</label>
+                                        <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange2(index, e)} readOnly />
+                                        <label>Total Rate</label>
+                                        <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange2(index, e)} readOnly />
+
+                                    </div>
+                                ))}
+
+                                <hr />
+                                <div className="form-group">
+                                    <label>Total</label>
+                                    <input value={singleQuotation.total} type='number' name="total" className='form-control' readOnly />
+                                </div>
+                            </div>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose1}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
 
                 <section class="content">
@@ -469,40 +576,40 @@ function QuotationMaster() {
                                                 <select onChange={onCustomerChange} className='form-control' name="customer_enquiry">
                                                     <option>Select</option>
                                                     {customerOption === undefined ? [] : customerOption.data.map((customer) => (
-                                                        <option value={customer.id} key={customer.id}>{customer.id}</option>
+                                                        <option value={customer.id} key={customer.id}>{customer.inquiry}</option>
                                                     ))}
                                                 </select>
                                                 {formValues.map((element, index) => (
                                                     <div className=''>
-                                                    <hr />
-                                                    <div className="row" key={index}>
-                                                        <div className='col-md-4'>
-                                                        <label>Description</label>
-                                                        <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange(index, e)} />
-                                                        </div>
-                                                        <div className='col-md-4'>
-                                                        <label>Quantity</label>
-                                                        <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange(index, e)} />
-                                                        </div>
-                                                        <div className='col-md-4'>
-                                                        <label>Total Rate</label>
-                                                        <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange(index, e)} />
-                                                        </div>
-                                                        
-                                                        
-                                                        
-                                                        {
-                                                            index ?
-                                                            <div className="row">
-                                                            <button type="button" style={{marginLeft:'15px'}} className="form-group btn btn-danger" onClick={() => removeFormFields(index)}>Remove</button>
-                                                                
+                                                        <hr />
+                                                        <div className="row" key={index}>
+                                                            <div className='col-md-4'>
+                                                                <label>Description</label>
+                                                                <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange(index, e)} />
                                                             </div>
-                                                           : null     
-                                                        }
+                                                            <div className='col-md-4'>
+                                                                <label>Quantity</label>
+                                                                <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange(index, e)} />
+                                                            </div>
+                                                            <div className='col-md-4'>
+                                                                <label>Total Rate</label>
+                                                                <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange(index, e)} />
+                                                            </div>
+
+
+
+                                                            {
+                                                                index ?
+                                                                    <div className="row">
+                                                                        <button type="button" style={{ marginLeft: '15px' }} className="form-group btn btn-danger" onClick={() => removeFormFields(index)}>Remove</button>
+
+                                                                    </div>
+                                                                    : null
+                                                            }
+                                                        </div>
+                                                        <hr />
                                                     </div>
-                                                    <hr />
-                                                    </div>
-                                                    
+
                                                 ))}
                                                 <div className="button-section">
                                                     <button className="btn btn-info" type="button" onClick={() => addFormFields()}>Add</button>

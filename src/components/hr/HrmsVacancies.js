@@ -191,7 +191,7 @@ function HrmsVacancies() {
             </Modal>
             <Modal show={showModal} onHide={handleClose}>
                 <Modal.Header>
-                    <Modal.Title>Details Read</Modal.Title>
+                    <Modal.Title>Edit</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={onModalFormSubmit}>
@@ -232,7 +232,7 @@ function HrmsVacancies() {
                                 {/* left column */}
                                 <div className="card card-primary">
                                     <div className="card-header">
-                                        <h3 className="card-title">Material Type Master</h3>
+                                        <h3 className="card-title">Vacancies</h3>
                                     </div>
                                     {/* /.card-header */}
                                     {/* form start */}

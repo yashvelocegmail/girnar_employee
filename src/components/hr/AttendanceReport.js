@@ -120,10 +120,11 @@ function AttendanceReport() {
         })
     }
     const onRead1 = (row) => {
+        console.log(row)
         handleShow1();
         setSingleLeaveTracker({
             id:row.id,
-            employee:row.employee,
+            employee:row.emp_name,
             leave_from: row.leave_from,
             leave_to: row.leave_to,
             reason: row.reason,
@@ -263,11 +264,11 @@ function AttendanceReport() {
                         </div>
                         <div className='form-group'>
                             <label>Check In</label>
-                            <input defaultValue={singleAttendance.check_in} className='form-control' type="date" name="check_in" readOnly/>
+                            <input defaultValue={singleAttendance.check_in} className='form-control' type="text" name="check_in" readOnly/>
                         </div>
                         <div className='form-group'>
                             <label>Check Out</label>
-                            <input defaultValue={singleAttendance.check_out} className='form-control' type="date" name="check_out" readOnly/>
+                            <input defaultValue={singleAttendance.check_out} className='form-control' type="text" name="check_out" readOnly/>
                         </div>
                         <div className='form-group'>
                             <label>Completed Hrs</label>
@@ -276,7 +277,7 @@ function AttendanceReport() {
                         
                         <div className='form-group'>
                             <label>Late Hrs</label>
-                            <input defaultValue={singleAttendance.late_hrs} className='form-control' type="date" name="late_hrs" readOnly/>
+                            <input defaultValue={singleAttendance.late_hrs} className='form-control' type="text" name="late_hrs" readOnly/>
                         </div>
                         <div className='form-group'>
                             <label>Check In Approval</label>
@@ -301,7 +302,7 @@ function AttendanceReport() {
                         </div>
                         <div className='form-group'>
                             <label>Employee</label>
-                            <input defaultValue={singleLeaveTracker.employee} className='form-control' type="date" name="date" readOnly/>
+                            <input defaultValue={singleLeaveTracker.employee} className='form-control' type="text" name="date" readOnly/>
                         </div>
                         <div className='form-group'>
                             <label>Leave From</label>
@@ -326,7 +327,7 @@ function AttendanceReport() {
                         </div>
                         <div className='form-group'>
                             {/* <input defaultValue={singleLeaveTracker.attachment} className='form-control' type="text" name="check_out_approval" readOnly/> */}
-                            <img src={`http://localhost/girnar_backend/assets/images/${singleLeaveTracker.attachment}`}/>
+                            <img width="470" height="500" src={`http://localhost/girnar_backend/assets/images/${singleLeaveTracker.attachment}`}/>
                         </div>
                     </form>
                 </Modal.Body>

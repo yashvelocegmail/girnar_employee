@@ -273,7 +273,7 @@ function StockRequest() {
             </Modal>
             <Modal show={showModal} onHide={handleClose}>
                 <Modal.Header>
-                    <Modal.Title>Details Read</Modal.Title>
+                    <Modal.Title>Edit</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={onModalFormSubmit}>
@@ -333,7 +333,7 @@ function StockRequest() {
                                 {/* left column */}
                                 <div className="card card-primary">
                                     <div className="card-header">
-                                        <h3 className="card-title">Stock Request</h3>
+                                        <h3 className="card-title">Payment</h3>
                                     </div>
                                     {/* /.card-header */}
                                     {/* form start */}

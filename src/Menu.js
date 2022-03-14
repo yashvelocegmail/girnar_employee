@@ -406,6 +406,10 @@ function Menu() {
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Vacancies</p>
                                             </Link>
+                                            <Link to="hrms_employee_salary" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Employee Salary</p>
+                                            </Link>
                                         </li>
                                     </ul> : null}
                                 </li>

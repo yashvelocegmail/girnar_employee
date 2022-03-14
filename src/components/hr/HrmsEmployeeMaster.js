@@ -326,24 +326,24 @@ function HrmsEmployeeMaster() {
                             </div>
                             <div className="field col-md-12">
                                 <label className="required">Name</label>
-                                <input defaultValue={modalEmployee.name} onChange={onModalInputChange} className="form-control mt-1" name="name" type="text" required />
+                                <input defaultValue={modalEmployee.name} onChange={onModalInputChange} className="form-control mt-1" name="name" type="text" required pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets." />
                             </div>
                             <div className="field col-md-12">
                                 <label className="required">Email</label>
-                                <input defaultValue={modalEmployee.email} onChange={onModalInputChange} className="form-control mt-1" name="email" type="text" required />
+                                <input defaultValue={modalEmployee.email} onChange={onModalInputChange} className="form-control mt-1" name="email" type="email" title="Please enter valid email address" required />
                             </div>
                             <div className="field col-md-12">
                                 <label className="required">Mobile</label>
-                                <input defaultValue={modalEmployee.mobile} onChange={onModalInputChange} className="form-control mt-1" name="mobile" type="text" required />
+                                <input defaultValue={modalEmployee.mobile} onChange={onModalInputChange} className="form-control mt-1" name="mobile" type="tel" required pattern="[789][0-9]{9}" title="Please enter valid mobile no" />
                             </div>
                             <div className="field col-md-12">
                                 <label className="required">Address</label>
-                                <input defaultValue={modalEmployee.address} onChange={onModalInputChange} className="form-control mt-1" name="address" type="text" required />
+                                <input defaultValue={modalEmployee.address} onChange={onModalInputChange} className="form-control mt-1" name="address" type="text" required />*
                             </div>
                             <div className="field col-md-12">
                                 <label className="required">Position</label>
                                 {/* <input defaultValue={modalEmployee.position} onChange={onModalInputChange} className="form-control mt-1" name="position" type="text" required /> */}
-                                <select defaultValue={modalEmployee.position} onChange={onModalInputChange} className="form-control mt-1" name="position">
+                                <select defaultValue={modalEmployee.position} onChange={onModalInputChange} className="form-control mt-1" name="position" required>
                                     <option>Select</option>
                                     <option value="senior">Senior</option>
                                     <option value="junior">Junior</option>
@@ -355,12 +355,12 @@ function HrmsEmployeeMaster() {
                             </div>
                             <div className="field col-md-12">
                                 <label className="required">Password</label>
-                                <input defaultValue={modalEmployee.password} onChange={onModalInputChange} className="form-control mt-1" name="password" type="text" required />
+                                <input defaultValue={modalEmployee.password} onChange={onModalInputChange} className="form-control mt-1" name="password" type="password" required />
                             </div>
                             <div className="field col-md-12">
                                 <label className="required">User Type</label>
                                 {/* <input defaultValue={modalEmployee.user_type} onChange={onModalInputChange} className="form-control mt-1" name="user_type" type="text" required /> */}
-                                <select defaultValue={modalEmployee.user_type} onChange={onModalInputChange} className="form-control mt-1" name="user_type">
+                                <select defaultValue={modalEmployee.user_type} onChange={onModalInputChange} className="form-control mt-1" name="user_type" required>
                                     <option>Select</option>
                                     <option value="designer">Designer</option>
                                     <option value="programmer">Programmer</option>
@@ -370,36 +370,36 @@ function HrmsEmployeeMaster() {
                                 </select>
                             </div>
                             <div className='field col-md-12'>
-                                <label>Adhaar No</label>
-                                <input defaultValue={modalEmployee.adhaar_no} type="text" name="adhaar_no" className='form-control' onChange={onModalInputChange} />
+                                <label>Aadhaar No</label>
+                                <input defaultValue={modalEmployee.adhaar_no} type="text" name="adhaar_no" className='form-control' onChange={onModalInputChange} pattern="[0-9]{12}" title="Please enter valid Aadhaar Number"/>
                             </div>
                             <div className='field col-md-12'>
                                 <label>Pan No</label>
-                                <input defaultValue={modalEmployee.pan_no} type="text" name="pan_no" className='form-control' onChange={onModalInputChange} />
+                                <input defaultValue={modalEmployee.pan_no} type="text" name="pan_no" className='form-control' onChange={onModalInputChange} pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Please enter valid pan"/>
                             </div>
                             <div className='field col-md-12'>
                                 <label>Bank Name</label>
-                                <input defaultValue={modalEmployee.bank_name} type="text" name="bank_name" className='form-control' onChange={onModalInputChange} />
+                                <input defaultValue={modalEmployee.bank_name} type="text" name="bank_name" className='form-control' onChange={onModalInputChange} required pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
                             </div>
                             <div className='field col-md-12'>
                                 <label>Branch</label>
-                                <input defaultValue={modalEmployee.branch} type="text" name="branch" className='form-control' onChange={onModalInputChange} />
+                                <input defaultValue={modalEmployee.branch} type="text" name="branch" className='form-control' onChange={onModalInputChange} required pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
                             </div>
                             <div className='field col-md-12'>
                                 <label>IFSC Code</label>
-                                <input defaultValue={modalEmployee.ifsc} type="text" name="ifsc" className='form-control' onChange={onModalInputChange} />
+                                <input defaultValue={modalEmployee.ifsc} type="text" name="ifsc" className='form-control' onChange={onModalInputChange} required/>
                             </div>
                             <div className='field col-md-12'>
                                 <label>Account No</label>
-                                <input defaultValue={modalEmployee.account_no} type="text" name="account_no" className='form-control' onChange={onModalInputChange} />
+                                <input defaultValue={modalEmployee.account_no} type="text" name="account_no" className='form-control' onChange={onModalInputChange} required/>
                             </div>
                             <div className='field col-md-12'>
                                 <label>Photo</label>
-                                <input type="file" name="photo" className='form-control' onChange={onModalInputChange} />
+                                <input type="file" name="photo" className='form-control' onChange={onModalInputChange} required/>
                             </div>
                             <div className='field col-md-12'>
                                 <label>Salary</label>
-                                <input defaultValue={modalEmployee.salary} type="text" name="salary" className='form-control' onChange={onModalInputChange} />
+                                <input defaultValue={modalEmployee.salary} type="number" name="salary" className='form-control' onChange={onModalInputChange} required/>
                             </div>
                             <div className="field col-md-12">
                                 <button className="btn btn-primary mt-1">Save</button>
@@ -425,27 +425,27 @@ function HrmsEmployeeMaster() {
                                     <h3 className="card-title">Employee Creation</h3>
                                 </div>
                                 <div className="card-body">
-                                    <form onSubmit={onFormSubmit}>
+                                <form onSubmit={onFormSubmit}>
                                         <div className='form-group'>
                                             <label>Employee Name</label>
-                                            <input type="text" name="name" className='form-control' onChange={onHandleChange} />
+                                            <input type="text" name="name" className='form-control' onChange={onHandleChange} required pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
                                         </div>
                                         <div className='form-group'>
                                             <label>Employee Mobile</label>
-                                            <input type="text" name="mobile" className='form-control' onChange={onHandleChange} />
+                                            <input type="text" name="mobile" className='form-control' onChange={onHandleChange} required pattern="[789][0-9]{9}" title="Please enter valid mobile no"/>
                                         </div>
                                         <div className='form-group'>
                                             <label>Employee Email</label>
-                                            <input type="text" name="email" className='form-control' onChange={onHandleChange} />
+                                            <input type="text" name="email" className='form-control' onChange={onHandleChange} required  title="Please enter valid email address"/>
                                         </div>
                                         <div className='form-group'>
                                             <label>Employee Address</label>
-                                            <input type="text" name="address" className='form-control' onChange={onHandleChange} />
+                                            <input type="text" name="address" className='form-control' onChange={onHandleChange} required />
                                         </div>
                                         <div className='form-group'>
                                             <label>Employee Position</label>
                                             {/* <input type="text" name="position" className='form-control' onChange={onHandleChange} /> */}
-                                            <select onChange={onHandleChange} className="form-control mt-1" name="position">
+                                            <select onChange={onHandleChange} className="form-control mt-1" name="position" required>
                                                 <option>Select</option>
                                                 <option value="senior">Senior</option>
                                                 <option value="junior">Junior</option>
@@ -453,16 +453,16 @@ function HrmsEmployeeMaster() {
                                         </div>
                                         <div className='form-group'>
                                             <label>Username</label>
-                                            <input type="text" name="username" className='form-control' onChange={onHandleChange} />
+                                            <input type="text" name="username" className='form-control' onChange={onHandleChange} required/>
                                         </div>
                                         <div className='form-group'>
                                             <label>Password</label>
-                                            <input type="text" name="password" className='form-control' onChange={onHandleChange} />
+                                            <input type="password" name="password" className='form-control' onChange={onHandleChange} required/>
                                         </div>
                                         <div className='form-group'>
                                             <label>User Type</label>
                                             {/* <input type="text" name="user_type" className='form-control' onChange={onHandleChange} /> */}
-                                            <select onChange={onHandleChange} className="form-control mt-1" name="user_type">
+                                            <select onChange={onHandleChange} className="form-control mt-1" name="user_type" required>
                                                 <option>Select</option>
                                                 <option value="designer">Designer</option>
                                                 <option value="programmer">Programmer</option>
@@ -473,35 +473,35 @@ function HrmsEmployeeMaster() {
                                         </div>
                                         <div className='form-group'>
                                             <label>Adhaar No</label>
-                                            <input type="text" name="adhaar_no" className='form-control' onChange={onHandleChange} />
+                                            <input type="text" name="adhaar_no" className='form-control' onChange={onHandleChange} required pattern="[0-9]{12}" title="Please enter valid Aadhaar Number"/>
                                         </div>
                                         <div className='form-group'>
                                             <label>Pan No</label>
-                                            <input type="text" name="pan_no" className='form-control' onChange={onHandleChange} />
+                                            <input type="text" name="pan_no" className='form-control' onChange={onHandleChange} required pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Please enter valid pan"/>
                                         </div>
                                         <div className='form-group'>
                                             <label>Bank Name</label>
-                                            <input type="text" name="bank_name" className='form-control' onChange={onHandleChange} />
+                                            <input type="text" name="bank_name" className='form-control' onChange={onHandleChange} required pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
                                         </div>
                                         <div className='form-group'>
                                             <label>Branch</label>
-                                            <input type="text" name="branch" className='form-control' onChange={onHandleChange} />
+                                            <input type="text" name="branch" className='form-control' onChange={onHandleChange} required pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
                                         </div>
                                         <div className='form-group'>
                                             <label>IFSC Code</label>
-                                            <input type="text" name="ifsc" className='form-control' onChange={onHandleChange} />
+                                            <input type="text" name="ifsc" className='form-control' onChange={onHandleChange} required />
                                         </div>
                                         <div className='form-group'>
                                             <label>Account No</label>
-                                            <input type="text" name="account_no" className='form-control' onChange={onHandleChange} />
+                                            <input type="text" name="account_no" className='form-control' onChange={onHandleChange} required />
                                         </div>
                                         <div className='form-group'>
                                             <label>Photo</label>
-                                            <input type="file" name="photo" className='form-control' onChange={onHandleChange} />
+                                            <input type="file" name="photo" className='form-control' onChange={onHandleChange} required/>
                                         </div>
                                         <div className='form-group'>
                                             <label>Salary</label>
-                                            <input type="text" name="salary" className='form-control' onChange={onHandleChange} />
+                                            <input type="number" name="salary" className='form-control' onChange={onHandleChange} />
                                         </div>
                                         <div className='form-group'>
                                             <input type="submit" name="submit" className='btn btn-primary' />

@@ -69,6 +69,18 @@ function Attendance() {
             console.log("Checked Out");
         })
     }
+    const onCheckInRejected=(id)=>{
+        axios.post(api_url+"check_in_rejected.php",{id:id})
+        .then(()=>{
+            console.log("Checked In");
+        })
+    }
+    const onCheckOutRejected=(id)=>{
+        axios.post(api_url+"check_out_rejected.php",{id:id})
+        .then(()=>{
+            console.log("Checked Out");
+        })
+    }
     const columns = [
         {
             field: 'id',
@@ -120,8 +132,8 @@ function Attendance() {
             renderCell: (params) => {
                 return (
                     <div className="">
-                        <button onClick={() => onCheckInApproval(params.row.id)} data-toggle="tooltip" title="Read" type="button" className="btn btn-primary"  ><i class="fas fa-check"></i></button>
-                        
+                        <button onClick={() => onCheckInApproval(params.row.id)} data-toggle="tooltip" title="Approve" type="button" className="btn btn-primary"  ><i class="fas fa-check"></i></button>
+                        <button onClick={() => onCheckInRejected(params.row.id)} data-toggle="tooltip" title="Reject" type="button" className="btn btn-danger"  ><i class="fas fa-times"></i></button>
                     </div>
                 );
             }
@@ -179,7 +191,7 @@ function Attendance() {
                 return (
                     <div className="">
                         <button onClick={() => onCheckOutApproval(params.row.id)} data-toggle="tooltip" title="Read" type="button" className="btn btn-primary"  ><i class="fas fa-check"></i></button>
-                        
+                        <button onClick={() => onCheckOutRejected(params.row.id)} data-toggle="tooltip" title="Read" type="button" className="btn btn-danger"  ><i class="fas fa-xmark"></i></button>
                     </div>
                 );
             }

@@ -12,6 +12,10 @@ function DesignerLeaveTracker() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const [showModal1, setShow1] = useState(false);
+    const handleClose1 = () => setShow1(false);
+    const handleShow1 = () => setShow1(true);
+
     const [showModalImage, setShowImage] = useState(false);
     const handleCloseImage = () => setShowImage(false);
     const [parameter, setParameter] = useState(false);
@@ -30,6 +34,16 @@ function DesignerLeaveTracker() {
         attachment: ""
     });
     const [modalLeaveTracker, setModalLeaveTracker] = useState({
+        id:"",
+        employee:"",
+        leave_from: "",
+        leave_to: "",
+        reason: "",
+        approval: "",
+        applied_on: "",
+        attachment: ""
+    });
+    const [singleLeaveTracker, setSingleLeaveTracker] = useState({
         id:"",
         employee:"",
         leave_from: "",
@@ -109,7 +123,21 @@ function DesignerLeaveTracker() {
             })
         })
     }
-
+    //Read
+    const onRead=(row)=>{
+        console.log(row);
+        handleShow1();
+        setSingleLeaveTracker({
+            id:row.id,
+            employee:row.employee,
+            leave_from:row.leave_from,
+            leave_to:row.leave_to,
+            reason:row.reason,
+            approval:row.approval,
+            applied_on:row.applied_on,
+            attachment:row.attachment
+        })
+    }
         const columns = [
         {
             field: "id",
@@ -138,7 +166,7 @@ function DesignerLeaveTracker() {
         // },
         {
             field: "approval",
-            width: 200,
+            width: 100,
             headerName: "Approval",
             renderCell: (params) => {
                 if(params.row.approval==="requested")
@@ -159,13 +187,13 @@ function DesignerLeaveTracker() {
                 }
             }
         },
-        {
-            field: "applied_on",
-            headerName: "Applied On",
-        },
+        // {
+        //     field: "applied_on",
+        //     headerName: "Applied On",
+        // },
         {
             field: "attachment",
-            width: 200,
+            width: 100,
             headerName: "Attachment",
             renderCell: (params) => {
                 return (
@@ -182,7 +210,8 @@ function DesignerLeaveTracker() {
             renderCell: (params) => {
                 return (
                     <div className="">
-                        <button onClick={() => onEdit(params.row)} data-toggle="tooltip" title="Edit" type="button" className="btn btn-warning"  ><i class="far fa-edit"></i></button>
+                        <button onClick={() => onRead(params.row)} data-toggle="tooltip" title="Read" type="button" className="btn btn-primary"  ><i class="far fa-eye"></i></button>
+                        <button onClick={() => onEdit(params.row)} data-toggle="tooltip" title="Edit" style={{ marginLeft: '20%' }} type="button" className="btn btn-warning"  ><i class="far fa-edit"></i></button>
                         <button onClick={() => {
                             const confirmBox = window.confirm(
                                 "Do you really want to delete?"
@@ -207,6 +236,51 @@ function DesignerLeaveTracker() {
                 </Modal.Header>
                 <Modal.Body>
                     <img width="450" height="450" src={`http://localhost:80/girnar_backend/assets/images/${parameter}`} />
+                </Modal.Body>
+            </Modal>
+            <Modal show={showModal1} onHide={handleClose1}>
+                <Modal.Header>
+                    <Modal.Title>Read Customer</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form>
+                        <div className='form-group'>
+                            <label>Id</label>
+                            <input defaultValue={singleLeaveTracker.id} className='form-control' type="text" name="id" readOnly/>
+                        </div>
+                        <div className='form-group'>
+                            <label>Employee</label>
+                            <input defaultValue={singleLeaveTracker.employee} className='form-control' type="text" name="employee" readOnly/>
+                        </div>
+                        <div className='form-group'>
+                            <label>Leave From</label>
+                            <input defaultValue={singleLeaveTracker.leave_from} className='form-control' type="date" name="leave_from" />
+                        </div>
+                        <div className='form-group'>
+                            <label>Leave To</label>
+                            <input defaultValue={singleLeaveTracker.leave_to} className='form-control' type="date" name="leave_to" />
+                        </div>
+                        <div className='form-group'>
+                            <label>Reason</label>
+                            <input defaultValue={singleLeaveTracker.reason} className='form-control' type="text" name="reason" />
+                        </div>
+                        <div className='form-group'>
+                            <label>Approval</label>
+                            {/* <input onChange={onModalInputChange} defaultValue={modalLeaveTracker.approval} className='form-control' type="text" name="approval" /> */}
+                            <select defaultValue={singleLeaveTracker.approval} className='form-control' name="approval">
+                                <option>Select</option>
+                                <option>requested</option>
+                                <option>approved</option>
+                            </select>
+                        </div>
+                        <div className='form-group'>
+                            <label>Applied On</label>
+                            <input defaultValue={singleLeaveTracker.applied_on} className='form-control' type="date" name="applied_on" />
+                        </div>
+                        <div className='form-group'>
+                            <input className='btn btn-primary' type="submit" value="Update" />
+                        </div>
+                    </form>
                 </Modal.Body>
             </Modal>
             <Modal show={showModal} onHide={handleClose}>

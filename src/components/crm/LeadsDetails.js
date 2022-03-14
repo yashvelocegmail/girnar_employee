@@ -80,6 +80,26 @@ function LeadsDetails() {
         type_of_process: "",
         status:""
     })
+    const [quotation,setQuotation] = useState({
+        id:"",
+        quotation:"",
+        customer_name:"",
+        customer_enquiry:"",
+        des_quant_rate:"",
+        total:""
+    });
+    const [purchaseOrder,setPurchaseOrder] = useState({
+        id:"",
+        quotation:"",
+        des_quant_rate_total:"",
+        pan:"",
+        tan:"",
+        gst:"",
+        cgst:"",
+        sgst:"",
+        discount:"",
+        total:""
+    });
     const [formData,setFormData] = useState({
         id:"",
         status:""
@@ -88,16 +108,31 @@ function LeadsDetails() {
     useEffect(() => {
         axios.get(api_url + "read_all_enquiry.php")
             .then((res) => {
-                console.log(res.data);
+                //console.log(res.data);
                 setLeads(res.data)
             })
     }, [])
+    useEffect(() => {
+        axios.get(api_url + "read_quotation.php")
+            .then((res) => {
+                //console.log(res.data);
+                setQuotation(res.data)
+            })
+    }, [])
+    useEffect(() => {
+        axios.get(api_url + "read_purchase_order_crm.php")
+            .then((res) => {
+                setPurchaseOrder(res.data)
+                console.log(purchaseOrder);
+            })
+    }, [])
+    
     //Edit
     const onStatusChange=(id,status)=>{
         setFormData({
             id:id,
             status:status
-        })
+        }) 
     }
     const onModalFormSubmit=(e)=>{
         e.preventDefault();
@@ -381,10 +416,11 @@ function LeadsDetails() {
                                 Quotation
                             </h3>
                         </div>
-                        <div className="card-body">
+                        {quotation.data===undefined?"":quotation.data.map((quotation)=>(
+                            <div className="card-body">
                             <div className="card card-light card-outline">
                                 <div className="card-header">
-                                    <h5 className="card-title">Customer-1</h5>
+                                    <h5 className="card-title">{quotation.quotation}</h5>
                                     <div className="card-tools">
                                         <a href="#" className="btn btn-tool">
                                             <i onClick={openModal2} className="fas fa-eye" />
@@ -392,14 +428,15 @@ function LeadsDetails() {
                                     </div>
                                 </div>
                                 <div className="card-body">
-                                    <p><b>Customer First Name</b>-Yash</p>
-                                    <p><b>Customer Last Name</b>-Shinde</p>
-                                    <p><b>Customer Email</b>-y@g.com</p>
-                                    <p><b>Customer Address</b>-A</p>
-                                    <p><b>Quotation File</b>-File</p>
+                                    <p><b>Customer Name</b>{quotation.customer_name}</p>
+                                    <p><b>Customer Enquiry</b>{quotation.customer_enquiry}</p>
+                                    <p><b>Des Quant Rate</b>{quotation.des_quant_rate}</p>
+                                    <p><b>Total</b>{quotation.total}</p>
                                 </div>
                             </div>
                         </div>
+                        ))}
+                        
                     </div>
                     <div className="card card-row card-info">
                         <div className="card-header bg-success">
@@ -407,26 +444,31 @@ function LeadsDetails() {
                                 PO Generation
                             </h3>
                         </div>
+                        {/* {purchaseOrder.data===undefined?"":purchaseOrder.data((purchaseorder)=>(
                         <div className="card-body">
-                            <div className="card card-light card-outline">
-                                <div className="card-header">
-                                    <h5 className="card-title">Customer-1</h5>
-                                    <div className="card-tools">
-                                        <a href="#" className="btn btn-tool">
-                                            <i onClick={openModal3} className="fas fa-eye" />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="card-body">
-                                    <p><b>Customer First Name</b>-Yash</p>
-                                    <p><b>Customer Last Name</b>-Shinde</p>
-                                    <p><b>Customer Email</b>-y@g.com</p>
-                                    <p><b>Customer Address</b>-A</p>
-                                    <p><b>Quotation File</b>-File</p>
-                                    <p><b>PO File</b>-File</p>
+                        <div className="card card-light card-outline">
+                            <div className="card-header">
+                                <h5 className="card-title">{purchaseorder.purchase_order}</h5>
+                                <div className="card-tools">
+                                    <a href="#" className="btn btn-tool">
+                                        <i onClick={openModal3} className="fas fa-eye" />
+                                    </a>
                                 </div>
                             </div>
+                            <div className="card-body">
+                                <p><b>Quotation</b>{purchaseorder.quotation}</p>
+                                <p><b>Des_quant_rate_total</b>{purchaseorder.des_quant_rate_total}</p>
+                                <p><b>PAN</b>{purchaseorder.pan}</p>
+                                <p><b>TAN</b>{purchaseorder.tan}</p>
+                                <p><b>GST</b>{purchaseorder.gst}</p>
+                                <p><b>CGST</b>{purchaseorder.cgst}</p>
+                                <p><b>SGST</b>{purchaseorder.sgst}</p>
+                                <p><b>Discount</b>{purchaseorder.discount}</p>
+                                <p><b>Total</b>{purchaseorder.total}</p>
+                            </div>
                         </div>
+                    </div>
+                        ))} */}
                     </div>
                 </div>
             </section>
