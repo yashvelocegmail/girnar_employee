@@ -55,6 +55,9 @@ function HrmsVacancies() {
                         setReadVacancies(res.data);
                     })
             })
+
+            document.getElementById("positionmaster").reset();            
+
     }
     //Read
     useEffect(() => {
@@ -191,7 +194,7 @@ function HrmsVacancies() {
             </Modal>
             <Modal show={showModal} onHide={handleClose}>
                 <Modal.Header>
-                    <Modal.Title>Edit</Modal.Title>
+                    <Modal.Title>Details Read</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={onModalFormSubmit}>
@@ -232,23 +235,29 @@ function HrmsVacancies() {
                                 {/* left column */}
                                 <div className="card card-primary">
                                     <div className="card-header">
-                                        <h3 className="card-title">Vacancies</h3>
+                                        <h3 className="card-title">Material Type Master</h3>
                                     </div>
                                     {/* /.card-header */}
                                     {/* form start */}
-                                    <form onSubmit={onFormSubmit}>
+                                    <form onSubmit={onFormSubmit} id="positionmaster">
                                         <div className="card-body">
                                             <div className="form-group">
                                                 <label >Position</label>
-                                                <input onChange={onInputChange} name="position" type="text" className="form-control"  required pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
+                                                <input onChange={onInputChange} placeholder='Enter position name' list="positions" name="position" type="text" className="form-control"  required pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
+                                                <datalist id="positions">
+                                                <option value="Designer">Designer</option>
+                                                <option value="HR">HR</option>
+                                                <option value="Transporter">Transporter</option>
+                                                <option value="Programmer">Programmer</option>
+                                            </datalist>
                                             </div>
                                             <div className="form-group">
                                                 <label >No Of Vacancies</label>
-                                                <input onChange={onInputChange} name="no_of_vacancies" type="number" className="form-control" required title="Please enter Alphabets."/>
+                                                <input onChange={onInputChange} placeholder='Enter number of vacancies' name="no_of_vacancies" type="number" className="form-control" required title="Please enter Alphabets."/>
                                             </div>
                                             <div className="form-group">
                                                 <label >Skills</label>
-                                                <input onChange={onInputChange} name="skills" type="text" className="form-control"  required title="Please enter Alphabets."/>
+                                                <input onChange={onInputChange} placeholder='Enter skills required' name="skills" type="text" className="form-control"  required title="Please enter Alphabets."/>
                                             </div>
                                         </div>
                                         {/* /.card-body */}

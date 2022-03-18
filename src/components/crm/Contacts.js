@@ -107,6 +107,9 @@ function Contacts() {
                         setReadContact(res.data);
                     })
             })
+
+        document.getElementById("individualcon").reset();
+
     }
     const onRead = (row) => {
         handleShow1();
@@ -443,7 +446,7 @@ function Contacts() {
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Contact Contact</h1>
+                            <h1>Contact Form</h1>
                         </div>
                         
                     </div>
@@ -461,7 +464,7 @@ function Contacts() {
                                 </div>
                                 {/* /.card-header */}
                                 {/* form start */}
-                                <form onSubmit={onFormSubmit}>
+                                <form onSubmit={onFormSubmit} id='individualcon'>
                                     <div className="card-body">
                                         <div className="form-group">
                                             <label >Name</label>
@@ -496,7 +499,7 @@ function Contacts() {
                                         </div>
                                         <div className="form-group">
                                             <label >Director Name </label>
-                                            <input onChange={onInputChange} name="director_name" className="form-control" placeholder="Enter director name" pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."  pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
+                                            <input onChange={onInputChange} name="director_name" className="form-control" placeholder="Enter director name"  pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
                                         </div>
                                         <div className="form-group">
                                             <label >Director Mobile Number</label>

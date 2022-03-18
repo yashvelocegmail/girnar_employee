@@ -58,6 +58,13 @@ overflow: auto;   /* Scrollbar is displayed as it's needed */
   margin-bottom: 0rem;
   cursor: context-menu;
 }
+.table-responsive {
+  display: block;
+  width: 95%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
 @media(min-width: 992px)
 {
   .sidebar-mini.sidebar-collapse .main-sidebar

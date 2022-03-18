@@ -181,7 +181,15 @@ function CompanyContact() {
                         setReadContact(res.data)
                     })
             })
+
         handleClose();
+        document.getElementById("contactsubmit").reset();
+        // setformValues("");  
+        // FormValues(contact_person,designation);
+        setFormValues([]);
+
+
+        // document.getElementById("contactperson").reset();         
     }
     const onRead = (row) => {
         console.log(row);
@@ -591,7 +599,7 @@ function CompanyContact() {
                                 </div>
                                 {/* /.card-header */}
                                 {/* form start */}
-                                <form onSubmit={onFormSubmit}>
+                                <form onSubmit={onFormSubmit} id="contactsubmit">
                                     <div className="card-body">
                                         <div className="form-group">
                                             <label >Name</label>
@@ -618,7 +626,7 @@ function CompanyContact() {
                                         </div>
                                         <div className="form-group">
                                             <label >Email Id</label>
-                                            <input onChange={onInputChange} name="email_id" className="form-control" placeholder="Enter email id" required pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" title="Please enter valid email address"/>
+                                            <input onChange={onInputChange} name="email_id" className="form-control" placeholder="Enter email id" required  title="Please enter valid email address"/>
                                         </div>
                                         <div className="form-group">
                                             <label >Website</label>
@@ -634,7 +642,7 @@ function CompanyContact() {
                                         </div>
                                         <div className="form-group">
                                             <label >Director Email Id </label>
-                                            <input onChange={onInputChange} name="director_email_id" className="form-control" placeholder="Enter director email id" required pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" title="Please enter valid email address"/>
+                                            <input onChange={onInputChange} name="director_email_id" className="form-control" placeholder="Enter director email id" required  title="Please enter valid email address"/>
                                         </div>
                                         <div className="form-group">
                                             <label >Type of industry</label>
@@ -654,26 +662,28 @@ function CompanyContact() {
                                         </div>
                                         <div className='form-group'>
                                             <label>Username</label>
-                                            <input onChange={onInputChange} className='form-control' type="text" name="username" required />
+                                            <input onChange={onInputChange} placeholder="Enter username" className='form-control' type="text" name="username" required />
                                         </div>
                                         <div className='form-group'>
                                             <label>Password</label>
-                                            <input onChange={onInputChange} className='form-control' type="text" name="password" required />
+                                            <input onChange={onInputChange} placeholder="Enter password" className='form-control' type="text" name="password" required />
                                         </div>
                                         {formValues.map((element, index) => (
-                                            <div className="form-inline" key={index}>
+                                            // <form onSubmit={onFormSubmit} id="contactperson">
+                                            <div className="form-block" key={index} >
                                                 <label>Contact Person</label>
-                                                <input name="contact_person" className="form-control" type="text"  value={element.contact_person || ""} onChange={e => handleChange(index, e)} />
-                                                <label>Designation</label>
-                                                <input name="designation" className="form-control" type="text"  value={element.designation || ""} onChange={e => handleChange(index, e)} />
+                                                <input name="contact_person" placeholder="Enter contact person name" className="form-control" type="text"  value={element.contact_person || ""} onChange={e => handleChange(index, e)} />
+                                                <label className='my-3'>Designation</label>
+                                                <input name="designation" placeholder="Enter contact person designation" className="form-control" type="text"  value={element.designation || ""} onChange={e => handleChange(index, e)} />
                                                 {
                                                     index ?
                                                         <button type="button" className="btn btn-danger" onClick={() => removeFormFields(index)}>Remove</button>
                                                         : null
                                                 }
                                             </div>
+                                            // </form>
                                         ))}
-                                        <div className="button-section">
+                                        <div className="button-section my-3">
                                             <button className="btn btn-info" type="button" onClick={() => addFormFields()}>Add</button>
 
                                         </div>

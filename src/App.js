@@ -57,6 +57,26 @@ import MaterialGradeMaster from './components/crm/MaterialGradeMaster';
 import AttendanceReport from './components/hr/AttendanceReport';
 import HrmsVacancies from './components/hr/HrmsVacancies';
 import HrmsEmployeeSalary from './components/hr/HrmsEmployeeSalary';
+import DesignerHeadQuotationMaster from './components/designer_head/DesignerHeadQuotationMaster';
+import DesignerHeadPOGeneration from './components/designer_head/DesignerHeadPOMaster';
+import DesignerHeadTaskAllocation from './components/designer_head/DesignerHeadTaskAllocation';
+import DesignerHeadTask from './components/designer_head/DesignerHeadTask';
+import DesignerHeadMaterialTypeMaster from './components/designer_head/DesignerHeadMaterialTypeMaster';
+import DesignerHeadMaterialGradeMaster from './components/designer_head/DesignerHeadMaterialGradeMaster';
+import DesignerHeadHeightMaster from './components/designer_head/DesignerHeadHeightMaster';
+import DesignerHeadStockRequest from './components/designer_head/DesignerHeadStockRequest';
+import DesignerHeadAvailableStock from './components/designer_head/DesignerHeadAvailableStock';
+import DesignerHeadCustomerFeedback from './components/designer_head/DesignerHeadCustomerFeedback';
+import DesignerHeadThirdPartyContacts from './components/designer_head/DesignerHeadThirdPartyContacts';
+import DesignerHeadRemoteInquiry from './components/designer_head/DesignerHeadRemoteInquiry';
+import DesignerHeadPayment from './components/designer_head/DesignerHeadPayment';
+import DesignerHeadContacts from './components/designer_head/DesignerHeadContacts';
+import DesignerHeadProducts from './components/designer_head/DesignerHeadProducts';
+import DesignerHeadCompanyContactCopy from './components/designer_head/DesignerHeadCompanyContactCopy';
+import DesignerHeadCompanyContact from './components/designer_head/DesignerHeadCompanyContact';
+import DesignerHeadLeadsDetails from './components/designer_head/DesignerHeadLeadsDetails';
+import DesignerHeadLeads from './components/designer_head/DesignerHeadLeads';
+import DesignerHeadAnalytics from './components/designer_head/DesignerHeadAnalytics';
 
 
 function App() {
@@ -95,6 +115,30 @@ function App() {
             <ProtectedRoute path='/leads_details' component={Leads }></ProtectedRoute>
             <ProtectedRoute path='/leads' component={LeadsDetails}></ProtectedRoute>
             <ProtectedRoute path='/analytics' component={Analytics }></ProtectedRoute>
+
+            <ProtectedRoute exact path="/designer_head_dashboard" component={DesignerDashboard}  />
+            <ProtectedRoute path='/designer_head_quotation_master' component={DesignerHeadQuotationMaster } />
+            <ProtectedRoute path='/designer_head_po_master' component={DesignerHeadPOGeneration}></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_task_allocation' component={DesignerHeadTaskAllocation }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_task' component={DesignerHeadTask }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_material_type_master' component={DesignerHeadMaterialTypeMaster }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_material_grade_master' component={DesignerHeadMaterialGradeMaster }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_height_master' component={DesignerHeadHeightMaster }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_stock_request' component={DesignerHeadStockRequest }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_available_stock' component={DesignerHeadAvailableStock }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_customer_feedback' component={DesignerHeadCustomerFeedback }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_third_party_contacts' component={DesignerHeadThirdPartyContacts }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_third_party_task_allocation' component={DesignerHeadTaskAllocation }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_remote_inquiry' component={DesignerHeadRemoteInquiry}></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_payment' component={DesignerHeadPayment }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_individual_contact' component={DesignerHeadContacts }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_products' component={DesignerHeadProducts }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_company_contact' component={DesignerHeadCompanyContact }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_company_contact_copy' component={DesignerHeadCompanyContactCopy }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_leads_details' component={DesignerHeadLeads }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_leads' component={DesignerHeadLeadsDetails}></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_analytics' component={DesignerHeadAnalytics }></ProtectedRoute>
+
 
             <ProtectedRoute path='/hrms_attendance' component={Attendance }></ProtectedRoute>
             <ProtectedRoute path='/hrms_leave_tracker' component={LeaveTracker }></ProtectedRoute>

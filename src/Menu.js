@@ -13,6 +13,17 @@ function Menu() {
     const [crmdrop9, setcrmDrop9] = useState(false);
     const [crmdrop10, setcrmDrop10] = useState(false);
 
+    const [designerheaddrop1, setdesignerheadDrop1] = useState(false);
+    const [designerheaddrop2, setdesignerheadDrop2] = useState(false);
+    const [designerheaddrop3, setdesignerheadDrop3] = useState(false);
+    const [designerheaddrop4, setdesignerheadDrop4] = useState(false);
+    const [designerheaddrop5, setdesignerheadDrop5] = useState(false);
+    const [designerheaddrop6, setdesignerheadDrop6] = useState(false);
+    const [designerheaddrop7, setdesignerheadDrop7] = useState(false);
+    const [designerheaddrop8, setdesignerheadDrop8] = useState(false);
+    const [designerheaddrop9, setdesignerheadDrop9] = useState(false);
+    const [designerheaddrop10, setdesignerheadDrop10] = useState(false);
+
     const [hrdrop1, sethrDrop1] = useState(false);
 
     const [designerdrop1, setdesignerDrop1] = useState(false);
@@ -259,7 +270,7 @@ function Menu() {
                                         padding: '0'
                                     }}>
                                         <li class="nav-item">
-                                            <Link to="task_allocation" className="nav-link">
+                                            <Link to="task" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Task Allocation</p>
                                             </Link>
@@ -310,6 +321,299 @@ function Menu() {
                                                 <p>Third Party</p>
                                             </Link>
                                             <Link to="third_party_task_allocation" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Third Task Allocation</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                            </ul>
+                        </nav>
+                        {/* /.sidebar-menu */}
+                    </div>
+                    {/* /.sidebar */}
+                </aside>
+            </div>
+
+        )
+    }
+    else if (localStorage.getItem("user_type") === "designer_head") {
+        return (
+            <div>
+                <aside className="main-sidebar sidebar-dark-primary elevation-4">
+                    {/* Brand Logo */}
+                    <a href="index3.html" className="brand-link">
+                        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" className="brand-image img-circle elevation-3" style={{ opacity: '.8' }} />
+                        <span className="brand-text font-weight-light">Girnar</span>
+                    </a>
+                    {/* Sidebar */}
+                    <div className="sidebar">
+                        {/* Sidebar user panel (optional) */}
+                        <div className="user-panel mt-3 pb-3 mb-3 d-flex">
+                            <div className="image">
+                                <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image" />
+                            </div>
+                            <div className="info">
+                                <a href="#" className="d-block">Designer Head</a>
+                            </div>
+                        </div>
+                        {/* SidebarSearch Form */}
+                        <div className="form-inline">
+                            <div className="input-group" data-widget="sidebar-search">
+                                <input className="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search" />
+                                <div className="input-group-append">
+                                    <button className="btn btn-sidebar">
+                                        <i className="fas fa-search fa-fw" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {/* Sidebar Menu */}
+                        <nav className='mt-2'>
+                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                                {/* Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library */}
+                                <li class="nav-item menu-open">
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <Link to="" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Dashboard</p>
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-header">General Master</li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' id="dropdown1" onClick={() => { setdesignerheadDrop1(!designerheaddrop1) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Masters
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop1 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_material_type_master" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Material Type Master</p>
+                                            </Link>
+                                            <Link to="designer_head_height_master" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Height Master</p>
+                                            </Link>
+                                            <Link to="designer_head_material_grade_master" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Material Grade Master</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-header">Operations</li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop2(!designerheaddrop2) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Deals
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop2 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_quotation_master" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Quotation Master</p>
+                                            </Link>
+                                            <Link to="designer_head_remote_inquiry" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Remote Enquiry</p>
+                                            </Link>
+                                            <Link to="designer_head_po_master" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>PO Master</p>
+                                            </Link>
+                                            <Link to="designer_head_payment" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Payment</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop3(!designerheaddrop3) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Contacts
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop3 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_individual_contact" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Individual Contact</p>
+                                            </Link>
+                                            <Link to="designer_head_company_contact" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Company Contact</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop4(!designerheaddrop4) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Products
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop4 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_products" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Products</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop5(!designerheaddrop5) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Leads
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop5 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_leads" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Leads</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop6(!designerheaddrop6) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Analytics
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop6 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_analytics" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Analytics</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop7(!designerheaddrop7) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Customer Feedback
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop7 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_customer_feedback" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Customer Feedback</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-header">Task Master</li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop8(!designerheaddrop8) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Task Allocation
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop8 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_task" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Task Allocation</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-header">Stock</li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop9(!designerheaddrop9) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Stock
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop9 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_stock_request" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Stock Request</p>
+                                            </Link>
+                                            <Link to="designer_head_available_stock" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Stock Available</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-header">Third Party</li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop10(!designerheaddrop10) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Third Party
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop10 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_third_party_contacts" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Third Party</p>
+                                            </Link>
+                                            <Link to="designer_head_third_party_task_allocation" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Third Task Allocation</p>
                                             </Link>

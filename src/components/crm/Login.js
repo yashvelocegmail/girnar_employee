@@ -43,6 +43,10 @@ function Login() {
           {
             history.push("/crm_dashboard")
           }
+          else if(response.data.data[0].user_type==="designer_head")
+          {
+            history.push("/crm_dashboard")
+          }
           else if(response.data.data[0].user_type==="designer")
           {
             history.push("/designer_dashboard")

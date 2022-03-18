@@ -27,7 +27,7 @@ function LeadsDetails() {
             material_type: row.material_type,
             material_type_material_type: row.material_type_material_type,
             type_of_process: row.type_of_process,
-            status:row.status
+            status: row.status
         });
     }
     const [showModal2, setShow2] = useState(false);
@@ -59,7 +59,7 @@ function LeadsDetails() {
         material_type: "",
         material_type_material_type: "",
         type_of_process: "",
-        status:""
+        status: ""
     })
     const [editeads, setEditLeads] = useState({
         id: "",
@@ -78,31 +78,31 @@ function LeadsDetails() {
         material_type: "",
         material_type_material_type: "",
         type_of_process: "",
-        status:""
+        status: ""
     })
-    const [quotation,setQuotation] = useState({
-        id:"",
-        quotation:"",
-        customer_name:"",
-        customer_enquiry:"",
-        des_quant_rate:"",
-        total:""
+    const [quotation, setQuotation] = useState({
+        id: "",
+        quotation: "",
+        customer_name: "",
+        customer_enquiry: "",
+        des_quant_rate: "",
+        total: ""
     });
-    const [purchaseOrder,setPurchaseOrder] = useState({
-        id:"",
-        quotation:"",
-        des_quant_rate_total:"",
-        pan:"",
-        tan:"",
-        gst:"",
-        cgst:"",
-        sgst:"",
-        discount:"",
-        total:""
+    const [purchaseOrder, setPurchaseOrder] = useState({
+        id: "",
+        quotation: "",
+        des_quant_rate_total: "",
+        pan: "",
+        tan: "",
+        gst: "",
+        cgst: "",
+        sgst: "",
+        discount: "",
+        total: ""
     });
-    const [formData,setFormData] = useState({
-        id:"",
-        status:""
+    const [formData, setFormData] = useState({
+        id: "",
+        status: ""
     });
     //Read
     useEffect(() => {
@@ -123,20 +123,20 @@ function LeadsDetails() {
         axios.get(api_url + "read_purchase_order_crm.php")
             .then((res) => {
                 setPurchaseOrder(res.data)
-                console.log(purchaseOrder);
+                console.log(res.data);
             })
     }, [])
-    
+
     //Edit
-    const onStatusChange=(id,status)=>{
+    const onStatusChange = (id, status) => {
         setFormData({
-            id:id,
-            status:status
-        }) 
+            id: id,
+            status: status
+        })
     }
-    const onModalFormSubmit=(e)=>{
+    const onModalFormSubmit = (e) => {
         e.preventDefault();
-        axios.post(api_url+"update_customer_inquiry_status.php",formData)
+        axios.post(api_url + "update_customer_inquiry_status.php", formData)
     }
     return <div>
         <Header />
@@ -150,43 +150,43 @@ function LeadsDetails() {
                     <div className="card-body">
                         <div className="form-group">
                             <label>Customer Name</label>
-                            <input value={editeads.customer_name} type="text" className="form-control" readOnly/>
+                            <input value={editeads.customer_name} type="text" className="form-control" readOnly />
                         </div>
                         <div className="form-group">
                             <label>Material Type</label>
-                            <input value={editeads.material_type_material_type} type="text" className="form-control" readOnly/>
+                            <input value={editeads.material_type_material_type} type="text" className="form-control" readOnly />
                         </div>
                         <div className="form-group">
                             <label>Material Thickness</label>
-                            <input type="text" className="form-control" value={editeads.material_thickness_material_thickness} readOnly/>
+                            <input type="text" className="form-control" value={editeads.material_thickness_material_thickness} readOnly />
                         </div>
                         <div className="form-group">
                             <label>Material Grade</label>
-                            <input type="text" className="form-control" value={editeads.material_grade} readOnly/>
+                            <input type="text" className="form-control" value={editeads.material_grade} readOnly />
                         </div>
                         <div className="form-group">
                             <label>Material Status</label>
-                            <input type="text" className="form-control" value={editeads.material_status} readOnly/>
+                            <input type="text" className="form-control" value={editeads.material_status} readOnly />
                         </div>
                         <div className="form-group">
                             <label>Type Of Process</label>
-                            <input type="text" className="form-control" value={editeads.type_of_process} readOnly/>
+                            <input type="text" className="form-control" value={editeads.type_of_process} readOnly />
                         </div>
                         <div className="form-group">
                             <label>Expected Delivery</label>
-                            <input type="text" className="form-control" value={editeads.expected_delivery} readOnly/>
+                            <input type="text" className="form-control" value={editeads.expected_delivery} readOnly />
                         </div>
                         <div className="form-group">
                             <label>Design Upload</label>
-                            <input type="text" className="form-control" value={editeads.design_upload} readOnly/>
+                            <input type="text" className="form-control" value={editeads.design_upload} readOnly />
                         </div>
                         <div className="form-group">
                             <label>Description</label>
-                            <input type="text" className="form-control" value={editeads.description} readOnly/>
+                            <input type="text" className="form-control" value={editeads.description} readOnly />
                         </div>
                         <div className="form-group">
                             <label>Status</label>
-                            <select value={editeads.status} className='form-control' name="status" onChange={e=>onStatusChange(editeads.id,e.target.value)}>
+                            <select value={editeads.status} className='form-control' name="status" onChange={e => onStatusChange(editeads.id, e.target.value)}>
                                 <option>Select</option>
                                 <option value="approved">Approved</option>
                                 <option value="not_approved">Not Approved</option>
@@ -352,7 +352,7 @@ function LeadsDetails() {
                                         <h5 className="card-title">{lead.customer_name}</h5>
                                         <div className="card-tools">
                                             <a href="#" className="btn btn-tool">
-                                                <i onClick={e=>openModal1(lead)} className="fas fa-eye" />
+                                                <i onClick={e => openModal1(lead)} className="fas fa-eye" />
                                             </a>
                                         </div>
                                     </div>
@@ -364,7 +364,7 @@ function LeadsDetails() {
                                         <p><b>Material Grade-</b>{lead.material_grade}</p>
                                         <p><b>Material Type-</b>{lead.material_type_material_type}</p>
                                         <p><b>Material Type-</b>{lead.material_thickness_material_thickness}</p>
-                                        <p><b>Type Of Process-</b>{lead.type_of_process}</p>
+                                        <p><b>Type Of Process-</b>{(JSON.parse(lead.type_of_process))}</p>
                                     </div>
                                 </div>
                             </div>
@@ -416,27 +416,46 @@ function LeadsDetails() {
                                 Quotation
                             </h3>
                         </div>
-                        {quotation.data===undefined?"":quotation.data.map((quotation)=>(
+                        {quotation.data === undefined ? "" : quotation.data.map((quotation) => (
                             <div className="card-body">
-                            <div className="card card-light card-outline">
-                                <div className="card-header">
-                                    <h5 className="card-title">{quotation.quotation}</h5>
-                                    <div className="card-tools">
-                                        <a href="#" className="btn btn-tool">
-                                            <i onClick={openModal2} className="fas fa-eye" />
-                                        </a>
+                                <div className="card card-light card-outline">
+                                    <div className="card-header">
+                                        <h5 className="card-title">{quotation.quotation}</h5>
+                                        <div className="card-tools">
+                                            <a href="#" className="btn btn-tool">
+                                                <i onClick={openModal2} className="fas fa-eye" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div className="card-body">
+                                        <p><b>Customer Name</b>{quotation.customer_name}</p>
+                                        <p><b>Customer Enquiry</b>{quotation.customer_enquiry}</p>
+                                        {/* <p><b>Des Quant Rate</b>{quotation.des_quant_rate}</p> */}
+                                        <table border="1" className='table-responsive table-bordered'>
+                                            <tr>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Total Rate</th>
+                                            </tr>
+                                            {JSON.parse(quotation.des_quant_rate).map((des_quant_rate)=>(
+                                                <tr>
+                                                    <td>{des_quant_rate.description}</td>
+                                                    <td>{des_quant_rate.quantity}</td>
+                                                    <td>{des_quant_rate.total_rate}</td>
+                                                </tr>
+                                            ))}
+                                            <tr>
+                                                <td>Total</td>
+                                                <td></td>
+                                                <td>{quotation.total}</td>
+                                            </tr>
+                                        </table>
+                                        {/* <p><b>Total</b>{quotation.total}</p> */}
                                     </div>
                                 </div>
-                                <div className="card-body">
-                                    <p><b>Customer Name</b>{quotation.customer_name}</p>
-                                    <p><b>Customer Enquiry</b>{quotation.customer_enquiry}</p>
-                                    <p><b>Des Quant Rate</b>{quotation.des_quant_rate}</p>
-                                    <p><b>Total</b>{quotation.total}</p>
-                                </div>
                             </div>
-                        </div>
                         ))}
-                        
+
                     </div>
                     <div className="card card-row card-info">
                         <div className="card-header bg-success">
@@ -444,31 +463,57 @@ function LeadsDetails() {
                                 PO Generation
                             </h3>
                         </div>
-                        {/* {purchaseOrder.data===undefined?"":purchaseOrder.data((purchaseorder)=>(
-                        <div className="card-body">
-                        <div className="card card-light card-outline">
-                            <div className="card-header">
-                                <h5 className="card-title">{purchaseorder.purchase_order}</h5>
-                                <div className="card-tools">
-                                    <a href="#" className="btn btn-tool">
-                                        <i onClick={openModal3} className="fas fa-eye" />
-                                    </a>
+
+                        {purchaseOrder.data === undefined ? "" : purchaseOrder.data.map((purchaseorder) => (
+                            <div className="card-body">
+                                <div className="card card-light card-outline">
+                                    <div className="card-header">
+                                        <h5 className="card-title">{purchaseorder.purchase_order}</h5>
+                                        <div className="card-tools">
+                                            <a href="#" className="btn btn-tool">
+                                                <i onClick={openModal3} className="fas fa-eye" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div className="card-body">
+                                        <p><b>Quotation</b>{purchaseorder.quotation}</p>
+                                        {/* <p><b>Des_quant_rate_total</b>{purchaseorder.des_quant_rate_total}</p> */}
+                                        {/* {typeof purchaseorder.des_quant_rate_total} */}
+                                        <table  className='table-responsive table-bordered'>
+                                            <tr>
+                                                <th>Description</th>
+                                                <th>Quantity</th>
+                                                <th>Rate</th>
+                                                <th>Total Rate</th>
+                                            </tr>
+                                            {JSON.parse(purchaseorder.des_quant_rate_total).map((des_quant_rate_total) => (
+
+                                                <tr>
+                                                    <td>{des_quant_rate_total.description}</td>
+                                                    <td>{des_quant_rate_total.quantity}</td>
+                                                    <td>{des_quant_rate_total.rate}</td>
+                                                    <td>{des_quant_rate_total.total_rate}</td>
+                                                </tr>
+
+                                            ))}
+                                            <tr>
+                                                <td>Total</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>{purchaseorder.total}</td>
+                                            </tr>
+                                        </table>
+                                        <p><b>PAN</b>{purchaseorder.pan}</p>
+                                        <p><b>TAN</b>{purchaseorder.tan}</p>
+                                        <p><b>GST</b>{purchaseorder.gst}</p>
+                                        <p><b>CGST</b>{purchaseorder.cgst}</p>
+                                        <p><b>SGST</b>{purchaseorder.sgst}</p>
+                                        <p><b>Discount</b>{purchaseorder.discount}</p>
+                                        
+                                    </div>
                                 </div>
                             </div>
-                            <div className="card-body">
-                                <p><b>Quotation</b>{purchaseorder.quotation}</p>
-                                <p><b>Des_quant_rate_total</b>{purchaseorder.des_quant_rate_total}</p>
-                                <p><b>PAN</b>{purchaseorder.pan}</p>
-                                <p><b>TAN</b>{purchaseorder.tan}</p>
-                                <p><b>GST</b>{purchaseorder.gst}</p>
-                                <p><b>CGST</b>{purchaseorder.cgst}</p>
-                                <p><b>SGST</b>{purchaseorder.sgst}</p>
-                                <p><b>Discount</b>{purchaseorder.discount}</p>
-                                <p><b>Total</b>{purchaseorder.total}</p>
-                            </div>
-                        </div>
-                    </div>
-                        ))} */}
+                        ))}
                     </div>
                 </div>
             </section>

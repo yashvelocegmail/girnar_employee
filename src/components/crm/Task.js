@@ -14,6 +14,7 @@ function Task() {
     const [formValues2, setFormValues2] = useState([{ description2: "", status2: "" }])
     const [formValues3, setFormValues3] = useState([{ description3: "", status3: "" }])
     const [formValues4, setFormValues4] = useState([{ description4: "", status4: "" }])
+    const [inspectionParametersFormValues,setInspectionParametersFormValues] = useState([{parameter:"",result:""}])
     let handleChange = (i, e) => {
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
@@ -40,6 +41,11 @@ function Task() {
         newFormValues4[i][e.target.name] = e.target.value;
         setFormValues(newFormValues4);
     }
+    let handleChangeInspectionParameters = (i, e) => {
+        let newFormValues5 = [...inspectionParametersFormValues];
+        newFormValues5[i][e.target.name] = e.target.value;
+        setInspectionParametersFormValues(newFormValues5);
+    }
     let addFormFields = () => {
         setFormValues([...formValues, { name: "", email: "" }])
     }
@@ -54,6 +60,9 @@ function Task() {
     }
     let addFormFields4 = () => {
         setFormValues4([...formValues4, { description4: "", status4: "" }])
+    }
+    let addFormFieldsInspectionParameters = () => {
+        setInspectionParametersFormValues([...inspectionParametersFormValues, { parameter: "", result: "" }])
     }
     let removeFormFields = (i) => {
         let newFormValues = [...formValues];
@@ -79,6 +88,11 @@ function Task() {
         let newFormValues4 = [...formValues4];
         newFormValues4.splice(i, 1);
         setFormValues4(newFormValues4)
+    }
+    let removeFormFieldsInspectionParameters = (i) => {
+        let newFormValues5 = [...inspectionParametersFormValues];
+        newFormValues5.splice(i, 1);
+        setInspectionParametersFormValues(newFormValues5)
     }
     return (
         <>
@@ -187,8 +201,8 @@ function Task() {
                                                         <button className="btn btn-info" type="button" onClick={() => addFormFields()}>Add</button>
 
                                                     </div>
-                                                    <label >File Uploaded</label>
-                                                    <img src="https://picsum.photos/200/35" alt="File" />
+                                                    {/* <label >File Uploaded</label>
+                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
 
                                                 </div>
                                             </div>
@@ -219,8 +233,8 @@ function Task() {
                                                         <button className="btn btn-info" type="button" onClick={() => addFormFields1()}>Add</button>
 
                                                     </div>
-                                                    <label >File Uploaded</label>
-                                                    <img src="https://picsum.photos/200/35" alt="File" />
+                                                    {/* <label >File Uploaded</label>
+                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
 
                                                 </div>
                                             </div>
@@ -251,8 +265,8 @@ function Task() {
                                                         <button className="btn btn-info" type="button" onClick={() => addFormFields2()}>Add</button>
 
                                                     </div>
-                                                    <label >File Uploaded</label>
-                                                    <img src="https://picsum.photos/200/35" alt="File" />
+                                                    {/* <label >File Uploaded</label>
+                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
 
                                                 </div>
                                             </div>
@@ -283,8 +297,31 @@ function Task() {
                                                         <button className="btn btn-info" type="button" onClick={() => addFormFields3()}>Add</button>
 
                                                     </div>
-                                                    <label >File Uploaded</label>
-                                                    <img src="https://picsum.photos/200/35" alt="File" />
+                                                    <hr />
+                                                    {inspectionParametersFormValues.map((element, index) => (
+                                                        <div className="form-group" key={index}>
+                                                            <label>Parameter</label>
+                                                            <input className="form-control" type="text" name="parameter" value={element.parameter || ""} onChange={e => handleChangeInspectionParameters(index, e)} />
+                                                            <label>Result</label>
+                                                            {/* <input className="form-control" type="text" name="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)} /> */}
+                                                            <select  className="form-control" type="text" name="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)}>
+                                                                <option>Select</option>
+                                                                <option>Pass</option>
+                                                                <option>Fail</option>
+                                                            </select>
+                                                            {
+                                                                index ?
+                                                                    <button type="button" className="btn btn-danger" onClick={() => removeFormFieldsInspectionParameters(index)}>Remove</button>
+                                                                    : null
+                                                            }
+                                                        </div>
+                                                    ))}
+                                                    <div className="button-section">
+                                                        <button className="btn btn-info" type="button" onClick={() => addFormFieldsInspectionParameters()}>Add</button>
+
+                                                    </div>
+                                                    {/* <label >File Uploaded</label>
+                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
 
                                                 </div>
                                             </div>
@@ -315,8 +352,8 @@ function Task() {
                                                         <button className="btn btn-info" type="button" onClick={() => addFormFields4()}>Add</button>
 
                                                     </div>
-                                                    <label >File Uploaded</label>
-                                                    <img src="https://picsum.photos/200/35" alt="File" />
+                                                    {/* <label >File Uploaded</label>
+                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
 
                                                 </div>
                                             </div>

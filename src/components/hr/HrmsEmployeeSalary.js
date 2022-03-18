@@ -80,6 +80,8 @@ function HrmsEmployeeSalary() {
         //     })
     }, [])
 
+
+
     const onEmployeeChange = (e) => {
         setMonthlyLeaves({})
         setEmployee(e.target.value);
@@ -130,6 +132,8 @@ function HrmsEmployeeSalary() {
                         setSalary(res.data)
                     })
             })
+
+            document.getElementById("empsalary").reset();            
     }
 
     const onGrossSalaryChange = (e) => {
@@ -411,10 +415,10 @@ function HrmsEmployeeSalary() {
                                     </div>
                                     {/* /.card-header */}
                                     {/* form start */}
-                                    <form onSubmit={onFormSubmit}>
+                                    <form onSubmit={onFormSubmit} id="empsalary">
                                         <div className="card-body">
                                             <div className="form-group">
-                                                <label >Month</label>
+                                                <label>Month</label>
                                                 <select onChange={onMonthChange} className="form-control" name="month">
                                                     <option value="o">Select</option>
                                                     <option value="1">January</option>
