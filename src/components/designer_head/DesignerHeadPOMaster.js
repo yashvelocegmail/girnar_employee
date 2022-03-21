@@ -8,14 +8,18 @@ import { DataGrid } from '@mui/x-data-grid';
 import { jsPDF } from "jspdf";
 import 'jspdf-autotable'
 
-function DesignerHeadPOGeneration() {
+function DesignerHeadPOMaster() {
   const [formValues, setFormValues] = useState([{ description: "", quantity: "", rate: "", total_rate: "" }])
   let handleChange = (i, e) => {
     let newFormValues = [...formValues];
-    newFormValues[i][e.target.name] = e.target.value;
-
+   newFormValues[i][e.target.name] = e.target.value;
+    
+    // console.log("quantity",newFormValues[i].quantity)
+    // console.log("rate",newFormValues[i].rate)
+    var total=parseInt(newFormValues[i].rate)*parseInt(newFormValues[i].quantity)
+    newFormValues[i].total_rate=total.toString();
+    //console.log(total)
     setFormValues(newFormValues);
-    console.log(formValues);
     setPurchaseOrder({ ...purchaseOrder, des_quant_rate_total: formValues })
   }
 
@@ -34,7 +38,11 @@ function DesignerHeadPOGeneration() {
   let handleChange1 = (i, e) => {
     let newFormValues = [...formValues1];
     newFormValues[i][e.target.name] = e.target.value;
-
+// console.log("quantity",newFormValues[i].quantity)
+    // console.log("rate",newFormValues[i].rate)
+    var total=parseInt(newFormValues[i].rate)*parseInt(newFormValues[i].quantity)
+    newFormValues[i].total_rate=total.toString();
+    //console.log(total)
     setFormValues1(newFormValues);
     //console.log(formValues);
     setEditPurchaseOrder({ ...editPurchaseOrder, des_quant_rate_total: newFormValues })
@@ -56,7 +64,11 @@ function DesignerHeadPOGeneration() {
   let handleChange2 = (i, e) => {
     let newFormValues = [...formValues1];
     newFormValues[i][e.target.name] = e.target.value;
-
+// console.log("quantity",newFormValues[i].quantity)
+    // console.log("rate",newFormValues[i].rate)
+    var total=parseInt(newFormValues[i].rate)*parseInt(newFormValues[i].quantity)
+    newFormValues[i].total_rate=total.toString();
+    //console.log(total)
     setFormValues2(newFormValues);
     //console.log(formValues);
     //setSingleQuotation({ ...editQuotation, des_quant_rate: formValues2 })
@@ -476,7 +488,7 @@ function DesignerHeadPOGeneration() {
                     <label>Rate</label>
                     <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange1(index, e)} />
                     <label>Total Rate</label>
-                    <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange1(index, e)} />
+                    <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange1(index, e)} readOnly/>
                     {
                       index ?
                         <button type="button" className="btn btn-danger" onClick={() => removeFormFields1(index)}>Remove</button>
@@ -626,7 +638,7 @@ function DesignerHeadPOGeneration() {
                               </div>
                               <div className='col-md-4'>
                                 <label>Total Rate</label>
-                                <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange(index, e)} />
+                                <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange(index, e)} readOnly/>
                               </div>
 
 
@@ -700,4 +712,4 @@ function DesignerHeadPOGeneration() {
   )
 }
 
-export default DesignerHeadPOGeneration
+export default DesignerHeadPOMaster

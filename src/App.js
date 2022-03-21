@@ -121,6 +121,7 @@ function App() {
             <ProtectedRoute path='/designer_head_po_master' component={DesignerHeadPOGeneration}></ProtectedRoute>
             <ProtectedRoute path='/designer_head_task_allocation' component={DesignerHeadTaskAllocation }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_task' component={DesignerHeadTask }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_task_allocation' component={DesignerHeadTaskAllocation }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_material_type_master' component={DesignerHeadMaterialTypeMaster }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_material_grade_master' component={DesignerHeadMaterialGradeMaster }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_height_master' component={DesignerHeadHeightMaster }></ProtectedRoute>

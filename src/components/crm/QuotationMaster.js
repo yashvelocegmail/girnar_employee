@@ -9,18 +9,23 @@ import { jsPDF } from "jspdf";
 import 'jspdf-autotable'
 
 function QuotationMaster() {
-    const [formValues, setFormValues] = useState([{ description: "", quantity: "", total_rate: "" }])
+    const [formValues, setFormValues] = useState([{ description: "", quantity: "", rate: "", total_rate: "" }])
     let handleChange = (i, e) => {
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
-
+    
+        // console.log("quantity",newFormValues[i].quantity)
+        // console.log("rate",newFormValues[i].rate)
+        var total=parseInt(newFormValues[i].rate)*parseInt(newFormValues[i].quantity)
+        newFormValues[i].total_rate=total.toString();
+        //console.log(total)
         setFormValues(newFormValues);
         console.log(formValues);
         setQuotation({ ...quotation, des_quant_rate: formValues })
     }
 
     let addFormFields = () => {
-        setFormValues([...formValues, { description: "", quantity: "", total_rate: "" }])
+        setFormValues([...formValues, { description: "", quantity: "", rate: "", total_rate: "" }])
     }
 
     let removeFormFields = (i) => {
@@ -29,18 +34,22 @@ function QuotationMaster() {
         setFormValues(newFormValues)
     }
     //Modal dynamic form
-    const [formValues1, setFormValues1] = useState([{ description: "", quantity: "", total_rate: "" }])
+    const [formValues1, setFormValues1] = useState([{ description: "", quantity: "", rate: "", total_rate: "" }])
     let handleChange1 = (i, e) => {
         let newFormValues = [...formValues1];
         newFormValues[i][e.target.name] = e.target.value;
-
+        // console.log("quantity",newFormValues[i].quantity)
+        // console.log("rate",newFormValues[i].rate)
+        var total=parseInt(newFormValues[i].rate)*parseInt(newFormValues[i].quantity)
+        newFormValues[i].total_rate=total.toString();
+        //console.log(total)
         setFormValues1(newFormValues);
         //console.log(formValues);
         setEditQuotation({ ...editQuotation, des_quant_rate: formValues1 })
     }
 
     let addFormFields1 = () => {
-        setFormValues1([...formValues1, { description: "", quantity: "", total_rate: "" }])
+        setFormValues1([...formValues1, { description: "", quantity: "", rate: "", total_rate: "" }])
     }
 
     let removeFormFields1 = (i) => {
@@ -51,18 +60,22 @@ function QuotationMaster() {
         setEditQuotation({ ...editQuotation, des_quant_rate: newFormValues })
     }
     //Single Read
-    const [formValues2, setFormValues2] = useState([{ description: "", quantity: "", total_rate: "" }])
+    const [formValues2, setFormValues2] = useState([{ description: "", quantity: "", rate: "", total_rate: "" }])
     let handleChange2 = (i, e) => {
         let newFormValues = [...formValues1];
         newFormValues[i][e.target.name] = e.target.value;
-
+        // console.log("quantity",newFormValues[i].quantity)
+        // console.log("rate",newFormValues[i].rate)
+        var total=parseInt(newFormValues[i].rate)*parseInt(newFormValues[i].quantity)
+        newFormValues[i].total_rate=total.toString();
+        //console.log(total)
         setFormValues2(newFormValues);
         //console.log(formValues);
         setSingleQuotation({ ...editQuotation, des_quant_rate: formValues2 })
     }
 
     let addFormFields2 = () => {
-        setFormValues2([...formValues2, { description: "", quantity: "", total_rate: "" }])
+        setFormValues2([...formValues2, { description: "", quantity: "", rate: "", total_rate: "" }])
     }
 
     let removeFormFields2 = (i) => {
@@ -219,6 +232,9 @@ function QuotationMaster() {
         const quantity = JSON.parse(row.des_quant_rate).map(a => a.quantity);
         //setPrintQuotation({...printQuotation,quantity:quantity[0]})
 
+        const rate = JSON.parse(row.des_quant_rate).map(a => a.rate);
+        //setPrintQuotation({...printQuotation,quantity:quantity[0]})
+
         const total_rate = JSON.parse(row.des_quant_rate).map(a => a.total_rate);
         //setPrintQuotation({...printQuotation,total_rate:total_rate[0]})
 
@@ -240,6 +256,7 @@ function QuotationMaster() {
             arr.push({
                 description: description[i],
                 quantity: quantity[i],
+                rate: rate[i],
                 total_rate: total_rate[i]
             })
         }
@@ -263,9 +280,9 @@ function QuotationMaster() {
         doc.text("Date-" + date, 150, 25);
         doc.text("Customer-" + row.customer_name, 150, 30);
         var splitTitle = doc.splitTextToSize(row.quotation, 30);
-        doc.text("Quotation No-",150,35)
+        doc.text("Quotation No-", 150, 35)
         doc.text(150, 40, splitTitle);
-       //doc.text("Quotation No-" + splitTitle, 150, 35);
+        //doc.text("Quotation No-" + splitTitle, 150, 35);
         doc.setFontSize(10);
         doc.text("Girnar Laser", 15, 45)
         doc.text("C-61 Shiroli MIDC,", 15, 50)
@@ -422,6 +439,7 @@ function QuotationMaster() {
                     <tr>
                         <th>Description</th>
                         <th>Quantity</th>
+                        <th>Rate</th>
                         <th>Total Rate</th>
                     </tr>
                     {/* {printDesQuantRate===undefined?[]:printDesQuantRate.map((des)=>(
@@ -436,12 +454,14 @@ function QuotationMaster() {
                             <tr>
                                 <td>{des.description}</td>
                                 <td>{des.quantity}</td>
+                                <td>{des.rate}</td>
                                 <td>{des.total_rate}</td>
                             </tr>
                         )
                     })}
                     <tr>
                         <th>Total</th>
+                        <td></td>
                         <td></td>
                         <th>{printTotal}</th>
                     </tr>
@@ -476,6 +496,8 @@ function QuotationMaster() {
                                         <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange1(index, e)} />
                                         <label>Quantity</label>
                                         <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange1(index, e)} />
+                                        <label>Rate</label>
+                                        <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange1(index, e)} />
                                         <label>Total Rate</label>
                                         <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange1(index, e)} />
                                         {
@@ -537,6 +559,8 @@ function QuotationMaster() {
                                         <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange2(index, e)} readOnly />
                                         <label>Quantity</label>
                                         <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange2(index, e)} readOnly />
+                                        <label>Rate</label>
+                                        <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange2(index, e)} />
                                         <label>Total Rate</label>
                                         <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange2(index, e)} readOnly />
 
@@ -592,16 +616,19 @@ function QuotationMaster() {
                                                                 <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange(index, e)} />
                                                             </div>
                                                             <div className='col-md-4'>
+                                                                <label>Rate</label>
+                                                                <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange(index, e)} />
+                                                            </div>
+                                                            <div className='col-md-4'>
                                                                 <label>Total Rate</label>
                                                                 <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange(index, e)} />
                                                             </div>
-
-
+                                                            
 
                                                             {
                                                                 index ?
                                                                     <div className="row">
-                                                                        <button type="button" style={{ marginLeft: '15px' }} className="form-group btn btn-danger" onClick={() => removeFormFields(index)}>Remove</button>
+                                                                        <button type="button" style={{ marginLeft: '15px',height:'40px' }} className="form-group btn btn-danger" onClick={() => removeFormFields(index)}>Remove</button>
 
                                                                     </div>
                                                                     : null
