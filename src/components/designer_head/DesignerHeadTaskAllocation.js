@@ -4,42 +4,62 @@ import { Modal, Button } from "react-bootstrap";
 import Header from '../../Header';
 import Menu from '../../Menu';
 import { api_url } from '../ApiUrl';
+import DesignerHeadTaskAllocationComponent from './DesignerHeadTaskAllocationComponent';
 function Task() {
     //States
     const [employeeOption, setemployeeOption] = useState([]);
     //Dynamic Fields
-    const [formValues, setFormValues] = useState([{ description: "", status: "", role: "", employee: "" }])
-
-    let handleChange = (i, e) => {
-        let newFormValues = [...formValues];
-        newFormValues[i][e.target.name] = e.target.value;
-        console.log(e.target.name)
-        if (e.target.name === "role") {
-            axios.post(api_url + "read_employee_by_position.php", { position: e.target.value })
-                .then((res) => {
-                    console.log(res.data)
-                    //setemployeeOption(res.data);
-
-
-                })
+    // const [formValues, setFormValues] = useState([{ description_status: [{
+    //     description:"",
+    //     status:""
+    // }], role: "", employee: "" }])
+    const [formValues, setFormValues] = useState([{
+        description_status: [{
+            description:"",
+            status:""
         }
-        console.log(formValues)
-        setFormValues(newFormValues);
+           
+        ],
+        role: "",
+        employee: "",
+        file:""
+    }])
+    const [formValues1,setFormValues1] = useState([{description:"",status:""}])
+    
+    let handleChange1 = (i, e) => {
+        let newFormValues = [...formValues1];
+        newFormValues[i][e.target.name] = e.target.value;
+        setFormValues1(newFormValues);
+        // console.log(formValues)
+        // setFormValues([...formValues,newFormValues])
+        console.log(i)
+        //setWorkOrder({ ...workOrder, designer_head_description_status: newFormValues })
     }
     let addFormFields = () => {
-        setFormValues([...formValues, { description: "", status: "", role: "", employee: "" }])
+        setFormValues([...formValues, { description_status:[], role: "", employee: "",file:"" }])
+        console.log(formValues)
+    }
+    let addFormFields1 = () => {
+        setFormValues1([...formValues1, { description: "", status: ""}])
     }
     let removeFormFields = (i) => {
         let newFormValues = [...formValues];
         newFormValues.splice(i, 1);
         setFormValues(newFormValues)
     }
+    let removeFormFields1 = (i) => {
+        let newFormValues1 = [...formValues1];
+        newFormValues1.splice(i, 1);
+        setFormValues1(newFormValues1)
+    }
     //Get employee Data
 
 
     const roleChange = (i, e) => {
         let newFormValues = [...formValues];
+        
         newFormValues[i][e.target.name] = e.target.value;
+        console.log(newFormValues[i][e.target.name])
         setFormValues(newFormValues)
         axios.post(api_url + "read_employee_by_position.php", { position: newFormValues[i][e.target.name] })
             .then((res) => {
@@ -53,10 +73,22 @@ function Task() {
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
         setFormValues(newFormValues)
-        console.log(newFormValues)
+        console.log(i)
+        console.log(formValues)
+    }
+    const fileChange=(i,e)=>{
+        let newFormValues = [...formValues];
+        newFormValues[i][e.target.name] = e.target.value;
+        setFormValues(newFormValues)
+        console.log(i)
+        console.log(formValues)
     }
     const onFormSubmit = (e) => {
         e.preventDefault();
+        //setFormValues({...formValues.description_status,formValues1});
+        //setFormValues({...formValues,description_status:formValues1})
+        console.log(formValues1)
+        
         console.log(formValues)
     }
     return (
@@ -87,55 +119,7 @@ function Task() {
                                                 </select>
                                             </div>
                                             {formValues.map((element, index) => (
-                                                <div class="card-body">
-                                                    <div class="card card-primary card-outline">
-                                                        <div class="card-header">
-                                                            <label>Select Role</label>
-                                                            <select className="form-control" type="text" name="role" onChange={e => roleChange(index, e)}>
-                                                                <option>Select</option>
-                                                                <option value={element.role || "designer_head"}>Designer Head</option>
-                                                                <option value={element.role || "designer"}>Designer</option>
-                                                                <option value={element.role || "programmer"}>Programmer</option>
-                                                                <option value={element.role || "machine_operator"}>Machine Operator</option>
-                                                                <option value={element.role || "transporter"}>Transporter</option>
-                                                            </select>
-                                                            <div className="form-group">
-                                                                <label>Employee name</label>
-                                                                {/* {employeeOption[index]===undefined?[]:employeeOption[index].data.map((employee)=>(
-                                                                    <p>{employee.id}</p>
-                                                                ))} */}
-                                                                <select onChange={e => employeeChange(index, e)} className='form-control' name="employee">
-
-                                                                    <option>Select</option>
-                                                                    {employeeOption[index] === undefined ? [] : employeeOption[index].data.map((employee) => (
-                                                                        <option value={employee.id || element.employee}>{employee.name}</option>
-                                                                    ))}
-                                                                </select>
-                                                            </div>
-                                                            <div className="form-group" key={index}>
-                                                                <label>Description</label>
-                                                                <input className="form-control" type="text" name="description" value={element.description || ""} onChange={e => handleChange(index, e)} />
-                                                                <label>Status</label>
-                                                                <input className="form-control" type="text" name="status" value={element.status || ""} onChange={e => handleChange(index, e)} />
-
-                                                            </div>
-
-
-                                                            <label >File Uploaded</label>
-                                                            <img src="https://picsum.photos/200/35" alt="File" />
-
-                                                        </div>
-                                                    </div>
-                                                    {
-                                                        index ?
-                                                            <button type="button" className="btn btn-danger" onClick={() => removeFormFields(index)}>Remove</button>
-                                                            : null
-                                                    }
-                                                    <div className="button-section">
-                                                        <button className="btn btn-info" type="button" onClick={() => addFormFields()}>Add</button>
-
-                                                    </div>
-                                                </div>
+                                                <DesignerHeadTaskAllocationComponent formValues={formValues} setFormValues={setFormValues} element={element} index={index} roleChange={roleChange} employeeChange={employeeChange} formValues1={formValues1} handleChange1={handleChange1} removeFormFields={removeFormFields} addFormFields={addFormFields} employeeOption={employeeOption} fileChange={fileChange} />
 
                                             ))}
                                         </div>

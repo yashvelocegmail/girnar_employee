@@ -433,7 +433,7 @@ function DesignerHeadTask() {
         const config = {
             headers: { 'content-type': 'application/json' }
           }
-        console.log("------------------------------------------",workOrder.designer_head_description_status)
+        console.log("------------------------------------------",formData)
         axios.post(api_url + "create_work_order.php", formData,config)
             .then(() => {
                 axios.get(api_url + "read_work_order_by_crm.php")
