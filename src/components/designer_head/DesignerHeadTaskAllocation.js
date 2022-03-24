@@ -8,6 +8,8 @@ import DesignerHeadTaskAllocationComponent from './DesignerHeadTaskAllocationCom
 function Task() {
     //States
     const [employeeOption, setemployeeOption] = useState([]);
+    const [machineOperatorValues, setMachineOperatorValues] = useState(false);
+    const [machineOperatorIndex, setMachineOperatorIndex] = useState(false);
     //Dynamic Fields
     // const [formValues, setFormValues] = useState([{ description_status: [{
     //     description:"",
@@ -15,17 +17,19 @@ function Task() {
     // }], role: "", employee: "" }])
     const [formValues, setFormValues] = useState([{
         description_status: [{
-            description:"",
-            status:""
-        }
-           
-        ],
+            description: "",
+            status: ""
+        }],
+        parameter_result: [{
+            parameter: "",
+            result: ""
+        }],
         role: "",
         employee: "",
-        file:""
+        file: ""
     }])
-    const [formValues1,setFormValues1] = useState([{description:"",status:""}])
-    
+    const [formValues1, setFormValues1] = useState([{ description: "", status: "" }])
+
     let handleChange1 = (i, e) => {
         let newFormValues = [...formValues1];
         newFormValues[i][e.target.name] = e.target.value;
@@ -36,31 +40,41 @@ function Task() {
         //setWorkOrder({ ...workOrder, designer_head_description_status: newFormValues })
     }
     let addFormFields = () => {
-        setFormValues([...formValues, { description_status:[], role: "", employee: "",file:"" }])
+        setFormValues([...formValues, { description_status: [], role: "", employee: "", file: "" }])
         console.log(formValues)
     }
-    let addFormFields1 = () => {
-        setFormValues1([...formValues1, { description: "", status: ""}])
-    }
+    // let addFormFields1 = () => {
+    //     setFormValues1([...formValues1, { description: "", status: "" }])
+    // }
     let removeFormFields = (i) => {
         let newFormValues = [...formValues];
         newFormValues.splice(i, 1);
         setFormValues(newFormValues)
     }
-    let removeFormFields1 = (i) => {
-        let newFormValues1 = [...formValues1];
-        newFormValues1.splice(i, 1);
-        setFormValues1(newFormValues1)
-    }
+    // let removeFormFields1 = (i) => {
+    //     let newFormValues1 = [...formValues1];
+    //     newFormValues1.splice(i, 1);
+    //     setFormValues1(newFormValues1)
+    // }
     //Get employee Data
 
 
     const roleChange = (i, e) => {
         let newFormValues = [...formValues];
-        
+
         newFormValues[i][e.target.name] = e.target.value;
-        console.log(newFormValues[i][e.target.name])
+
+        if (newFormValues[i][e.target.name] === "machine_operator") 
+        {
+            setMachineOperatorValues(true);
+            setMachineOperatorIndex(i)
+        }
+        else 
+        {
+            setMachineOperatorValues(true);
+        }
         setFormValues(newFormValues)
+        console.log("Role", newFormValues[i][e.target.name])
         axios.post(api_url + "read_employee_by_position.php", { position: newFormValues[i][e.target.name] })
             .then((res) => {
                 let employeeValues = [...employeeOption];
@@ -76,20 +90,37 @@ function Task() {
         console.log(i)
         console.log(formValues)
     }
-    const fileChange=(i,e)=>{
+    const fileChange = (i, e) => {
         let newFormValues = [...formValues];
-        newFormValues[i][e.target.name] = e.target.value;
+        newFormValues[i][e.target.name] = e.target.files[0];
         setFormValues(newFormValues)
         console.log(i)
         console.log(formValues)
     }
     const onFormSubmit = (e) => {
         e.preventDefault();
-        //setFormValues({...formValues.description_status,formValues1});
-        //setFormValues({...formValues,description_status:formValues1})
-        console.log(formValues1)
+        //console.log(formValues)
+        let items=[]
+        formValues.map((formdata) => {
+            const formData = new FormData();
+            formData.append('role', formdata.role);
+            formData.append('parameter_result', JSON.stringify(formdata.parameter_result));
+            formData.append('file', formdata.file);
+            formData.append('employee', formdata.employee);
+            formData.append('description_status', JSON.stringify(formdata.description_status));
+            
+            items.push(formdata)
+            
+        })
+        console.log(items)
+        const config = {
+            headers: { 'content-type': 'application/json' }
+        }
+        axios.post(api_url + "create_work_order.php", items, config)
+            .then(() => {
+
+            })
         
-        console.log(formValues)
     }
     return (
         <>
@@ -119,7 +150,7 @@ function Task() {
                                                 </select>
                                             </div>
                                             {formValues.map((element, index) => (
-                                                <DesignerHeadTaskAllocationComponent formValues={formValues} setFormValues={setFormValues} element={element} index={index} roleChange={roleChange} employeeChange={employeeChange} formValues1={formValues1} handleChange1={handleChange1} removeFormFields={removeFormFields} addFormFields={addFormFields} employeeOption={employeeOption} fileChange={fileChange} />
+                                                <DesignerHeadTaskAllocationComponent formValues={formValues} setFormValues={setFormValues} element={element} index={index} roleChange={roleChange} employeeChange={employeeChange} formValues1={formValues1} handleChange1={handleChange1} removeFormFields={removeFormFields} addFormFields={addFormFields} employeeOption={employeeOption} fileChange={fileChange} machineOperatorValues={machineOperatorValues} machineOperatorIndex={machineOperatorIndex} />
 
                                             ))}
                                         </div>

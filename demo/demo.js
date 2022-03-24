@@ -1,1 +1,1 @@
-console.log("demo")
+var main=[{}]
