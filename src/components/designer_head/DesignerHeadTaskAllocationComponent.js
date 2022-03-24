@@ -62,11 +62,13 @@ function DesignerHeadTaskAllocationComponent(props) {
         props.setFormValues(formValues)
         console.log(formValues)
     }
+
     return (
         <div class="card-body">
             <div class="card card-primary card-outline">
                 <div class="card-header">
                     <label>Select Role</label>
+                    <p>{props.designerHeadOptionState}</p>
                     <select className="form-control" type="text" name="role" onChange={(e) => props.roleChange(props.index, e)}>
                         <option>Select</option>
                         <option key="1" value={ "designer_head"}>Designer Head</option>
@@ -75,6 +77,13 @@ function DesignerHeadTaskAllocationComponent(props) {
                         <option key="4" value={ "machine_operator"}>Machine Operator</option>
                         <option key="5" value={ "transporter"}>Transporter</option>
                     </select>
+                    {/* <select className="form-control" type="text" name="role" onChange={(e) => props.roleChange(props.index, e)}>
+                        <option>Select</option>
+                        {props.roleArray.map((role)=>(
+                            <option disabled={role.disabled} key={role.key} value={role.value}>{role.name}</option>
+                        ))}
+                    </select> */}
+                    
                     <div className="form-group">
                         <label>Employee name</label>
                         {/* {props.employeeOption[props.index]===undefined?[]:props.employeeOption[props.index].data.map((employee)=>(

@@ -6,15 +6,49 @@ import Menu from '../../Menu';
 import { api_url } from '../ApiUrl';
 import DesignerHeadTaskAllocationComponent from './DesignerHeadTaskAllocationComponent';
 function Task() {
+
     //States
     const [employeeOption, setemployeeOption] = useState([]);
     const [machineOperatorValues, setMachineOperatorValues] = useState(false);
     const [machineOperatorIndex, setMachineOperatorIndex] = useState(false);
+    const [purchaseOrderOption,setPurchaseOrderOption] = useState();
     //Dynamic Fields
     // const [formValues, setFormValues] = useState([{ description_status: [{
     //     description:"",
     //     status:""
     // }], role: "", employee: "" }])
+    // const [roleArray,setRoleArray]=useState([
+    //     {
+    //         key:1,
+    //         value:"designer_head",
+    //         name:"Designer Head",
+    //         disabled:false
+    //     },
+    //     {
+    //         key:2,
+    //         value:"designer",
+    //         name:"Designer",
+    //         disabled:false
+    //     },
+    //     {
+    //         key:3,
+    //         value:"programmer",
+    //         name:"Programmer",
+    //         disabled:false
+    //     },
+    //     {
+    //         key:4,
+    //         value:"machine_operator",
+    //         name:"Machine Operator",
+    //         disabled:false
+    //     },
+    //     {
+    //         key:5,
+    //         value:"transporter",
+    //         name:"Transporter",
+    //         disabled:false
+    //     }
+    // ])
     const [formValues, setFormValues] = useState([{
         description_status: [{
             description: "",
@@ -26,7 +60,8 @@ function Task() {
         }],
         role: "",
         employee: "",
-        file: ""
+        file: "",
+        po:""
     }])
     const [formValues1, setFormValues1] = useState([{ description: "", status: "" }])
 
@@ -50,6 +85,17 @@ function Task() {
         let newFormValues = [...formValues];
         newFormValues.splice(i, 1);
         setFormValues(newFormValues)
+        console.log(formValues[i].role)
+        // setRoleArray(
+        //     roleArray.map((role) => {
+        //       if (role.value === formValues[i].role) {
+        //         return { ...role, disabled:false };
+        //       } else {
+        //         return role;
+        //       }
+        //     })   
+        // )
+        // console.log(roleArray)
     }
     // let removeFormFields1 = (i) => {
     //     let newFormValues1 = [...formValues1];
@@ -57,20 +103,43 @@ function Task() {
     //     setFormValues1(newFormValues1)
     // }
     //Get employee Data
-
+    const [purchaseOrder, setPurchaseOrder] = useState();
+    useEffect(() => {
+        axios.get(api_url + "read_purchase_order_crm.php")
+            .then((res) => {
+                setPurchaseOrder(res.data)
+            })
+    },[])
 
     const roleChange = (i, e) => {
+        //Disabling values
+        // setRoleArray(
+        //     roleArray.map((role) => {
+        //       if (role.value === e.target.value) {
+        //           if(role.disabled===true)
+        //           {
+        //             return {...role,disabled:false };
+        //           }
+        //           else
+        //           {
+        //             return {...role,disabled:true };
+        //           }
+
+        //       }
+        //       else {
+        //         return role;
+        //       }
+        //     })
+        // )
         let newFormValues = [...formValues];
 
         newFormValues[i][e.target.name] = e.target.value;
 
-        if (newFormValues[i][e.target.name] === "machine_operator") 
-        {
+        if (newFormValues[i][e.target.name] === "machine_operator") {
             setMachineOperatorValues(true);
             setMachineOperatorIndex(i)
         }
-        else 
-        {
+        else {
             setMachineOperatorValues(true);
         }
         setFormValues(newFormValues)
@@ -90,6 +159,9 @@ function Task() {
         console.log(i)
         console.log(formValues)
     }
+    const poChange = (e) => {
+        localStorage.setItem("po",e.target.value)
+    }
     const fileChange = (i, e) => {
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.files[0];
@@ -99,29 +171,29 @@ function Task() {
     }
     const onFormSubmit = (e) => {
         e.preventDefault();
-        //console.log(formValues)
-        let items=[]
+        console.log(localStorage.getItem('po'))
         formValues.map((formdata) => {
             const formData = new FormData();
             formData.append('role', formdata.role);
+            formData.append('po', localStorage.getItem('po'));
             formData.append('parameter_result', JSON.stringify(formdata.parameter_result));
             formData.append('file', formdata.file);
             formData.append('employee', formdata.employee);
             formData.append('description_status', JSON.stringify(formdata.description_status));
-            
-            items.push(formdata)
-            
-        })
-        console.log(items)
-        const config = {
-            headers: { 'content-type': 'application/json' }
-        }
-        axios.post(api_url + "create_work_order.php", items, config)
-            .then(() => {
 
-            })
+            console.log(formData)
+            const config = {
+                headers: { 'content-type': 'application/json' }
+            }
+            axios.post(api_url + "create_work_order.php", formData, config)
+                .then(() => {
+    
+                })
+        })
+        
         
     }
+
     return (
         <>
             <Header />
@@ -143,10 +215,11 @@ function Task() {
                                         <div className="card-body">
                                             <div className="form-group">
                                                 <label >PO-Id</label>
-                                                <select className='form-control'>
+                                                <select onChange={poChange} name="po" className='form-control'>
                                                     <option>Select</option>
-                                                    <option>PO-1</option>
-                                                    <option>PO-2</option>
+                                                    {purchaseOrder === undefined ? [] : purchaseOrder.data.map((purchaseorder) => (
+                                                        <option key={purchaseorder.id} value={purchaseorder.id}>{purchaseorder.purchase_order}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                             {formValues.map((element, index) => (
