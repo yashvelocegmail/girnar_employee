@@ -17,38 +17,38 @@ function Task() {
     //     description:"",
     //     status:""
     // }], role: "", employee: "" }])
-    // const [roleArray,setRoleArray]=useState([
-    //     {
-    //         key:1,
-    //         value:"designer_head",
-    //         name:"Designer Head",
-    //         disabled:false
-    //     },
-    //     {
-    //         key:2,
-    //         value:"designer",
-    //         name:"Designer",
-    //         disabled:false
-    //     },
-    //     {
-    //         key:3,
-    //         value:"programmer",
-    //         name:"Programmer",
-    //         disabled:false
-    //     },
-    //     {
-    //         key:4,
-    //         value:"machine_operator",
-    //         name:"Machine Operator",
-    //         disabled:false
-    //     },
-    //     {
-    //         key:5,
-    //         value:"transporter",
-    //         name:"Transporter",
-    //         disabled:false
-    //     }
-    // ])
+    const [roleArray,setRoleArray]=useState([
+        {
+            key:1,
+            value:"designer_head",
+            name:"Designer Head",
+            disabled:false
+        },
+        {
+            key:2,
+            value:"designer",
+            name:"Designer",
+            disabled:false
+        },
+        {
+            key:3,
+            value:"programmer",
+            name:"Programmer",
+            disabled:false
+        },
+        {
+            key:4,
+            value:"machine_operator",
+            name:"Machine Operator",
+            disabled:false
+        },
+        {
+            key:5,
+            value:"transporter",
+            name:"Transporter",
+            disabled:false
+        }
+    ])
     const [formValues, setFormValues] = useState([{
         description_status: [{
             description: "",
@@ -95,7 +95,7 @@ function Task() {
         //       }
         //     })   
         // )
-        // console.log(roleArray)
+        console.log(roleArray)
     }
     // let removeFormFields1 = (i) => {
     //     let newFormValues1 = [...formValues1];
@@ -153,6 +153,7 @@ function Task() {
             })
     }
     const employeeChange = (i, e) => {
+        console.log(e.target.value)
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
         setFormValues(newFormValues)

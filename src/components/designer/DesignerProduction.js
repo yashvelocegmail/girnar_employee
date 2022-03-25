@@ -14,8 +14,8 @@ function DesignerProduction() {
     const openModal = () => {
         handleShow();
     }
-//Form Values
-const [editFormValues, setEditFormValues] = useState([{ description: "", status: "" }])
+    //Form Values
+    const [editFormValues, setEditFormValues] = useState([{ description: "", status: "" }])
     const [editFormValues1, setEditFormValues1] = useState([{ description1: "", status1: "" }])
     const [editFormValues2, setEditFormValues2] = useState([{ description2: "", status2: "" }])
     const [editFormValues3, setEditFormValues3] = useState([{ description3: "", status3: "" }])
@@ -80,39 +80,39 @@ const [editFormValues, setEditFormValues] = useState([{ description: "", status:
         let newFormValues = [...editFormValues];
         newFormValues.splice(i, 1);
         setEditFormValues(newFormValues)
-        setEditWorkOrder({...editWorkOrder,designer_head_description_status:newFormValues})
+        setEditWorkOrder({ ...editWorkOrder, designer_head_description_status: newFormValues })
     }
     let removeEditFormFields1 = (i) => {
         let newFormValues1 = [...editFormValues1];
         newFormValues1.splice(i, 1);
         setEditFormValues1(newFormValues1)
-        setEditWorkOrder({...editWorkOrder,designer_description_status:newFormValues1})
+        setEditWorkOrder({ ...editWorkOrder, designer_description_status: newFormValues1 })
     }
     let removeEditFormFields2 = (i) => {
         let newFormValues2 = [...editFormValues2];
         newFormValues2.splice(i, 1);
         setEditFormValues2(newFormValues2)
-        setEditWorkOrder({...editWorkOrder,programmer_description_status:newFormValues2})
+        setEditWorkOrder({ ...editWorkOrder, programmer_description_status: newFormValues2 })
     }
     let removeEditFormFields3 = (i) => {
         let newFormValues3 = [...editFormValues3];
         newFormValues3.splice(i, 1);
         setEditFormValues3(newFormValues3)
-        setEditWorkOrder({...editWorkOrder,machine_operator_description_status:newFormValues3})
+        setEditWorkOrder({ ...editWorkOrder, machine_operator_description_status: newFormValues3 })
     }
     let removeEditFormFields4 = (i) => {
         let newFormValues4 = [...editFormValues4];
         newFormValues4.splice(i, 1);
         setEditFormValues4(newFormValues4)
-        setEditWorkOrder({...editWorkOrder,transporter_description_status:newFormValues4})
+        setEditWorkOrder({ ...editWorkOrder, transporter_description_status: newFormValues4 })
     }
     let removeEditFormFieldsInspectionParameters = (i) => {
         let newFormValues5 = [...editInspectionParametersFormValues];
         newFormValues5.splice(i, 1);
         setEditInspectionParametersFormValues(newFormValues5)
-        setEditWorkOrder({...editWorkOrder,machine_operator_parameter:newFormValues5})
+        setEditWorkOrder({ ...editWorkOrder, machine_operator_parameter: newFormValues5 })
     }
-//Form values
+    //Form values
     const [showModal1, setShow1] = useState(false);
     const handleClose1 = () => setShow1(false);
     const handleShow1 = () => setShow1(true);
@@ -266,64 +266,64 @@ const [editFormValues, setEditFormValues] = useState([{ description: "", status:
             work_order: row.work_order,
             purchase_order: row.purchase_order,
             designer_head: row.designer_head,
-            designer_head_description_status:JSON.parse(row.designer_head_description_status.slice(1,-1)),
-            designer_head_file:row.designer_head_file,
+            designer_head_description_status: JSON.parse(row.designer_head_description_status.slice(1, -1)),
+            designer_head_file: row.designer_head_file,
             designer: row.designer,
-            designer_description_status: JSON.parse(row.designer_description_status.slice(1,-1)),
-            designer_file:row.designer_file,
+            designer_description_status: JSON.parse(row.designer_description_status.slice(1, -1)),
+            designer_file: row.designer_file,
             programmer: row.programmer,
-            programmer_description_status: JSON.parse(row.programmer_description_status.slice(1,-1)),
-            programmer_file:row.programmer_file,
+            programmer_description_status: JSON.parse(row.programmer_description_status.slice(1, -1)),
+            programmer_file: row.programmer_file,
             machine_operator: row.machine_operator,
-            machine_operator_description_status: JSON.parse(row.machine_operator_description_status.slice(1,-1)),
-            machine_operator_parameter: JSON.parse(row.machine_operator_parameter.slice(1,-1)),
-            machine_operator_file:row.machine_operator_file,
+            machine_operator_description_status: JSON.parse(row.machine_operator_description_status.slice(1, -1)),
+            machine_operator_parameter: JSON.parse(row.machine_operator_parameter.slice(1, -1)),
+            machine_operator_file: row.machine_operator_file,
             transporter: row.transporter,
-            transporter_description_status: JSON.parse(row.transporter_description_status.slice(1,-1)),
-            transporter_file:row.transporter_file
-            
+            transporter_description_status: JSON.parse(row.transporter_description_status.slice(1, -1)),
+            transporter_file: row.transporter_file
+
         })
-        setReadFormValues(JSON.parse(row.designer_head_description_status.slice(1,-1)))
-        setReadFormValues1(JSON.parse(row.designer_description_status.slice(1,-1)))
-        setReadFormValues2(JSON.parse(row.programmer_description_status.slice(1,-1)))
-        setReadFormValues3(JSON.parse(row.machine_operator_description_status.slice(1,-1)))
-        setReadInspectionParametersFormValues(JSON.parse(row.machine_operator_parameter.slice(1,-1)))
-        setReadFormValues4(JSON.parse(row.transporter_description_status.slice(1,-1)))
+        setReadFormValues(JSON.parse(row.designer_head_description_status.slice(1, -1)))
+        setReadFormValues1(JSON.parse(row.designer_description_status.slice(1, -1)))
+        setReadFormValues2(JSON.parse(row.programmer_description_status.slice(1, -1)))
+        setReadFormValues3(JSON.parse(row.machine_operator_description_status.slice(1, -1)))
+        setReadInspectionParametersFormValues(JSON.parse(row.machine_operator_parameter.slice(1, -1)))
+        setReadFormValues4(JSON.parse(row.transporter_description_status.slice(1, -1)))
 
         console.log(singleWorkOrder)
     }
     //Edit Data
     const onEdit = (row) => {
         handleShow();
-        console.log("--------------",JSON.parse(row.designer_head_description_status.slice(1,-1)))
+        console.log("--------------", JSON.parse(row.designer_head_description_status.slice(1, -1)))
         setEditWorkOrder({
             id: row.id,
             work_order: row.work_order,
             purchase_order: row.purchase_order,
             designer_head: row.designer_head,
-            designer_head_description_status:JSON.parse(row.designer_head_description_status.slice(1,-1)),
-            designer_head_file:row.designer_head_file,
+            designer_head_description_status: JSON.parse(row.designer_head_description_status.slice(1, -1)),
+            designer_head_file: row.designer_head_file,
             designer: row.designer,
-            designer_description_status: JSON.parse(row.designer_description_status.slice(1,-1)),
-            designer_file:row.designer_file,
+            designer_description_status: JSON.parse(row.designer_description_status.slice(1, -1)),
+            designer_file: row.designer_file,
             programmer: row.programmer,
-            programmer_description_status: JSON.parse(row.programmer_description_status.slice(1,-1)),
-            programmer_file:row.programmer_file,
+            programmer_description_status: JSON.parse(row.programmer_description_status.slice(1, -1)),
+            programmer_file: row.programmer_file,
             machine_operator: row.machine_operator,
-            machine_operator_description_status: JSON.parse(row.machine_operator_description_status.slice(1,-1)),
-            machine_operator_parameter: JSON.parse(row.machine_operator_parameter.slice(1,-1)),
-            machine_operator_file:row.machine_operator_file,
+            machine_operator_description_status: JSON.parse(row.machine_operator_description_status.slice(1, -1)),
+            machine_operator_parameter: JSON.parse(row.machine_operator_parameter.slice(1, -1)),
+            machine_operator_file: row.machine_operator_file,
             transporter: row.transporter,
-            transporter_description_status: JSON.parse(row.transporter_description_status.slice(1,-1)),
-            transporter_file:row.transporter_file
-            
+            transporter_description_status: JSON.parse(row.transporter_description_status.slice(1, -1)),
+            transporter_file: row.transporter_file
+
         })
-        setEditFormValues(JSON.parse(row.designer_head_description_status.slice(1,-1)))
-        setEditFormValues1(JSON.parse(row.designer_description_status.slice(1,-1)))
-        setEditFormValues2(JSON.parse(row.programmer_description_status.slice(1,-1)))
-        setEditFormValues3(JSON.parse(row.machine_operator_description_status.slice(1,-1)))
-        setEditInspectionParametersFormValues(JSON.parse(row.machine_operator_parameter.slice(1,-1)))
-        setEditFormValues4(JSON.parse(row.transporter_description_status.slice(1,-1)))
+        setEditFormValues(JSON.parse(row.designer_head_description_status.slice(1, -1)))
+        setEditFormValues1(JSON.parse(row.designer_description_status.slice(1, -1)))
+        setEditFormValues2(JSON.parse(row.programmer_description_status.slice(1, -1)))
+        setEditFormValues3(JSON.parse(row.machine_operator_description_status.slice(1, -1)))
+        setEditInspectionParametersFormValues(JSON.parse(row.machine_operator_parameter.slice(1, -1)))
+        setEditFormValues4(JSON.parse(row.transporter_description_status.slice(1, -1)))
         console.log(editFormValues)
     }
     const onEditPurchaseOrderChange = (e) => {
@@ -335,6 +335,9 @@ const [editFormValues, setEditFormValues] = useState([{ description: "", status:
     const onEditDesignerChange = (e) => {
         setEditWorkOrder({ ...editWorkOrder, designer: e.target.value })
     }
+    const onEditDesignerFileChange=(e)=>{
+        setEditWorkOrder({...editWorkOrder,designer_file:e.target.files[0]})
+    }
     const onEditProgrammerChange = (e) => {
         setEditWorkOrder({ ...editWorkOrder, programmer: e.target.value })
     }
@@ -344,7 +347,7 @@ const [editFormValues, setEditFormValues] = useState([{ description: "", status:
     const onEditTransporterChange = (e) => {
         setEditWorkOrder({ ...editWorkOrder, transporter: e.target.value })
     }
-    const onModalFormSubmit=(e)=>{
+    const onModalFormSubmit = (e) => {
         e.preventDefault();
         console.log(editWorkOrder.designer_description_status)
         const modalFormData = new FormData();
@@ -368,8 +371,8 @@ const [editFormValues, setEditFormValues] = useState([{ description: "", status:
         modalFormData.append('transporter_file', editWorkOrder.transporter_file);
         const config = {
             headers: { 'content-type': 'application/json' }
-          }
-        axios.post(api_url + "update_work_order.php", modalFormData,config)
+        }
+        axios.post(api_url + "update_work_order.php", modalFormData, config)
             .then(() => {
                 axios.get(api_url + "read_work_order_by_crm.php")
                     .then((res) => {
@@ -381,7 +384,7 @@ const [editFormValues, setEditFormValues] = useState([{ description: "", status:
     }
     //Read All Data
     useEffect(() => {
-        axios.post(api_url + "read_work_order_by_designer.php",{designer:localStorage.getItem('employee_id')})
+        axios.post(api_url + "read_work_order_by_designer.php", { designer: localStorage.getItem('employee_id') })
             .then((res) => {
                 console.log(res.data)
                 setReadWorkOrder(res.data)
@@ -436,465 +439,468 @@ const [editFormValues, setEditFormValues] = useState([{ description: "", status:
         <>
             <Header /><Menu />
             <div className='content-wrapper'>
-            <Modal show={showModal} onHide={handleClose}>
-                <Modal.Header>
-                    <Modal.Title>Update Task</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <form onSubmit={onModalFormSubmit}>
-                        <div className="card-body">
-                            <div className="form-group">
-                                <label >PO-Id</label>
-                                <select onChange={onEditPurchaseOrderChange} defaultValue={editWorkOrder.purchase_order} className='form-control'>
-                                    <option>Select</option>
-                                    {purchaseOrder === undefined ? [] : purchaseOrder.data.map((purchaseorder) => (
-                                        <option key={purchaseorder.id} value={purchaseorder.id}>{purchaseorder.purchase_order}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div class="card-body">
-                                <div class="card card-primary card-outline">
-                                    <div class="card-header">
-                                        <label >Designer Head</label>
-                                        <select onChange={onEditDesignerHeadChange} defaultValue={editWorkOrder.designer_head} name="designer_head" className='form-control'>
-                                            <option>Select</option>
-                                            {designerHead === undefined ? [] : designerHead.data.map((designerhead) => (
-                                                <option key={designerhead.id} value={designerhead.id}>{designerhead.name}</option>
-                                            ))}
-                                        </select>
-                                        <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.designer_head_file}`}>Download File</a></button>
-                                        {editFormValues.map((element, index) => (
-                                            <div className="form-group" key={index}>
-                                                <label>Description</label>
-                                                <input className="form-control" type="text" name="description" value={element.description || ""} onChange={e => editHandleChange(index, e)} />
-                                                <label>Status</label>
-                                                {/* <input className="form-control" type="text" name="status" value={element.status || ""} onChange={e => handleChange(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status" value={element.status || ""} onChange={e => editHandleChange(index, e)} >
-                                                    <option>Select</option>
-                                                    <option value="assigned">Assigned</option>
-                                                    <option value="completed">Completed</option>
-                                                </select>
-                                                {
-                                                    index ?
-                                                        <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields(index)}>Remove</button>
-                                                        : null
-                                                }
-                                            </div>
+                <Modal show={showModal} onHide={handleClose}>
+                    <Modal.Header>
+                        <Modal.Title>Update Task</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <form onSubmit={onModalFormSubmit}>
+                            <div className="card-body">
+                                <div className="form-group">
+                                    <label >PO-Id</label>
+                                    <select onChange={onEditPurchaseOrderChange} defaultValue={editWorkOrder.purchase_order} className='form-control'>
+                                        <option>Select</option>
+                                        {purchaseOrder === undefined ? [] : purchaseOrder.data.map((purchaseorder) => (
+                                            <option disabled={true} key={purchaseorder.id} value={purchaseorder.id}>{purchaseorder.purchase_order}</option>
                                         ))}
-                                        <div className="button-section">
-                                            <button className="btn btn-info" type="button" onClick={() => addEditFormFields()}>Add</button>
+                                    </select>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card card-primary card-outline">
+                                        <div class="card-header">
+                                            <label >Designer Head</label>
+                                            <select onChange={onEditDesignerHeadChange} defaultValue={editWorkOrder.designer_head} name="designer_head" className='form-control'>
+                                                <option disabled={true}>Select</option>
+                                                {designerHead === undefined ? [] : designerHead.data.map((designerhead) => (
+                                                    <option disabled={true} key={designerhead.id} value={designerhead.id}>{designerhead.name}</option>
+                                                ))}
+                                            </select>
+                                            
+                                            <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.designer_head_file}`}>Download File</a></button>
+                                            {editFormValues.map((element, index) => (
+                                                <div className="form-group" key={index}>
+                                                    <label>Description</label>
+                                                    <input className="form-control" type="text" name="description" value={element.description || ""} onChange={e => editHandleChange(index, e)} readOnly />
+                                                    <label>Status</label>
+                                                    {/* <input className="form-control" type="text" name="status" value={element.status || ""} onChange={e => handleChange(index, e)} /> */}
+                                                    <select className="form-control" type="text" name="status" value={element.status || ""} onChange={e => editHandleChange(index, e)} readOnly>
+                                                        <option disabled={true}>Select</option>
+                                                        <option disabled={true} value="assigned">Assigned</option>
+                                                        <option disabled={true} value="completed">Completed</option>
+                                                    </select>
+                                                    {
+                                                        index ?
+                                                            <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields(index)}>Remove</button>
+                                                            : null
+                                                    }
+                                                </div>
+                                            ))}
+                                            <div className="button-section">
+                                                <button className="btn btn-info" type="button" onClick={() => addEditFormFields()}>Add</button>
+
+                                            </div>
+                                            {/* <label >File Uploaded</label>
+                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
 
                                         </div>
-                                        {/* <label >File Uploaded</label>
-                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
-
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="card card-primary card-outline">
-                                    <div class="card-header">
-                                        <label >Designer</label>
-                                        <select  onChange={onEditDesignerChange} defaultValue={editWorkOrder.designer} className='form-control'>
-                                            <option>Select</option>
-                                            {designer === undefined ? [] : designer.data.map((designer) => (
-                                                <option key={designer.id} value={designer.id}>{designer.name}</option>
+                                <div class="card-body">
+                                    <div class="card card-primary card-outline">
+                                        <div class="card-header">
+                                            <label >Designer</label>
+                                            <select onChange={onEditDesignerChange} defaultValue={editWorkOrder.designer} className='form-control'>
+                                                <option>Select</option>
+                                                {designer === undefined ? [] : designer.data.map((designer) => (
+                                                    <option key={designer.id} value={designer.id}>{designer.name}</option>
+                                                ))}
+                                            </select>
+                                            <label>Designer File</label>
+                                            <input onChange={onEditDesignerFileChange} type="file" className='form-control' name="designer_file" />
+                                            <label>Download File</label><br />
+                                            <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.designer_file}`}>Download File</a></button>
+                                            {editFormValues1.map((element, index) => (
+                                                <div className="form-group" key={index}>
+                                                    <label>Description</label>
+                                                    <input className="form-control" type="text" name="description1" value={element.description1 || ""} onChange={e => editHandleChange1(index, e)} />
+                                                    <label>Status</label>
+                                                    {/* <input className="form-control" type="text" name="status1" value={element.status1 || ""} onChange={e => handleChange1(index, e)} /> */}
+                                                    <select className="form-control" type="text" name="status1" value={element.status1 || ""} onChange={e => editHandleChange1(index, e)} >
+                                                        <option>Select</option>
+                                                        <option value="assigned">Assigned</option>
+                                                        <option value="completed">Completed</option>
+                                                    </select>
+                                                    {
+                                                        index ?
+                                                            <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields1(index)}>Remove</button>
+                                                            : null
+                                                    }
+                                                </div>
                                             ))}
-                                        </select>
-                                        <label>Download File</label><br/>
-                                        <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.designer_file}`}>Download File</a></button>
-                                        {editFormValues1.map((element, index) => (
-                                            <div className="form-group" key={index}>
-                                                <label>Description</label>
-                                                <input className="form-control" type="text" name="description1" value={element.description1 || ""} onChange={e => editHandleChange1(index, e)} />
-                                                <label>Status</label>
-                                                {/* <input className="form-control" type="text" name="status1" value={element.status1 || ""} onChange={e => handleChange1(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status1" value={element.status1 || ""} onChange={e => editHandleChange1(index, e)} >
-                                                    <option>Select</option>
-                                                    <option value="assigned">Assigned</option>
-                                                    <option value="completed">Completed</option>
-                                                </select>
-                                                {
-                                                    index ?
-                                                        <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields1(index)}>Remove</button>
-                                                        : null
-                                                }
+                                            <div className="button-section">
+                                                <button className="btn btn-info" type="button" onClick={() => addEditFormFields1()}>Add</button>
+
                                             </div>
-                                        ))}
-                                        <div className="button-section">
-                                            <button className="btn btn-info" type="button" onClick={() => addEditFormFields1()}>Add</button>
+                                            {/* <label >File Uploaded</label>
+                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
 
                                         </div>
-                                        {/* <label >File Uploaded</label>
-                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
-
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="card card-primary card-outline">
-                                    <div class="card-header">
-                                        <label >Programmer</label>
-                                        <select onChange={onEditProgrammerChange} defaultValue={editWorkOrder.programmer} className='form-control'>
-                                            <option>Select</option>
-                                            {programmer === undefined ? [] : programmer.data.map((programmer) => (
-                                                <option key={programmer.id} value={programmer.id}>{programmer.name}</option>
+                                <div class="card-body">
+                                    <div class="card card-primary card-outline">
+                                        <div class="card-header">
+                                            <label >Programmer</label>
+                                            <select disabled={true} onChange={onEditProgrammerChange} defaultValue={editWorkOrder.programmer} className='form-control' readOnly>
+                                                <option>Select</option>
+                                                {programmer === undefined ? [] : programmer.data.map((programmer) => (
+                                                    <option disabled={true} key={programmer.id} value={programmer.id}>{programmer.name}</option>
+                                                ))}
+                                            </select>
+                                            <label>Download File</label><br />
+                                            <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.programmer_file}`}>Download File</a></button>
+                                            {editFormValues2.map((element, index) => (
+                                                <div className="form-group" key={index}>
+                                                    <label>Description</label>
+                                                    <input className="form-control" type="text" name="description2" value={element.description2 || ""} onChange={e => editHandleChange2(index, e)} readOnly />
+                                                    <label>Status</label>
+                                                    {/* <input className="form-control" type="text" name="status2" value={element.status2 || ""} onChange={e => handleChange2(index, e)} /> */}
+                                                    <select className="form-control" type="text" name="status2" value={element.status2 || ""} onChange={e => editHandleChange2(index, e)} readOnly>
+                                                        <option disabled={true}>Select</option>
+                                                        <option disabled={true} value="assigned">Assigned</option>
+                                                        <option disabled={true} value="completed">Completed</option>
+                                                    </select>
+                                                    {
+                                                        index ?
+                                                            <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields2(index)}>Remove</button>
+                                                            : null
+                                                    }
+                                                </div>
                                             ))}
-                                        </select>
-                                        <label>Download File</label><br/>
-                                        <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.programmer_file}`}>Download File</a></button>
-                                        {editFormValues2.map((element, index) => (
-                                            <div className="form-group" key={index}>
-                                                <label>Description</label>
-                                                <input className="form-control" type="text" name="description2" value={element.description2 || ""} onChange={e => editHandleChange2(index, e)} />
-                                                <label>Status</label>
-                                                {/* <input className="form-control" type="text" name="status2" value={element.status2 || ""} onChange={e => handleChange2(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status2" value={element.status2 || ""} onChange={e => editHandleChange2(index, e)}>
-                                                    <option>Select</option>
-                                                    <option value="assigned">Assigned</option>
-                                                    <option value="completed">Completed</option>
-                                                </select>
-                                                {
-                                                    index ?
-                                                        <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields2(index)}>Remove</button>
-                                                        : null
-                                                }
+                                            <div className="button-section">
+                                                <button className="btn btn-info" type="button" onClick={() => addEditFormFields2()}>Add</button>
+
                                             </div>
-                                        ))}
-                                        <div className="button-section">
-                                            <button className="btn btn-info" type="button" onClick={() => addEditFormFields2()}>Add</button>
+                                            {/* <label >File Uploaded</label>
+                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
 
                                         </div>
-                                        {/* <label >File Uploaded</label>
-                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
-
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="card card-primary card-outline">
-                                    <div class="card-header">
-                                        <label >Machine Operator</label>
-                                        <select  onChange={onEditMachineOperatorChange} defaultValue={editWorkOrder.machine_operator} className='form-control'>
-                                            <option>Select</option>
-                                            {machineOperator === undefined ? [] : machineOperator.data.map((machineoperator) => (
-                                                <option key={machineoperator.id} value={machineoperator.id}>{machineoperator.name}</option>
+                                <div class="card-body">
+                                    <div class="card card-primary card-outline">
+                                        <div class="card-header">
+                                            <label >Machine Operator</label>
+                                            <select onChange={onEditMachineOperatorChange} defaultValue={editWorkOrder.machine_operator} className='form-control' readOnly>
+                                                <option disabled={true}>Select</option>
+                                                {machineOperator === undefined ? [] : machineOperator.data.map((machineoperator) => (
+                                                    <option disabled={true} key={machineoperator.id} value={machineoperator.id}>{machineoperator.name}</option>
+                                                ))}
+                                            </select>
+                                            <label>Download File</label><br />
+                                            <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.machine_operator_file}`}>Download File</a></button>
+                                            {editFormValues3.map((element, index) => (
+                                                <div className="form-group" key={index}>
+                                                    <label>Description</label>
+                                                    <input className="form-control" type="text" name="description3" value={element.description3 || ""} onChange={e => editHandleChange3(index, e)} />
+                                                    <label>Status</label>
+                                                    {/* <input className="form-control" type="text" name="status3" value={element.status3 || ""} onChange={e => handleChange3(index, e)} /> */}
+                                                    <select className="form-control" type="text" name="status3" value={element.status3 || ""} onChange={e => editHandleChange3(index, e)} readOnly>
+                                                        <option>Select</option>
+                                                        <option disabled={true} value="assigned">Assigned</option>
+                                                        <option value="completed">Completed</option>
+                                                    </select>
+                                                    {
+                                                        index ?
+                                                            <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields3(index)}>Remove</button>
+                                                            : null
+                                                    }
+                                                </div>
                                             ))}
-                                        </select>
-                                        <label>Download File</label><br/>
-                                        <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.machine_operator_file}`}>Download File</a></button>
-                                        {editFormValues3.map((element, index) => (
-                                            <div className="form-group" key={index}>
-                                                <label>Description</label>
-                                                <input className="form-control" type="text" name="description3" value={element.description3 || ""} onChange={e => editHandleChange3(index, e)} />
-                                                <label>Status</label>
-                                                {/* <input className="form-control" type="text" name="status3" value={element.status3 || ""} onChange={e => handleChange3(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status3" value={element.status3 || ""} onChange={e => editHandleChange3(index, e)}>
-                                                    <option>Select</option>
-                                                    <option value="assigned">Assigned</option>
-                                                    <option value="completed">Completed</option>
-                                                </select>
-                                                {
-                                                    index ?
-                                                        <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields3(index)}>Remove</button>
-                                                        : null
-                                                }
+                                            <div className="button-section">
+                                                <button className="btn btn-info" type="button" onClick={() => addEditFormFields3()}>Add</button>
+
                                             </div>
-                                        ))}
-                                        <div className="button-section">
-                                            <button className="btn btn-info" type="button" onClick={() => addEditFormFields3()}>Add</button>
+                                            <hr />
+                                            {editInspectionParametersFormValues.map((element, index) => (
+                                                <div className="form-group" key={index}>
+                                                    <label>Parameter</label>
+                                                    <input className="form-control" type="number" name="parameter" value={element.parameter || ""} onChange={e => editHandleChangeInspectionParameters(index, e)} readOnly />
+                                                    <label>Result</label>
+                                                    {/* <input className="form-control" type="text" name="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)} /> */}
+                                                    <select className="form-control" type="text" name="result" value={element.result || ""} onChange={e => editHandleChangeInspectionParameters(index, e)} readOnly>
+                                                        <option disabled={true}>Select</option>
+                                                        <option disabled={true}>Pass</option>
+                                                        <option disabled={true}>Fail</option>
+                                                    </select>
+                                                    {
+                                                        index ?
+                                                            <button type="button" className="btn btn-danger" onClick={() => removeEditFormFieldsInspectionParameters(index)}>Remove</button>
+                                                            : null
+                                                    }
+                                                </div>
+                                            ))}
+                                            <div className="button-section">
+                                                <button className="btn btn-info" type="button" onClick={() => addEditFormFieldsInspectionParameters()}>Add</button>
+
+                                            </div>
+                                            {/* <label >File Uploaded</label>
+                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
 
                                         </div>
-                                        <hr />
-                                        {editInspectionParametersFormValues.map((element, index) => (
-                                            <div className="form-group" key={index}>
-                                                <label>Parameter</label>
-                                                <input className="form-control" type="number" name="parameter" value={element.parameter || ""} onChange={e => editHandleChangeInspectionParameters(index, e)} />
-                                                <label>Result</label>
-                                                {/* <input className="form-control" type="text" name="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)} /> */}
-                                                <select className="form-control" type="text" name="result" value={element.result || ""} onChange={e => editHandleChangeInspectionParameters(index, e)}>
-                                                    <option>Select</option>
-                                                    <option>Pass</option>
-                                                    <option>Fail</option>
-                                                </select>
-                                                {
-                                                    index ?
-                                                        <button type="button" className="btn btn-danger" onClick={() => removeEditFormFieldsInspectionParameters(index)}>Remove</button>
-                                                        : null
-                                                }
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card card-primary card-outline">
+                                        <div class="card-header">
+                                            <label >Transporter</label>
+                                            <select onChange={onEditTransporterChange} defaultValue={editWorkOrder.transporter} className='form-control' readOnly>
+                                                <option disabled={true}>Select</option>
+                                                {transporter === undefined ? [] : transporter.data.map((transporter) => (
+                                                    <option disabled={true} key={transporter.id} value={transporter.id}>{transporter.name}</option>
+                                                ))}
+                                            </select>
+                                            <label>Download File</label><br />
+                                            <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.transporter_file}`}>Download File</a></button>
+                                            {editFormValues4.map((element, index) => (
+                                                <div className="form-group" key={index}>
+                                                    <label>Description</label>
+                                                    <input className="form-control" type="text" name="description4" value={element.description4 || ""} onChange={e => editHandleChange4(index, e)} readOnly />
+                                                    <label>Status</label>
+                                                    {/* <input className="form-control" type="text" name="status4" value={element.status4 || ""} onChange={e => handleChange4(index, e)} /> */}
+                                                    <select className="form-control" type="text" name="status4" value={element.status4 || ""} onChange={e => editHandleChange4(index, e)} readOnly>
+                                                        <option disabled={true}>Select</option>
+                                                        <option disabled={true} value="assigned">Assigned</option>
+                                                        <option disabled={true} value="completed">Completed</option>
+                                                    </select>
+                                                    {
+                                                        index ?
+                                                            <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields4(index)}>Remove</button>
+                                                            : null
+                                                    }
+                                                </div>
+                                            ))}
+                                            <div className="button-section">
+                                                <button className="btn btn-info" type="button" onClick={() => addEditFormFields4()}>Add</button>
+
                                             </div>
-                                        ))}
-                                        <div className="button-section">
-                                            <button className="btn btn-info" type="button" onClick={() => addEditFormFieldsInspectionParameters()}>Add</button>
+                                            {/* <label >File Uploaded</label>
+                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
 
                                         </div>
-                                        {/* <label >File Uploaded</label>
-                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
-
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <div class="card card-primary card-outline">
-                                    <div class="card-header">
-                                        <label >Transporter</label>
-                                        <select onChange={onEditTransporterChange} defaultValue={editWorkOrder.transporter} className='form-control'>
-                                            <option>Select</option>
-                                            {transporter === undefined ? [] : transporter.data.map((transporter) => (
-                                                <option key={transporter.id} value={transporter.id}>{transporter.name}</option>
-                                            ))}
-                                        </select>
-                                        <label>Download File</label><br/>
-                                        <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.transporter_file}`}>Download File</a></button>
-                                        {editFormValues4.map((element, index) => (
-                                            <div className="form-group" key={index}>
-                                                <label>Description</label>
-                                                <input className="form-control" type="text" name="description4" value={element.description4 || ""} onChange={e => editHandleChange4(index, e)} />
-                                                <label>Status</label>
-                                                {/* <input className="form-control" type="text" name="status4" value={element.status4 || ""} onChange={e => handleChange4(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status4" value={element.status4 || ""} onChange={e => editHandleChange4(index, e)}>
-                                                    <option>Select</option>
-                                                    <option value="assigned">Assigned</option>
-                                                    <option value="completed">Completed</option>
-                                                </select>
-                                                {
-                                                    index ?
-                                                        <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields4(index)}>Remove</button>
-                                                        : null
-                                                }
-                                            </div>
+                            {/* /.card-body */}
+                            <div className="card-footer">
+                                <button type="submit" className="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                <Modal show={showModal1} onHide={handleClose1}>
+                    <Modal.Header>
+                        <Modal.Title>Details Read</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <form>
+                            <div className="card-body">
+                                <div className="form-group">
+                                    <label >PO-Id</label>
+                                    <select defaultValue={singleWorkOrder.purchase_order} className='form-control'>
+                                        <option>Select</option>
+                                        {purchaseOrder === undefined ? [] : purchaseOrder.data.map((purchaseorder) => (
+                                            <option disabled={true} key={purchaseorder.id} value={purchaseorder.id}>{purchaseorder.purchase_order}</option>
                                         ))}
-                                        <div className="button-section">
-                                            <button className="btn btn-info" type="button" onClick={() => addEditFormFields4()}>Add</button>
+                                    </select>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card card-primary card-outline">
+                                        <div class="card-header">
+                                            <label >Designer Head</label>
+                                            <select defaultValue={singleWorkOrder.designer_head} name="designer_head" className='form-control'>
+                                                <option>Select</option>
+                                                {designerHead === undefined ? [] : designerHead.data.map((designerhead) => (
+                                                    <option disabled={true} key={designerhead.id} value={designerhead.id}>{designerhead.name}</option>
+                                                ))}
+                                            </select>
+                                            <label>Download File</label><br />
+                                            <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.designer_head_file}`}>Download File</a></button>
+                                            {readFormValues.map((element, index) => (
+                                                <div className="form-group" key={index}>
+                                                    <label>Description</label>
+                                                    <input className="form-control" type="text" name="description" value={element.description || ""} readOnly />
+                                                    <label>Status</label>
+                                                    {/* <input className="form-control" type="text" name="status" value={element.status || ""} onChange={e => handleChange(index, e)} /> */}
+                                                    <select className="form-control" type="text" name="status" value={element.status || ""}  >
+                                                        <option disabled={true}>Select</option>
+                                                        <option disabled={true} value="assigned">Assigned</option>
+                                                        <option disabled={true} value="completed">Completed</option>
+                                                    </select>
+
+                                                </div>
+                                            ))}
+
+                                            {/* <label >File Uploaded</label>
+                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
 
                                         </div>
-                                        {/* <label >File Uploaded</label>
-                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
-
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        {/* /.card-body */}
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-            <Modal show={showModal1} onHide={handleClose1}>
-                <Modal.Header>
-                    <Modal.Title>Details Read</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <form>
-                        <div className="card-body">
-                            <div className="form-group">
-                                <label >PO-Id</label>
-                                <select defaultValue={singleWorkOrder.purchase_order} className='form-control'>
-                                    <option>Select</option>
-                                    {purchaseOrder === undefined ? [] : purchaseOrder.data.map((purchaseorder) => (
-                                        <option disabled={true} key={purchaseorder.id} value={purchaseorder.id}>{purchaseorder.purchase_order}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div class="card-body">
-                                <div class="card card-primary card-outline">
-                                    <div class="card-header">
-                                        <label >Designer Head</label>
-                                        <select defaultValue={singleWorkOrder.designer_head} name="designer_head" className='form-control'>
-                                            <option>Select</option>
-                                            {designerHead === undefined ? [] : designerHead.data.map((designerhead) => (
-                                                <option disabled={true} key={designerhead.id} value={designerhead.id}>{designerhead.name}</option>
+                                <div class="card-body">
+                                    <div class="card card-primary card-outline">
+                                        <div class="card-header">
+                                            <label >Designer</label>
+                                            <select defaultValue={singleWorkOrder.designer} className='form-control'>
+                                                <option>Select</option>
+                                                {designer === undefined ? [] : designer.data.map((designer) => (
+                                                    <option disabled={true} key={designer.id} value={designer.id}>{designer.name}</option>
+                                                ))}
+                                            </select>
+                                            <label>Download File</label><br />
+                                            <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.designer_file}`}>Download File</a></button>
+                                            {readFormValues1.map((element, index) => (
+                                                <div className="form-group" key={index}>
+                                                    <label>Description</label>
+                                                    <input className="form-control" type="text" name="description1" value={element.description1 || ""} readOnly />
+                                                    <label>Status</label>
+                                                    {/* <input className="form-control" type="text" name="status1" value={element.status1 || ""} onChange={e => handleChange1(index, e)} /> */}
+                                                    <select className="form-control" type="text" name="status1" value={element.status1 || ""}  >
+                                                        <option disabled={true}>Select</option>
+                                                        <option disabled={true} value="assigned">Assigned</option>
+                                                        <option disabled={true} value="completed">Completed</option>
+                                                    </select>
+
+                                                </div>
                                             ))}
-                                        </select>
-                                        <label>Download File</label><br/>
-                                        <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.designer_head_file}`}>Download File</a></button>
-                                        {readFormValues.map((element, index) => (
-                                            <div className="form-group" key={index}>
-                                                <label>Description</label>
-                                                <input className="form-control" type="text" name="description" value={element.description || ""} readOnly/>
-                                                <label>Status</label>
-                                                {/* <input className="form-control" type="text" name="status" value={element.status || ""} onChange={e => handleChange(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status" value={element.status || ""}  >
-                                                    <option disabled={true}>Select</option>
-                                                    <option disabled={true} value="assigned">Assigned</option>
-                                                    <option  disabled={true} value="completed">Completed</option>
-                                                </select>
-                                                
-                                            </div>
-                                        ))}
-                                        
-                                        {/* <label >File Uploaded</label>
+
+                                            {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="card card-primary card-outline">
-                                    <div class="card-header">
-                                        <label >Designer</label>
-                                        <select defaultValue={singleWorkOrder.designer} className='form-control'>
-                                            <option>Select</option>
-                                            {designer === undefined ? [] : designer.data.map((designer) => (
-                                                <option disabled={true} key={designer.id} value={designer.id}>{designer.name}</option>
+                                <div class="card-body">
+                                    <div class="card card-primary card-outline">
+                                        <div class="card-header">
+                                            <label >Programmer</label>
+                                            <select defaultValue={singleWorkOrder.programmer} className='form-control'>
+                                                <option>Select</option>
+                                                {programmer === undefined ? [] : programmer.data.map((programmer) => (
+                                                    <option disabled={true} key={programmer.id} value={programmer.id}>{programmer.name}</option>
+                                                ))}
+                                            </select>
+                                            <label>Download File</label><br />
+                                            <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.programmer_file}`}>Download File</a></button>
+                                            {readFormValues2.map((element, index) => (
+                                                <div className="form-group" key={index}>
+                                                    <label>Description</label>
+                                                    <input className="form-control" type="text" name="description2" value={element.description2 || ""} readOnly />
+                                                    <label>Status</label>
+                                                    {/* <input className="form-control" type="text" name="status2" value={element.status2 || ""} onChange={e => handleChange2(index, e)} /> */}
+                                                    <select className="form-control" type="text" name="status2" value={element.status2 || ""} >
+                                                        <option disabled={true}>Select</option>
+                                                        <option disabled={true} value="assigned">Assigned</option>
+                                                        <option disabled={true} value="completed">Completed</option>
+                                                    </select>
+
+                                                </div>
                                             ))}
-                                        </select>
-                                        <label>Download File</label><br/>
-                                        <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.designer_file}`}>Download File</a></button>
-                                        {readFormValues1.map((element, index) => (
-                                            <div className="form-group" key={index}>
-                                                <label>Description</label>
-                                                <input className="form-control" type="text" name="description1" value={element.description1 || ""}  readOnly/>
-                                                <label>Status</label>
-                                                {/* <input className="form-control" type="text" name="status1" value={element.status1 || ""} onChange={e => handleChange1(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status1" value={element.status1 || ""}  >
-                                                    <option disabled={true}>Select</option>
-                                                    <option  disabled={true} value="assigned">Assigned</option>
-                                                    <option disabled={true} value="completed">Completed</option>
-                                                </select>
-                                                
-                                            </div>
-                                        ))}
-                                        
-                                        {/* <label >File Uploaded</label>
+
+                                            {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="card card-primary card-outline">
-                                    <div class="card-header">
-                                        <label >Programmer</label>
-                                        <select defaultValue={singleWorkOrder.programmer} className='form-control'>
-                                            <option>Select</option>
-                                            {programmer === undefined ? [] : programmer.data.map((programmer) => (
-                                                <option disabled={true} key={programmer.id} value={programmer.id}>{programmer.name}</option>
+                                <div class="card-body">
+                                    <div class="card card-primary card-outline">
+                                        <div class="card-header">
+                                            <label >Machine Operator</label>
+                                            <select defaultValue={singleWorkOrder.machine_operator} className='form-control'>
+                                                <option>Select</option>
+                                                {machineOperator === undefined ? [] : machineOperator.data.map((machineoperator) => (
+                                                    <option disabled={true} key={machineoperator.id} value={machineoperator.id}>{machineoperator.name}</option>
+                                                ))}
+                                            </select>
+                                            <label>Download File</label><br />
+                                            <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.machine_operator_file}`}>Download File</a></button>
+                                            {readFormValues3.map((element, index) => (
+                                                <div className="form-group" key={index}>
+                                                    <label>Description</label>
+                                                    <input className="form-control" type="text" name="description3" value={element.description3 || ""} readOnly />
+                                                    <label>Status</label>
+                                                    {/* <input className="form-control" type="text" name="status3" value={element.status3 || ""} onChange={e => handleChange3(index, e)} /> */}
+                                                    <select className="form-control" type="text" name="status3" value={element.status3 || ""} >
+                                                        <option disabled={true}>Select</option>
+                                                        <option disabled={true} value="assigned">Assigned</option>
+                                                        <option disabled={true} value="completed">Completed</option>
+                                                    </select>
+
+                                                </div>
                                             ))}
-                                        </select>
-                                        <label>Download File</label><br/>
-                                        <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.programmer_file}`}>Download File</a></button>
-                                        {readFormValues2.map((element, index) => (
-                                            <div className="form-group" key={index}>
-                                                <label>Description</label>
-                                                <input className="form-control" type="text" name="description2" value={element.description2 || ""}  readOnly/>
-                                                <label>Status</label>
-                                                {/* <input className="form-control" type="text" name="status2" value={element.status2 || ""} onChange={e => handleChange2(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status2" value={element.status2 || ""} >
-                                                    <option disabled={true}>Select</option>
-                                                    <option disabled={true} value="assigned">Assigned</option>
-                                                    <option disabled={true} value="completed">Completed</option>
-                                                </select>
-                                                
-                                            </div>
-                                        ))}
-                                        
-                                        {/* <label >File Uploaded</label>
-                                                    <img src="https://picsum.photos/200/35" alt="File" /> */}
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="card card-primary card-outline">
-                                    <div class="card-header">
-                                        <label >Machine Operator</label>
-                                        <select defaultValue={singleWorkOrder.machine_operator} className='form-control'>
-                                            <option>Select</option>
-                                            {machineOperator === undefined ? [] : machineOperator.data.map((machineoperator) => (
-                                                <option disabled={true} key={machineoperator.id} value={machineoperator.id}>{machineoperator.name}</option>
+                                            <hr />
+                                            {readInspectionParametersFormValues.map((element, index) => (
+                                                <div className="form-group" key={index}>
+                                                    <label>Parameter</label>
+                                                    <input className="form-control" type="number" name="parameter" value={element.parameter || ""} readOnly />
+                                                    <label>Result</label>
+                                                    {/* <input className="form-control" type="text" name="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)} /> */}
+                                                    <select className="form-control" type="text" name="result" value={element.result || ""} >
+                                                        <option disabled={true}>Select</option>
+                                                        <option disabled={true}>Pass</option>
+                                                        <option disabled={true}>Fail</option>
+                                                    </select>
+
+                                                </div>
                                             ))}
-                                        </select>
-                                        <label>Download File</label><br/>
-                                        <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.machine_operator_file}`}>Download File</a></button>
-                                        {readFormValues3.map((element, index) => (
-                                            <div className="form-group" key={index}>
-                                                <label>Description</label>
-                                                <input className="form-control" type="text" name="description3" value={element.description3 || ""} readOnly/>
-                                                <label>Status</label>
-                                                {/* <input className="form-control" type="text" name="status3" value={element.status3 || ""} onChange={e => handleChange3(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status3" value={element.status3 || ""} >
-                                                    <option disabled={true}>Select</option>
-                                                    <option disabled={true} value="assigned">Assigned</option>
-                                                    <option disabled={true} value="completed">Completed</option>
-                                                </select>
-                                                
-                                            </div>
-                                        ))}
-                                       
-                                        <hr />
-                                        {readInspectionParametersFormValues.map((element, index) => (
-                                            <div className="form-group" key={index}>
-                                                <label>Parameter</label>
-                                                <input className="form-control" type="number" name="parameter" value={element.parameter || ""} readOnly/>
-                                                <label>Result</label>
-                                                {/* <input className="form-control" type="text" name="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)} /> */}
-                                                <select className="form-control" type="text" name="result" value={element.result || ""} >
-                                                    <option disabled={true}>Select</option>
-                                                    <option disabled={true}>Pass</option>
-                                                    <option disabled={true}>Fail</option>
-                                                </select>
-                                               
-                                            </div>
-                                        ))}
-                                        
-                                        {/* <label >File Uploaded</label>
+
+                                            {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="card card-primary card-outline">
-                                    <div class="card-header">
-                                        <label >Transporter</label>
-                                        <select defaultValue={singleWorkOrder.transporter} className='form-control'>
-                                            <option>Select</option>
-                                            {transporter === undefined ? [] : transporter.data.map((transporter) => (
-                                                <option disabled={true} key={transporter.id} value={transporter.id}>{transporter.name}</option>
+                                <div class="card-body">
+                                    <div class="card card-primary card-outline">
+                                        <div class="card-header">
+                                            <label >Transporter</label>
+                                            <select defaultValue={singleWorkOrder.transporter} className='form-control'>
+                                                <option>Select</option>
+                                                {transporter === undefined ? [] : transporter.data.map((transporter) => (
+                                                    <option disabled={true} key={transporter.id} value={transporter.id}>{transporter.name}</option>
+                                                ))}
+                                            </select>
+                                            <label>Download File</label><br />
+                                            <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.transporter_file}`}>Download File</a></button>
+                                            {readFormValues4.map((element, index) => (
+                                                <div className="form-group" key={index}>
+                                                    <label>Description</label>
+                                                    <input className="form-control" type="text" name="description4" value={element.description4 || ""} readOnly />
+                                                    <label>Status</label>
+                                                    {/* <input className="form-control" type="text" name="status4" value={element.status4 || ""} onChange={e => handleChange4(index, e)} /> */}
+                                                    <select className="form-control" type="text" name="status4" value={element.status4 || ""}>
+                                                        <option disabled={true}>Select</option>
+                                                        <option disabled={true} value="assigned">Assigned</option>
+                                                        <option disabled={true} value="completed">Completed</option>
+                                                    </select>
+
+                                                </div>
                                             ))}
-                                        </select>
-                                        <label>Download File</label><br/>
-                                        <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.transporter_file}`}>Download File</a></button>
-                                        {readFormValues4.map((element, index) => (
-                                            <div className="form-group" key={index}>
-                                                <label>Description</label>
-                                                <input className="form-control" type="text" name="description4" value={element.description4 || ""} readOnly/>
-                                                <label>Status</label>
-                                                {/* <input className="form-control" type="text" name="status4" value={element.status4 || ""} onChange={e => handleChange4(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status4" value={element.status4 || ""}>
-                                                    <option disabled={true}>Select</option>
-                                                    <option disabled={true} value="assigned">Assigned</option>
-                                                    <option disabled={true} value="completed">Completed</option>
-                                                </select>
-                                               
-                                            </div>
-                                        ))}
-                                        
-                                        {/* <label >File Uploaded</label>
+
+                                            {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {/* /.card-body */}
-                        
-                    </form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose1}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                            {/* /.card-body */}
+
+                        </form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose1}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
                 <section class="content">
                     <div className="container-fluid">
                         <div className="row">

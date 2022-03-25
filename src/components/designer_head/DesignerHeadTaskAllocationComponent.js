@@ -93,7 +93,7 @@ function DesignerHeadTaskAllocationComponent(props) {
 
                             <option>Select</option>
                             {props.employeeOption[props.index] === undefined ? [] : props.employeeOption[props.index].data.map((employee) => (
-                                <option defaultValue={employee.id || props.element.employee}>{employee.name}</option>
+                                <option value={employee.id || props.element.employee}>{employee.name}</option>
                             ))}
                         </select>
                     </div>
@@ -126,7 +126,7 @@ function DesignerHeadTaskAllocationComponent(props) {
                         <>
                         <div className="form-group" key={index2}>
                             <label>Parameter</label>
-                            <input className="form-control" type="text" name="parameter"
+                            <input className="form-control" type="number" name="parameter"
                                 // value={element1.description || ""} 
                                 defaultValue={props.element.parameter || element2.parameter||""}
                                 onChange={e => onChangeParameterResult(e, index2)} />
