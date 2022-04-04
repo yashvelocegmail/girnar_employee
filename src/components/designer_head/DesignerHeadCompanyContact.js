@@ -4,6 +4,7 @@ import Menu from '../../Menu';
 import axios from 'axios'
 import { api_url } from '../ApiUrl';
 import { DataGrid } from '@mui/x-data-grid';
+import { toast } from 'react-toastify';
 import { Modal, Button } from "react-bootstrap";
 
 function DesignerHeadCompanyContact() {
@@ -171,6 +172,8 @@ function DesignerHeadCompanyContact() {
         console.log(contact);
         axios.post(api_url+"register_company_customer.php", contact)
             .then((res) => {
+                toast.configure();
+                toast.success("Successfully Inserted");
                 axios.get(api_url+"read_company_customer.php", {
                     headers: {
                         'Content-Type': 'application/json',
@@ -262,6 +265,8 @@ function DesignerHeadCompanyContact() {
                 }
                 )
                     .then((res) => {
+                        toast.configure();
+                        toast.warning("Successfully Updated");
                         setReadContact(res.data)
                     })
             })
@@ -278,6 +283,8 @@ function DesignerHeadCompanyContact() {
                     }
                 })
                     .then((res) => {
+                        toast.configure();
+                        toast.error("Successfully Deleted");
                         setReadContact(res.data)
                     })
             })

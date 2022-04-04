@@ -9,9 +9,15 @@ import { toast } from 'react-toastify';
 
 
 function HrmsEmployeeMaster() {
+    //Modal Settings
     const [showModal, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const [showModal1, setShow1] = useState(false);
+    const handleClose1 = () => setShow1(false);
+    const handleShow1 = () => setShow1(true);
+
     const [showModalImage, setShowImage] = useState(false);
     const handleCloseImage = () => setShowImage(false);
     const [parameter,setParameter] = useState(false);
@@ -30,7 +36,7 @@ function HrmsEmployeeMaster() {
         position: "",
         username: "",
         password: "",
-        user_type: "",
+        // user_type: "",
         adhaar_no: "",
         pan_no: "",
         bank_name: "",
@@ -48,7 +54,7 @@ function HrmsEmployeeMaster() {
         position: "",
         username: "",
         password: "",
-        user_type: "",
+        // user_type: "",
         adhaar_no: "",
         pan_no: "",
         bank_name: "",
@@ -67,7 +73,7 @@ function HrmsEmployeeMaster() {
         position: "",
         username: "",
         password: "",
-        user_type: "",
+        // user_type: "",
         adhaar_no: "",
         pan_no: "",
         bank_name: "",
@@ -77,6 +83,25 @@ function HrmsEmployeeMaster() {
         photo: "",
         salary: "",
     });
+    const [singleEmployee,setSingleEmployee]=useState({
+        id: "",
+        name: "",
+        email: "",
+        mobile: "",
+        address: "",
+        position: "",
+        username: "",
+        password: "",
+        // user_type: "",
+        adhaar_no: "",
+        pan_no: "",
+        bank_name: "",
+        branch: "",
+        ifsc: "",
+        account_no: "",
+        photo: "",
+        salary: "", 
+    })
     useEffect(() => {
         axios.get(api_url+"read_employee_user.php")
             .then((res) => {
@@ -103,7 +128,7 @@ function HrmsEmployeeMaster() {
         formData.append('mobile', employee.mobile);
         formData.append('address', employee.address);
         formData.append('position', employee.position);
-        formData.append('user_type', employee.user_type);
+        // formData.append('user_type', employee.user_type);
         formData.append('username', employee.username);
         formData.append('password', employee.password);
         formData.append('adhaar_no', employee.adhaar_no);
@@ -138,7 +163,7 @@ function HrmsEmployeeMaster() {
                 position: "",
                 username: "",
                 password: "",
-                user_type: "",
+                // user_type: "",
                 adhaar_no: "",
                 pan_no: "",
                 bank_name: "",
@@ -164,7 +189,29 @@ function HrmsEmployeeMaster() {
             position: row.position,
             username: row.username,
             password: row.password,
-            user_type: row.user_type,
+            // user_type: row.user_type,
+            adhaar_no: row.adhaar_no,
+            pan_no: row.pan_no,
+            bank_name: row.bank_name,
+            branch: row.branch,
+            ifsc: row.ifsc,
+            account_no: row.account_no,
+            photo: row.photo,
+            salary: row.salary,
+        })
+    }
+    const onRead=(row)=>{
+        handleShow1();
+        setSingleEmployee({
+            id: row.id,
+            name: row.name,
+            email: row.email,
+            mobile: row.mobile,
+            address: row.address,
+            position: row.position,
+            username: row.username,
+            password: row.password,
+            // user_type: row.user_type,
             adhaar_no: row.adhaar_no,
             pan_no: row.pan_no,
             bank_name: row.bank_name,
@@ -196,7 +243,7 @@ function HrmsEmployeeMaster() {
         modalFormData.append('mobile', modalEmployee.mobile);
         modalFormData.append('address', modalEmployee.address);
         modalFormData.append('position', modalEmployee.position);
-        modalFormData.append('user_type', modalEmployee.user_type);
+        // modalFormData.append('user_type', modalEmployee.user_type);
         modalFormData.append('username', modalEmployee.username);
         modalFormData.append('password', modalEmployee.password);
         modalFormData.append('adhaar_no', modalEmployee.adhaar_no);
@@ -262,34 +309,34 @@ function HrmsEmployeeMaster() {
             field: "password",
             headerName: "Password",
         },
-        {
-            field: "user_type",
-            headerName: "User Type",
-        },
-        {
-            field: "adhaar_no",
-            headerName: "Adhaar No",
-        },
-        {
-            field: "pan_no",
-            headerName: "PAN No",
-        },
-        {
-            field: "bank_name",
-            headerName: "Bank Name",
-        },
-        {
-            field: "branch",
-            headerName: "Branch",
-        },
-        {
-            field: "ifsc",
-            headerName: "IFSC Code",
-        },
-        {
-            field: "account_no",
-            headerName: "Account No",
-        },
+        // {
+        //     field: "user_type",
+        //     headerName: "User Type",
+        // },
+        // {
+        //     field: "adhaar_no",
+        //     headerName: "Adhaar No",
+        // },
+        // {
+        //     field: "pan_no",
+        //     headerName: "PAN No",
+        // },
+        // {
+        //     field: "bank_name",
+        //     headerName: "Bank Name",
+        // },
+        // {
+        //     field: "branch",
+        //     headerName: "Branch",
+        // },
+        // {
+        //     field: "ifsc",
+        //     headerName: "IFSC Code",
+        // },
+        // {
+        //     field: "account_no",
+        //     headerName: "Account No",
+        // },
         {
             field: "photo",
             headerName: "Photo",
@@ -301,18 +348,19 @@ function HrmsEmployeeMaster() {
                 )
             }
         },
-        {
-            field: "salary",
-            headerName: "Salary",
-        },
+        // {
+        //     field: "salary",
+        //     headerName: "Salary",
+        // },
         {
             field: 'action',
             headerName: 'Action',
             width: 200,
             renderCell: (params) => {
                 return (
-                    <div className="">
-                        <button onClick={() => onEdit(params.row)} data-toggle="tooltip" title="Edit" type="button" className="btn btn-warning"  ><i class="far fa-edit"></i></button>
+                    <div>
+                    <button onClick={() => onRead(params.row)} data-toggle="tooltip" title="Read" type="button" className="btn btn-primary"  ><i class="far fa-eye"></i></button>
+                        <button onClick={() => onEdit(params.row)} style={{ marginLeft: '20%' }} data-toggle="tooltip" title="Edit" type="button" className="btn btn-warning"  ><i class="far fa-edit"></i></button>
                         <button onClick={() => {
                             const confirmBox = window.confirm(
                                 "Do you really want to delete?"
@@ -339,6 +387,106 @@ function HrmsEmployeeMaster() {
                 <img width="450" height="450" src={`http://localhost:80/girnar_backend/assets/images/${parameter}`} /> 
                 </Modal.Body>
             </Modal>
+            <Modal show={showModal1} onHide={handleClose1}>
+                <Modal.Header>
+                    <Modal.Title>Details Customer</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+                    <form className="form-group">
+                        <div className="row">
+                            <div className="field col-md-12">
+                                <label className="required">ID</label>
+                                <input defaultValue={singleEmployee.id} className="form-control mt-1" name="id" type="text" required readOnly/>
+                            </div>
+                            <div className="field col-md-12">
+                                <label className="required">Name</label>
+                                <input defaultValue={singleEmployee.name} className="form-control mt-1" name="name" type="text" required pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets." readOnly />
+                            </div>
+                            <div className="field col-md-12">
+                                <label className="required">Email</label>
+                                <input defaultValue={singleEmployee.email}className="form-control mt-1" name="email" type="email"  title="Please enter valid email address" required readOnly />
+                            </div>
+                            <div className="field col-md-12">
+                                <label className="required">Mobile</label>
+                                <input defaultValue={singleEmployee.mobile} className="form-control mt-1" name="mobile" type="tel" required pattern="[789][0-9]{9}" title="Please enter valid mobile no" readOnly />
+                            </div>
+                            <div className="field col-md-12">
+                                <label className="required">Address</label>
+                                <input defaultValue={singleEmployee.address} className="form-control mt-1" name="address" type="text" required readOnly />
+                            </div>
+                            <div className="field col-md-12">
+                                <label className="required">Position</label>
+                                {/* <input defaultValue={modalEmployee.position} onChange={onModalInputChange} className="form-control mt-1" name="position" type="text" required /> */}
+                                <select defaultValue={singleEmployee.position} className="form-control mt-1" name="position" required readOnly>
+                                    <option>Select</option>
+                                    <option value="designer">Designer</option>
+                                    <option value="programmer">Programmer</option>
+                                    <option value="machine_operator">Machine Operator</option>
+                                    <option value="transporter">Transporter</option>
+                                    <option value="stock_manager">Stock Manager</option>
+                                    <option value="purchase_manager">Purchase Manager</option>
+                                </select>
+                            </div>
+                            <div className="field col-md-12">
+                                <label className="required">Username</label>
+                                <input defaultValue={singleEmployee.username}  className="form-control mt-1" name="username" type="text" required readOnly />
+                            </div>
+                            <div className="field col-md-12">
+                                <label className="required">Password</label>
+                                <input defaultValue={singleEmployee.password} className="form-control mt-1" name="password" type="password" required readOnly />
+                            </div>
+                            {/* <div className="field col-md-12">
+                                <label className="required">User Type</label>
+                                <select defaultValue={singleEmployee.user_type}  className="form-control mt-1" name="user_type" required readOnly>
+                                    <option>Select</option>
+                                    <option disabled={true} value="designer">Designer</option>
+                                    <option disabled={true} value="programmer">Programmer</option>
+                                    <option disabled={true} value="machine_operator">Machine Operator</option>
+                                    <option disabled={true} value="transporter">Transporter</option>
+                                    <option disabled={true} value="stock_manager">Stock Manager</option>
+                                    <option disabled={true} value="purchase_manager">Purchase Manager</option>
+                                </select>
+                            </div> */}
+                            <div className='field col-md-12'>
+                                <label>Aadhaar No</label>
+                                <input defaultValue={singleEmployee.adhaar_no} type="text" name="adhaar_no" className='form-control' pattern="[0-9]{12}" title="Please enter valid Aadhaar Number"readOnly/>
+                            </div>
+                            <div className='field col-md-12'>
+                                <label>Pan No</label>
+                                <input defaultValue={singleEmployee.pan_no} type="text" name="pan_no" className='form-control'  pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Please enter valid pan"readOnly/>
+                            </div>
+                            <div className='field col-md-12'>
+                                <label>Bank Name</label>
+                                <input defaultValue={singleEmployee.bank_name} type="text" name="bank_name" className='form-control'  required pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."readOnly/>
+                            </div>
+                            <div className='field col-md-12'>
+                                <label>Branch</label>
+                                <input defaultValue={singleEmployee.branch} type="text" name="branch" className='form-control'  required pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."readOnly/>
+                            </div>
+                            <div className='field col-md-12'>
+                                <label>IFSC Code</label>
+                                <input defaultValue={singleEmployee.ifsc} type="text" name="ifsc" className='form-control'  required readOnly/>
+                            </div>
+                            <div className='field col-md-12'>
+                                <label>Account No</label>
+                                <input defaultValue={singleEmployee.account_no} type="text" name="account_no" className='form-control'  required readOnly/>
+                            </div>
+                            <div className='field col-md-12'>
+                                <label>Salary</label>
+                                <input defaultValue={singleEmployee.salary} type="number" name="salary" className='form-control' required readOnly/>
+                            </div>
+                            
+                        </div>
+                    </form>
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose1}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <Modal show={showModal} onHide={handleClose}>
                 <Modal.Header>
                     <Modal.Title>Edit Customer</Modal.Title>
@@ -357,7 +505,7 @@ function HrmsEmployeeMaster() {
                             </div>
                             <div className="field col-md-12">
                                 <label className="required">Email</label>
-                                <input defaultValue={modalEmployee.email} onChange={onModalInputChange} className="form-control mt-1" name="email" type="email" pattern="^([\w-]+(?:\.[\w-]+))@((?:[\w-]+\.)\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" title="Please enter valid email address" required />
+                                <input defaultValue={modalEmployee.email} onChange={onModalInputChange} className="form-control mt-1" name="email" type="email" title="Please enter valid email address" required />
                             </div>
                             <div className="field col-md-12">
                                 <label className="required">Mobile</label>
@@ -372,8 +520,12 @@ function HrmsEmployeeMaster() {
                                 {/* <input defaultValue={modalEmployee.position} onChange={onModalInputChange} className="form-control mt-1" name="position" type="text" required /> */}
                                 <select defaultValue={modalEmployee.position} onChange={onModalInputChange} className="form-control mt-1" name="position" required>
                                     <option>Select</option>
-                                    <option value="senior">Senior</option>
-                                    <option value="junior">Junior</option>
+                                    <option value="designer">Designer</option>
+                                    <option value="programmer">Programmer</option>
+                                    <option value="machine_operator">Machine Operator</option>
+                                    <option value="transporter">Transporter</option>
+                                    <option value="stock_manager">Stock Manager</option>
+                                    <option value="purchase_manager">Purchase Manager</option>
                                 </select>
                             </div>
                             <div className="field col-md-12">
@@ -384,9 +536,8 @@ function HrmsEmployeeMaster() {
                                 <label className="required">Password</label>
                                 <input defaultValue={modalEmployee.password} onChange={onModalInputChange} className="form-control mt-1" name="password" type="password" required />
                             </div>
-                            <div className="field col-md-12">
+                            {/* <div className="field col-md-12">
                                 <label className="required">User Type</label>
-                                {/* <input defaultValue={modalEmployee.user_type} onChange={onModalInputChange} className="form-control mt-1" name="user_type" type="text" required /> */}
                                 <select defaultValue={modalEmployee.user_type} onChange={onModalInputChange} className="form-control mt-1" name="user_type" required>
                                     <option>Select</option>
                                     <option value="designer">Designer</option>
@@ -394,8 +545,9 @@ function HrmsEmployeeMaster() {
                                     <option value="machine_operator">Machine Operator</option>
                                     <option value="transporter">Transporter</option>
                                     <option value="stock_manager">Stock Manager</option>
+                                    <option value="purchase_manager">Purchase Manager</option>
                                 </select>
-                            </div>
+                            </div> */}
                             <div className='field col-md-12'>
                                 <label>Aadhaar No</label>
                                 <input defaultValue={modalEmployee.adhaar_no} type="text" name="adhaar_no" className='form-control' onChange={onModalInputChange} pattern="[0-9]{12}" title="Please enter valid Aadhaar Number"/>
@@ -422,7 +574,7 @@ function HrmsEmployeeMaster() {
                             </div>
                             <div className='field col-md-12'>
                                 <label>Photo</label>
-                                <input type="file" name="photo" className='form-control' onChange={onModalInputChange} required/>
+                                <input type="file" name="photo" className='form-control' onChange={onModalInputChange}/>
                             </div>
                             <div className='field col-md-12'>
                                 <label>Salary</label>
@@ -479,6 +631,7 @@ function HrmsEmployeeMaster() {
                                                 <option value="machine_operator">Machine Operator</option>
                                                 <option value="transporter">Transporter</option>
                                                 <option value="stock_manager">Stock Manager</option>
+                                                <option value="purchase_manager">Purchase Manager</option>
                                             </select>
                                         </div>
                                         <div className='form-group'>
@@ -489,9 +642,8 @@ function HrmsEmployeeMaster() {
                                             <label>Password</label>
                                             <input type="password" placeholder='Enter password' name="password" className='form-control' onChange={onHandleChange} required/>
                                         </div>
-                                        <div className='form-group'>
+                                        {/* <div className='form-group'>
                                             <label>User Type</label>
-                                            {/* <input type="text" name="user_type" className='form-control' onChange={onHandleChange} /> */}
                                             <select onChange={onHandleChange} className="form-control mt-1" name="user_type" required>
                                                 <option>Select</option>
                                                 <option value="designer">Designer</option>
@@ -499,8 +651,9 @@ function HrmsEmployeeMaster() {
                                                 <option value="machine_operator">Machine Operator</option>
                                                 <option value="transporter">Transporter</option>
                                                 <option value="stock_manager">Stock Manager</option>
+                                                <option value="purchase_manager">Purchase Manager</option>
                                             </select>
-                                        </div>
+                                        </div> */}
                                         <div className='form-group'>
                                             <label>Aadhaar No</label>
                                             <input type="text" placeholder='Enter aadhaar number' name="adhaar_no" className='form-control' onChange={onHandleChange} required pattern="[0-9]{12}" title="Please enter valid Aadhaar Number"/>

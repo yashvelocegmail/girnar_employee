@@ -434,7 +434,7 @@ function DesignerProduction() {
             }
         },
     ]
-    const rows = readWorkOrder === undefined ? [] : readWorkOrder.data
+    const rows = readWorkOrder === undefined ? [] : readWorkOrder
     return (
         <>
             <Header /><Menu />
@@ -478,17 +478,17 @@ function DesignerProduction() {
                                                         <option disabled={true} value="assigned">Assigned</option>
                                                         <option disabled={true} value="completed">Completed</option>
                                                     </select>
-                                                    {
+                                                    {/* {
                                                         index ?
                                                             <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields(index)}>Remove</button>
                                                             : null
-                                                    }
+                                                    } */}
                                                 </div>
                                             ))}
-                                            <div className="button-section">
+                                            {/* <div className="button-section">
                                                 <button className="btn btn-info" type="button" onClick={() => addEditFormFields()}>Add</button>
 
-                                            </div>
+                                            </div> */}
                                             {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
@@ -520,17 +520,17 @@ function DesignerProduction() {
                                                         <option value="assigned">Assigned</option>
                                                         <option value="completed">Completed</option>
                                                     </select>
-                                                    {
+                                                    {/* {
                                                         index ?
                                                             <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields1(index)}>Remove</button>
                                                             : null
-                                                    }
+                                                    } */}
                                                 </div>
                                             ))}
-                                            <div className="button-section">
+                                            {/* <div className="button-section">
                                                 <button className="btn btn-info" type="button" onClick={() => addEditFormFields1()}>Add</button>
 
-                                            </div>
+                                            </div> */}
                                             {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
@@ -560,17 +560,17 @@ function DesignerProduction() {
                                                         <option disabled={true} value="assigned">Assigned</option>
                                                         <option disabled={true} value="completed">Completed</option>
                                                     </select>
-                                                    {
+                                                    {/* {
                                                         index ?
                                                             <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields2(index)}>Remove</button>
                                                             : null
-                                                    }
+                                                    } */}
                                                 </div>
                                             ))}
-                                            <div className="button-section">
+                                            {/* <div className="button-section">
                                                 <button className="btn btn-info" type="button" onClick={() => addEditFormFields2()}>Add</button>
 
-                                            </div>
+                                            </div> */}
                                             {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
@@ -600,17 +600,17 @@ function DesignerProduction() {
                                                         <option disabled={true} value="assigned">Assigned</option>
                                                         <option value="completed">Completed</option>
                                                     </select>
-                                                    {
+                                                    {/* {
                                                         index ?
                                                             <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields3(index)}>Remove</button>
                                                             : null
-                                                    }
+                                                    } */}
                                                 </div>
                                             ))}
-                                            <div className="button-section">
+                                            {/* <div className="button-section">
                                                 <button className="btn btn-info" type="button" onClick={() => addEditFormFields3()}>Add</button>
 
-                                            </div>
+                                            </div> */}
                                             <hr />
                                             {editInspectionParametersFormValues.map((element, index) => (
                                                 <div className="form-group" key={index}>
@@ -623,17 +623,17 @@ function DesignerProduction() {
                                                         <option disabled={true}>Pass</option>
                                                         <option disabled={true}>Fail</option>
                                                     </select>
-                                                    {
+                                                    {/* {
                                                         index ?
                                                             <button type="button" className="btn btn-danger" onClick={() => removeEditFormFieldsInspectionParameters(index)}>Remove</button>
                                                             : null
-                                                    }
+                                                    } */}
                                                 </div>
                                             ))}
-                                            <div className="button-section">
+                                            {/* <div className="button-section">
                                                 <button className="btn btn-info" type="button" onClick={() => addEditFormFieldsInspectionParameters()}>Add</button>
 
-                                            </div>
+                                            </div> */}
                                             {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
@@ -663,17 +663,17 @@ function DesignerProduction() {
                                                         <option disabled={true} value="assigned">Assigned</option>
                                                         <option disabled={true} value="completed">Completed</option>
                                                     </select>
-                                                    {
+                                                    {/* {
                                                         index ?
                                                             <button type="button" className="btn btn-danger" onClick={() => removeEditFormFields4(index)}>Remove</button>
                                                             : null
-                                                    }
+                                                    } */}
                                                 </div>
                                             ))}
-                                            <div className="button-section">
+                                            {/* <div className="button-section">
                                                 <button className="btn btn-info" type="button" onClick={() => addEditFormFields4()}>Add</button>
 
-                                            </div>
+                                            </div> */}
                                             {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 

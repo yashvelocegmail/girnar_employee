@@ -292,71 +292,72 @@ function DesignerHeadContacts() {
                 <form onSubmit={onModalFormSubmit}>
                     <div className='form-group'>
                         <label>Id</label>
-                        <input defaultValue={modalContact.id} onChange={onModalInputChange} className='form-control' type="text" name="id"/>
+                        <input defaultValue={modalContact.id} onChange={onModalInputChange} className='form-control' type="text" name="id" readOnly/>
                     </div>
                     <div className='form-group'>
                         <label>Name</label>
-                        <input defaultValue={modalContact.name} onChange={onModalInputChange} className='form-control' type="text" name="name"  pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
+                        <input defaultValue={modalContact.name} onChange={onModalInputChange} className='form-control' type="text" name="name"  pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets." required/>
                     </div>
                     <div className='form-group'>
                         <label>Address1</label>
-                        <input defaultValue={modalContact.address1} onChange={onModalInputChange} className='form-control' type="text" name="address1" />
+                        <input defaultValue={modalContact.address1} onChange={onModalInputChange} className='form-control' type="text" name="address1" required/>
                     </div>
                     <div className='form-group'>
                         <label>Address2</label>
-                        <input defaultValue={modalContact.address2} onChange={onModalInputChange} className='form-control' type="text" name="address2" />
+                        <input defaultValue={modalContact.address2} onChange={onModalInputChange} className='form-control' type="text" name="address2" required/>
                     </div>
                     <div className='form-group'>
                         <label>Address3</label>
-                        <input defaultValue={modalContact.address3} onChange={onModalInputChange} className='form-control' type="text" name="address3" />
+                        <input defaultValue={modalContact.address3} onChange={onModalInputChange} className='form-control' type="text" name="address3" required/>
                     </div>
                     <div className='form-group'>
                         <label>Mobile Number</label>
-                        <input defaultValue={modalContact.mobile_number} onChange={onModalInputChange} className='form-control' type="text" name="mobile_number" pattern="[789][0-9]{9}" title="Please enter valid mobile no" />
+                        <input defaultValue={modalContact.mobile_number} onChange={onModalInputChange} className='form-control' type="text" name="mobile_number" pattern="[789][0-9]{9}" title="Please enter valid mobile no" required/>
                     </div>
                     <div className='form-group'>
                         <label>Email Id</label>
-                        <input defaultValue={modalContact.email_id} onChange={onModalInputChange} className='form-control' type="text" name="email_id" required pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" title="Please enter valid email address"/>
+                        <input defaultValue={modalContact.email_id} onChange={onModalInputChange} className='form-control' type="text" name="email_id" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" title="Please enter valid email address" required/>
                     </div>
                     <div className='form-group'>
                         <label>Website</label>
-                        <input defaultValue={modalContact.website} onChange={onModalInputChange} className='form-control' type="text" name="website" />
+                        <input defaultValue={modalContact.website} onChange={onModalInputChange} className='form-control' type="text" name="website" required/>
                     </div>
                     <div className='form-group'>
                         <label>Director Name</label>
-                        <input defaultValue={modalContact.director_name} onChange={onModalInputChange} className='form-control' type="text" name="director_name" pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
+                        <input defaultValue={modalContact.director_name} onChange={onModalInputChange} className='form-control' type="text" name="director_name" pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets." required/>
                     </div>
                     <div className='form-group'>
                         <label>Director Mobile Number</label>
-                        <input defaultValue={modalContact.director_mobile} onChange={onModalInputChange} className='form-control' type="text" name="director_mobile_number" pattern="[789][0-9]{9}" title="Please enter valid mobile no" />
+                        <input defaultValue={modalContact.director_mobile} onChange={onModalInputChange} className='form-control' type="text" name="director_mobile_number" pattern="[789][0-9]{9}" title="Please enter valid mobile no" required/>
                     </div>
                     <div className='form-group'>
                         <label>Director Email Id</label>
-                        <input defaultValue={modalContact.director_email_id} onChange={onModalInputChange} className='form-control' type="text" name="director_email_id" required pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" title="Please enter valid email address" />
+                        <input defaultValue={modalContact.director_email_id} onChange={onModalInputChange} className='form-control' type="text" name="director_email_id" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" title="Please enter valid email address" required/>
                     </div>
                     <div className='form-group'>
                         <label>Type Of Industry</label>
-                        <input defaultValue={modalContact.type_of_industry} onChange={onModalInputChange} className='form-control' type="text" name="type_of_industry" />
+                        <input defaultValue={modalContact.type_of_industry} onChange={onModalInputChange} className='form-control' type="text" name="type_of_industry" required/>
                     </div>
                     <div className='form-group'>
                         <label>GST</label>
-                        <input defaultValue={modalContact.gst} onChange={onModalInputChange} className='form-control' type="text" name="gst"  pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$" title="Please enter valid gst"/>
+                        <input defaultValue={modalContact.gst} onChange={onModalInputChange} className='form-control' type="text" name="gst"  pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$" title="Please enter valid gst" required/>
                     </div>
                     <div className='form-group'>
                         <label>PAN</label>
-                        <input defaultValue={modalContact.pan} onChange={onModalInputChange} className='form-control' type="text" name="pan" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Please enter valid pan" />
+                        <input defaultValue={modalContact.pan} onChange={onModalInputChange} className='form-control' type="text" name="pan" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Please enter valid pan" required/>
                     </div>
                     <div className='form-group'>
                         <label>TAN</label>
-                        <input defaultValue={modalContact.tan} onChange={onModalInputChange} className='form-control' type="text" name="tan" pattern='[A-Za-z]{4}[0-9]{5}[A-Za-z]{1}' title="Please enter valid tan"/>
+                        <input defaultValue={modalContact.tan} onChange={onModalInputChange} className='form-control' type="text" name="tan" pattern='[A-Za-z]{4}[0-9]{5}[A-Za-z]{1}' title="Please enter valid tan"
+                        required/>
                     </div>
                     <div className='form-group'>
                         <label>Username</label>
-                        <input defaultValue={modalContact.username} onChange={onModalInputChange} className='form-control' type="text" name="username" />
+                        <input defaultValue={modalContact.username} onChange={onModalInputChange} className='form-control' type="text" name="username" required/>
                     </div>
                     <div className='form-group'>
                         <label>Password</label>
-                        <input defaultValue={modalContact.password} onChange={onModalInputChange} className='form-control' type="text" name="password" />
+                        <input defaultValue={modalContact.password} onChange={onModalInputChange} className='form-control' type="text" name="password" required/>
                     </div>
                     <div className='form-group'>
                         <input className='btn btn-primary' type="submit" value="Update" />
@@ -372,11 +373,11 @@ function DesignerHeadContacts() {
                 <form>
                     <div className='form-group'>
                         <label>Id</label>
-                        <input defaultValue={singleContact.id}className='form-control' type="text" name="id" readOnly/>
+                        <input defaultValue={singleContact.id}className='form-control' type="text" name="id"required readOnly/>
                     </div>
                     <div className='form-group'>
                         <label>Name</label>
-                        <input defaultValue={singleContact.name} className='form-control' type="text" name="name"  readOnly pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
+                        <input defaultValue={singleContact.name} className='form-control' type="text" name="name"  readOnly pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets." required/>
                     </div>
                     <div className='form-group'>
                         <label>Address1</label>
@@ -473,65 +474,65 @@ function DesignerHeadContacts() {
                                         </div>
                                         <div className="form-group">
                                             <label >Address 1</label>
-                                            <input onChange={onInputChange} name="address1" className="form-control" placeholder="Enter address 1" />
+                                            <input onChange={onInputChange} name="address1" className="form-control" placeholder="Enter address 1" required/>
 
                                         </div>
                                         <div className="form-group">
                                             <label >Addrees 2</label>
-                                            <input onChange={onInputChange} name="address2" className="form-control" placeholder="Enter address 2" />
+                                            <input onChange={onInputChange} name="address2" className="form-control" placeholder="Enter address 2" required />
 
                                         </div>
                                         <div className="form-group">
                                             <label >Address 3</label>
-                                            <input onChange={onInputChange} name="address3" className="form-control" placeholder="Enter address 3" />
+                                            <input onChange={onInputChange} name="address3" className="form-control" placeholder="Enter address 3" required/>
                                         </div>
                                         <div className="form-group">
                                             <label >Mobile number</label>
-                                            <input onChange={onInputChange} name="mobile_number" className="form-control" placeholder="Enter mobile number"  pattern="[789][0-9]{9}" title="Please enter valid mobile no"/>
+                                            <input onChange={onInputChange} name="mobile_number" className="form-control" placeholder="Enter mobile number"  pattern="[789][0-9]{9}" title="Please enter valid mobile no" required/>
                                         </div>
                                         <div className="form-group">
                                             <label >Email Id</label>
-                                            <input onChange={onInputChange} name="email_id" className="form-control" placeholder="Enter email id" />
+                                            <input onChange={onInputChange} name="email_id" className="form-control" placeholder="Enter email id" required/>
                                         </div>
                                         <div className="form-group">
                                             <label >Website</label>
-                                            <input onChange={onInputChange} name="website" className="form-control" placeholder="Enter website" />
+                                            <input onChange={onInputChange} name="website" className="form-control" placeholder="Enter website" required/>
                                         </div>
                                         <div className="form-group">
                                             <label >Director Name </label>
-                                            <input onChange={onInputChange} name="director_name" className="form-control" placeholder="Enter director name"  pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets."/>
+                                            <input onChange={onInputChange} name="director_name" className="form-control" placeholder="Enter director name"  pattern="^[a-zA-Z\s-]+$" title="Please enter Alphabets." required/>
                                         </div>
                                         <div className="form-group">
                                             <label >Director Mobile Number</label>
-                                            <input onChange={onInputChange} name="director_mobile" className="form-control" placeholder="Enter director mobile number"  pattern="[789][0-9]{9}" title="Please enter valid mobile no"/>
+                                            <input onChange={onInputChange} name="director_mobile" className="form-control" placeholder="Enter director mobile number"  pattern="[789][0-9]{9}" title="Please enter valid mobile no" required/>
                                         </div>
                                         <div className="form-group">
                                             <label >Director Email Id </label>
-                                            <input onChange={onInputChange} name="director_email_id" className="form-control" placeholder="Enter director email id" required pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" title="Please enter valid email address" />
+                                            <input onChange={onInputChange} name="director_email_id" className="form-control" placeholder="Enter director email id" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" title="Please enter valid email address" required/>
                                         </div>
                                         <div className="form-group">
                                             <label >Type of industry</label>
-                                            <input onChange={onInputChange} name="type_of_industry" className="form-control" placeholder="Enter type of industry" />
+                                            <input onChange={onInputChange} name="type_of_industry" className="form-control" placeholder="Enter type of industry" required/>
                                         </div>
                                         <div className="form-group">
                                             <label >GST</label>
-                                            <input onChange={onInputChange} name="gst" className="form-control" placeholder="Enter GST"  pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$" title="Please enter valid gst"/>
+                                            <input onChange={onInputChange} name="gst" className="form-control" placeholder="Enter GST"  pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$" title="Please enter valid gst" required/>
                                         </div>
                                         <div className="form-group">
                                             <label >Pan</label>
-                                            <input onChange={onInputChange} name="pan" className="form-control" placeholder="Enter pan" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Please enter valid pan" />
+                                            <input onChange={onInputChange} name="pan" className="form-control" placeholder="Enter pan" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Please enter valid pan" required/>
                                         </div>
                                         <div className="form-group">
                                             <label >Tan</label>
-                                            <input onChange={onInputChange} name="tan" className="form-control" placeholder="Enter tan" pattern='[A-Za-z]{4}[0-9]{5}[A-Za-z]{1}' title="Please enter valid tan"/>
+                                            <input onChange={onInputChange} name="tan" className="form-control" placeholder="Enter tan" pattern='[A-Za-z]{4}[0-9]{5}[A-Za-z]{1}' title="Please enter valid tan" required/>
                                         </div>
                                         <div className="form-group">
                                             <label >Username</label>
-                                            <input onChange={onInputChange} name="username" className="form-control" placeholder="Enter username" />
+                                            <input onChange={onInputChange} name="username" className="form-control" placeholder="Enter username" required/>
                                         </div>
                                         <div className="form-group">
                                             <label >Password</label>
-                                            <input onChange={onInputChange} name="password" className="form-control" placeholder="Enter password" />
+                                            <input onChange={onInputChange} name="password" className="form-control" placeholder="Enter password" required/>
                                         </div>
                                     </div>
                                     {/* /.card-body */}

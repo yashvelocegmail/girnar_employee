@@ -4,6 +4,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 import Header from '../../Header';
 import Menu from '../../Menu';
 import { api_url } from '../ApiUrl';
+import { toast } from 'react-toastify';
 import { DataGrid } from '@mui/x-data-grid';
 import { jsPDF } from "jspdf";
 import 'jspdf-autotable'
@@ -171,7 +172,8 @@ function DesignerHeadQuotationMaster() {
         console.log(quotation);
         axios.post(api_url + "create_quotation.php", quotation)
             .then(() => {
-                console.log("Created")
+                toast.configure()
+                toast.success("Successfully Inserted")
                 axios.post(api_url + "read_quotation.php")
                     .then((res) => {
                         setReadQuotation(res.data)
@@ -354,6 +356,8 @@ function DesignerHeadQuotationMaster() {
         axios.post(api_url + "update_quotation.php", editQuotation)
             .then(() => {
                 console.log("Edited")
+                toast.configure()
+                toast.warning("Successfully Updated")
                 axios.post(api_url + "read_quotation.php")
                     .then((res) => {
                         setReadQuotation(res.data)
@@ -366,6 +370,8 @@ function DesignerHeadQuotationMaster() {
         axios.post(api_url + "delete_quotation.php", { id: id })
             .then(() => {
                 console.log("deleted")
+                toast.configure()
+                toast.error("Successfully Deleted")
                 axios.post(api_url + "read_quotation.php")
                     .then((res) => {
                         setReadQuotation(res.data)
@@ -483,7 +489,7 @@ function DesignerHeadQuotationMaster() {
                                     <label>Id</label>
                                     <input defaultValue={editQuotation.id} name="id" type="text" className="form-control" readOnly />
                                 </div>
-                                <select defaultValue={editQuotation.customer_enquiry} onChange={onCustomerChange} className='form-control' name="customer_enquiry">
+                                <select defaultValue={editQuotation.customer_enquiry} onChange={onCustomerChange} className='form-control' name="customer_enquiry" required>
                                     <option>Select</option>
                                     {customerOption === undefined ? [] : customerOption.data.map((customer) => (
                                         <option value={customer.id} key={customer.id}>{customer.inquiry}</option>
@@ -493,13 +499,13 @@ function DesignerHeadQuotationMaster() {
                                 {formValues1.map((element, index) => (
                                     <div className="form-group" key={index}>
                                         <label>Description</label>
-                                        <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange1(index, e)} />
+                                        <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange1(index, e)} required/>
                                         <label>Quantity</label>
-                                        <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange1(index, e)} />
+                                        <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange1(index, e)} required/>
                                         <label>Rate</label>
-                                        <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange1(index, e)} />
+                                        <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange1(index, e)} required/>
                                         <label>Total Rate</label>
-                                        <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange1(index, e)} />
+                                        <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange1(index, e)} required/>
                                         {
                                             index ?
                                                 <button type="button" className="btn btn-danger" onClick={() => removeFormFields1(index)}>Remove</button>
@@ -517,7 +523,7 @@ function DesignerHeadQuotationMaster() {
                                 </div>
                                 <div className="form-group">
                                     <label>Total</label>
-                                    <input value={editQuotation.total} type='number' name="total" className='form-control' />
+                                    <input value={editQuotation.total} type='number' name="total" className='form-control' required/>
                                 </div>
                                 <div className="card-footer">
                                     <button type="submit" className="btn btn-primary">Submit</button>
@@ -597,7 +603,7 @@ function DesignerHeadQuotationMaster() {
 
                                             <div className='form-group'>
                                                 <label>Customer</label>
-                                                <select onChange={onCustomerChange} className='form-control' name="customer_enquiry">
+                                                <select onChange={onCustomerChange} className='form-control' name="customer_enquiry" required>
                                                     <option>Select</option>
                                                     {customerOption === undefined ? [] : customerOption.data.map((customer) => (
                                                         <option value={customer.id} key={customer.id}>{customer.inquiry}</option>
@@ -609,19 +615,19 @@ function DesignerHeadQuotationMaster() {
                                                         <div className="row" key={index}>
                                                             <div className='col-md-4'>
                                                                 <label>Description</label>
-                                                                <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange(index, e)} />
+                                                                <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange(index, e)} required/>
                                                             </div>
                                                             <div className='col-md-4'>
                                                                 <label>Quantity</label>
-                                                                <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange(index, e)} />
+                                                                <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange(index, e)} required/>
                                                             </div>
                                                             <div className='col-md-4'>
                                                                 <label>Rate</label>
-                                                                <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange(index, e)} />
+                                                                <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange(index, e)} required/>
                                                             </div>
                                                             <div className='col-md-4'>
                                                                 <label>Total Rate</label>
-                                                                <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange(index, e)} />
+                                                                <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange(index, e)} required/>
                                                             </div>
                                                             
 
@@ -648,7 +654,7 @@ function DesignerHeadQuotationMaster() {
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Total</label>
-                                                    <input value={total} type='number' name="total" className='form-control' />
+                                                    <input value={total} type='number' name="total" className='form-control' required/>
                                                 </div>
                                             </div>
 

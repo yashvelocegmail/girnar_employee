@@ -191,8 +191,7 @@ function Attendance() {
                 return (
                     <div className="">
                         <button onClick={() => onCheckOutApproval(params.row.id)} data-toggle="tooltip" title="Read" type="button" className="btn btn-primary"  ><i class="fas fa-check"></i></button>
-                        <button onClick={() => onCheckOutRejected(params.row.id)} data-toggle="tooltip" title="Read" type="button" className="btn btn-danger"  ><i class="fas fa-xmark"></i></button>
-                    </div>
+                        <button onClick={() => onCheckOutRejected(params.row.id)} data-toggle="tooltip" title="Reject" type="button" className="btn btn-danger"  ><i class="fas fa-times"></i></button>                    </div>
                 );
             }
         },

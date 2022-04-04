@@ -136,6 +136,9 @@ function DesignerHeadRemoteInquiry() {
     }
     axios.post(api_url + 'create_customer_inquiry.php', formData, config)
       .then(response => {
+        document.getElementById("remoteinquiry").reset();
+        toast.configure();
+        toast.success("Inserted Successfully");
         axios.post(api_url + "read_all_enquiry.php")
           .then((res) => {
             setInquiry(res.data);
@@ -221,6 +224,9 @@ function DesignerHeadRemoteInquiry() {
     }
     axios.post(api_url + 'update_customer_inquiry.php', modalFormData, config)
       .then(response => {
+        document.getElementById("modalremoteenquiry");
+        toast.configure();
+        toast.warning("Updated Successfully");
         axios.post(api_url + "read_all_enquiry.php")
           .then((res) => {
             setInquiry(res.data);
@@ -239,6 +245,8 @@ function DesignerHeadRemoteInquiry() {
       .then(response => {
         axios.post(api_url + "read_all_enquiry.php")
           .then((res) => {
+            toast.configure();
+            toast.error("Deleted Successfully");
             setInquiry(res.data);
             console.log(inquiry);
           })
@@ -457,7 +465,7 @@ function DesignerHeadRemoteInquiry() {
       </Modal.Header>
       <Modal.Body>
 
-        <form className="form-group">
+        <form className="form-group" id="modalremoteenquiry">
           <div className="row">
             <div className="field col-md-12">
               <label className="required">ID</label>
@@ -554,7 +562,7 @@ function DesignerHeadRemoteInquiry() {
                 </div>
                 {/* /.card-header */}
                 {/* form start */}
-                <form onSubmit={onFormSubmit}>
+                <form onSubmit={onFormSubmit} id="remoteinquiry">
                   <div className="card-body">
                     <div className="form-group">
                       <label >Customer</label>

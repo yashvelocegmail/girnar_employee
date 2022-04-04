@@ -1,15 +1,85 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useState,useEffect } from 'react'
 import { Modal, Button } from "react-bootstrap";
 import Header from '../../Header';
 import Menu from '../../Menu';
+import { api_url } from '../ApiUrl';
 
 function SuperAdminWorkOrder() {
+    //Modal Settings
     const [showModal, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const openModal = () => {
+    const openModal = (row) => {
+        console.log(row)
+        setShowWorkOrder(row)
         handleShow();
     }
+    const [workOrder,setWorkOrder] = useState({
+        id:"",
+        work_order:"",
+        purchase_order:"",
+        customer_name:"",
+        designer_head:"",
+        designer_head_description_status:"",
+        designer_head_approval_by_crm_operator:"",
+        designer_head_approval_by_auper_admin:"",
+        designer_head_file:"",
+        designer:"",
+        designer_description_status:"",
+        designer_approval_by_designer_head:"",
+        designer_file:"",
+        programmer:"",
+        programmer_description_status:"",
+        programmer_approval_by_designer:"",
+        programmer_approval_by_designer_head:"",
+        programmer_file:"",
+        machine_operator:"",
+        machine_operator_description_status:"",
+        machine_operator_approval_by_designer:"",
+        machine_operator_file:"",
+        machine_operator_parameter:"",
+        transporter:"",
+        transporter_description_status:"",
+        transporter_approval_by_crm_operator:"",
+        transporter_file:""
+    });
+    const [showWorkOrder,setShowWorkOrder] = useState({
+        id:"",
+        work_order:"",
+        purchase_order:"",
+        customer_name:"",
+        designer_head:"",
+        designer_head_description_status:"",
+        designer_head_approval_by_crm_operator:"",
+        designer_head_approval_by_auper_admin:"",
+        designer_head_file:"",
+        designer:"",
+        designer_description_status:"",
+        designer_approval_by_designer_head:"",
+        designer_file:"",
+        programmer:"",
+        programmer_description_status:"",
+        programmer_approval_by_designer:"",
+        programmer_approval_by_designer_head:"",
+        programmer_file:"",
+        machine_operator:"",
+        machine_operator_description_status:"",
+        machine_operator_approval_by_designer:"",
+        machine_operator_file:"",
+        machine_operator_parameter:"",
+        transporter:"",
+        transporter_description_status:"",
+        transporter_approval_by_crm_operator:"",
+        transporter_file:""
+    });
+    useEffect(() => {
+        axios.get(api_url+"read_work_order_by_super_admin.php")
+        .then((res)=>{
+            setWorkOrder(res.data)
+        })
+    }, [])
+    
     return (
         <>
         <Header />
@@ -113,57 +183,30 @@ function SuperAdminWorkOrder() {
             <section class="content">
                 <div className="container-fluid">
                     <div className="row">
-                        {/* left column */}
-                        <div className="col-md-4">
+                        {workOrder.data===undefined?[]:workOrder.data.map((wo)=>(
+                            <div className="col-md-4">
                             <div class="card-body">
                                 <div id="accordion">
                                     <div class="card card-primary">
                                         <div class="card-header">
                                             <h4 class="card-title w-100">
                                                 <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
-                                                    WO-1
+                                                   {wo.work_order}
                                                 </a>
                                             </h4>
                                         </div>
                                         <div id="collapseOne" class="collapse show" data-parent="#accordion">
                                             <div class="card-body">
-                                                <p><b>Work Order</b>-WO-1</p>
-                                                <p><b>Customer Name</b>-Yash Shinde</p>
-                                                <p><b>Employee Name</b>-Ramesh Patil</p>
-                                                <p><b>Process</b>-Designing</p>
-                                                <p><b>Status</b>-<small onClick={openModal} class="badge badge-info"><i class="fas fa-clock"></i>In Process</small></p>
+                                                <p><b>Work Order</b>-{wo.work_order}</p>
+                                                <p><b>Customer Name</b>-{wo.customer_name}</p>
+                                                <p><b>Status</b>-<small onClick={()=>{openModal(wo)}} class="badge badge-info"><i class="fas fa-clock"></i>In Process</small></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
-                        <div className="col-md-4">
-                            <div class="card-body">
-                                <div id="accordion">
-                                    <div class="card card-success">
-                                        <div class="card-header">
-                                            <h4 class="card-title w-100">
-                                                <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
-                                                    WO-2
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                                            <div class="card-body">
-                                                <p><b>Work Order</b>-WO-2</p>
-                                                <p><b>Customer Name</b>-Ganesh Shinde</p>
-                                                <p><b>Employee Name</b>-Ramesh Patil</p>
-                                                <p><b>Process</b>-Completed</p>
-                                                <p><b>Status</b>-<small onClick={openModal} class="badge badge-success"><i class="fas fa-clock"></i>Completed</small></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
+                        ))}
                     </div>
                 </div>
             </section>

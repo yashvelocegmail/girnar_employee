@@ -448,6 +448,7 @@ function DesignerHeadTask() {
     const onEdit = (row) => {
         handleShow();
         console.log("--------------",JSON.parse(row.designer_head_description_status.slice(1,-1)))
+        console.log("--+++++++++++++",row.designer_head_description_status)
         setEditWorkOrder({
             id: row.id,
             work_order: row.work_order,
@@ -475,7 +476,7 @@ function DesignerHeadTask() {
         setEditFormValues3(JSON.parse(row.machine_operator_description_status.slice(1,-1)))
         setEditInspectionParametersFormValues(JSON.parse(row.machine_operator_parameter.slice(1,-1)))
         setEditFormValues4(JSON.parse(row.transporter_description_status.slice(1,-1)))
-        console.log(editFormValues)
+        //console.log(editWorkOrder)
     }
     const onEditPurchaseOrderChange = (e) => {
         setEditWorkOrder({ ...editWorkOrder, purchase_order: e.target.value })
@@ -502,7 +503,7 @@ function DesignerHeadTask() {
         modalFormData.append('id', editWorkOrder.id);
         modalFormData.append('purchase_order', editWorkOrder.purchase_order);
         modalFormData.append('designer_head', editWorkOrder.designer_head);
-        modalFormData.append('designer_head_description_status', editWorkOrder.designer_head_description_status);
+        modalFormData.append('designer_head_description_status', JSON.stringify(editWorkOrder.designer_head_description_status));
         modalFormData.append('designer_head_file', editWorkOrder.designer_head_file);
         modalFormData.append('designer', editWorkOrder.designer);
         modalFormData.append('designer_description_status', JSON.stringify(editWorkOrder.designer_description_status));

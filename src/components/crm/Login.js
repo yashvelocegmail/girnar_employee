@@ -67,6 +67,10 @@ function Login() {
           {
             history.push("/stock_manager_dashboard")
           }
+          else if(response.data.data[0].user_type==="purchase_manager")
+          {
+            history.push("/purchase_manager_dashboard")
+          }
           else if(response.data.data[0].user_type==="super_admin")
           {
             history.push("/super_admin_dashboard")

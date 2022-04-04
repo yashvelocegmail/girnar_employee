@@ -4,6 +4,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 import Header from '../../Header';
 import Menu from '../../Menu';
 import { api_url } from '../ApiUrl';
+import { toast } from 'react-toastify';
 import { DataGrid } from '@mui/x-data-grid';
 import { jsPDF } from "jspdf";
 import 'jspdf-autotable'
@@ -198,6 +199,8 @@ function DesignerHeadPOMaster() {
     axios.post(api_url + "create_purchase_order.php", purchaseOrder)
       .then(() => {
         console.log("Created")
+        toast.configure()
+        toast.success("Successfully Inserted")
         axios.post(api_url + "read_purchase_order_crm.php")
           .then((res) => {
             setReadPurchaseOrder(res.data)
@@ -320,6 +323,8 @@ function DesignerHeadPOMaster() {
     axios.post(api_url + "update_purchase_order.php", editPurchaseOrder)
       .then(() => {
         console.log("Edited")
+        toast.configure()
+        toast.warning("Successfully Updated")
         axios.post(api_url + "read_purchase_order_crm.php")
           .then((res) => {
             setReadPurchaseOrder(res.data)
@@ -332,6 +337,8 @@ function DesignerHeadPOMaster() {
     axios.post(api_url + "delete_purchase_order.php", { id: id })
       .then(() => {
         console.log("deleted")
+        toast.configure()
+        toast.error("Successfully Deleted")
         axios.post(api_url + "read_purchase_order_crm.php")
           .then((res) => {
             setReadPurchaseOrder(res.data)
@@ -368,11 +375,12 @@ function DesignerHeadPOMaster() {
     {
       field: 'purchase_order',
       headerName: 'Purchase Order Number',
-      width: 200
+      width: 350
     },
     {
       field: 'quotation',
-      headerName: 'Quotation'
+      headerName: 'Quotation',
+      width: 200
     },
     // {
     //     field: 'des_quant_rate',
@@ -471,7 +479,7 @@ function DesignerHeadPOMaster() {
                   <label>Id</label>
                   <input defaultValue={editPurchaseOrder.id} name="id" type="text" className="form-control" readOnly />
                 </div>
-                <select defaultValue={editPurchaseOrder.quotation} className='form-control' name="quotation">
+                <select defaultValue={editPurchaseOrder.quotation} className='form-control' name="quotation" required>
                   <option>Select</option>
                   {quotationOption === undefined ? [] : quotationOption.data.map((quotation) => (
                     <option disabled={true} value={quotation.id} key={quotation.id}>{quotation.quotation}</option>
@@ -482,13 +490,13 @@ function DesignerHeadPOMaster() {
                 {formValues1.map((element, index) => (
                   <div className="form-group" key={index}>
                     <label>Description</label>
-                    <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange1(index, e)} />
+                    <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange1(index, e)} required />
                     <label>Quantity</label>
-                    <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange1(index, e)} />
+                    <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange1(index, e)} required />
                     <label>Rate</label>
-                    <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange1(index, e)} />
+                    <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange1(index, e)} required />
                     <label>Total Rate</label>
-                    <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange1(index, e)} readOnly/>
+                    <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange1(index, e)} required readOnly/>
                     {
                       index ?
                         <button type="button" className="btn btn-danger" onClick={() => removeFormFields1(index)}>Remove</button>
@@ -502,15 +510,15 @@ function DesignerHeadPOMaster() {
                 </div><br />
                 <div className="form-group">
                   <label>CGST</label>
-                  <input value={9} type='number' name="total" className='form-control' />
+                  <input value={9} type='number' name="total" className='form-control'  required/>
                 </div>
                 <div className="form-group">
                   <label>SGST</label>
-                  <input value={9} type='number' name="total" className='form-control' />
+                  <input value={9} type='number' name="total" className='form-control'  required/>
                 </div>
                 <div className="form-group">
                   <label>Discount</label>
-                  <input value={editPurchaseOrder.discount} onChange={onModalDiscountChange} type='number' name="total" className='form-control' />
+                  <input value={editPurchaseOrder.discount} onChange={onModalDiscountChange} type='number' name="total" className='form-control'  required/>
                 </div>
                 <div className="button-section">
                   <button onClick={calculateTotal1} className="btn btn-success" type="button">Calculate Total</button>
@@ -518,7 +526,7 @@ function DesignerHeadPOMaster() {
                 </div>
                 <div className="form-group">
                   <label>Total</label>
-                  <input value={editPurchaseOrder.total} type='number' name="total" className='form-control' />
+                  <input value={editPurchaseOrder.total} type='number' name="total" className='form-control'  required/>
                 </div>
                 <div className="card-footer">
                   <button type="submit" className="btn btn-primary">Submit</button>
@@ -541,13 +549,13 @@ function DesignerHeadPOMaster() {
               <div className="card-body">
                 <div className="form-group">
                   <label>Id</label>
-                  <input defaultValue={singlePurchaseOrder.id} name="id" type="text" className="form-control" readOnly />
+                  <input defaultValue={singlePurchaseOrder.id} name="id" type="text" className="form-control" readOnly  required/>
                 </div>
                 <div className="form-group">
                   <label>Purchase Order</label>
-                  <input defaultValue={singlePurchaseOrder.purchase_order} name="purchase_order" type="text" className="form-control" readOnly />
+                  <input defaultValue={singlePurchaseOrder.purchase_order} name="purchase_order" type="text" className="form-control" readOnly  required/>
                 </div>
-                <select defaultValue={singlePurchaseOrder.quotation} className='form-control' name="quotation" readOnly>
+                <select defaultValue={singlePurchaseOrder.quotation} className='form-control' name="quotation" required readOnly>
                   <option>Select</option>
                   {quotationOption === undefined ? [] : quotationOption.data.map((quotation) => (
                     <option disabled={true} value={quotation.id} key={quotation.id}>{quotation.quotation}</option>
@@ -557,13 +565,13 @@ function DesignerHeadPOMaster() {
                 {formValues2.map((element, index) => (
                   <div className="form-group" key={index}>
                     <label>Description</label>
-                    <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange2(index, e)} readOnly />
+                    <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange2(index, e)} readOnly  required/>
                     <label>Quantity</label>
-                    <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange2(index, e)} readOnly />
+                    <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange2(index, e)} readOnly  required/>
                     <label>Rate</label>
-                    <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange2(index, e)} readOnly />
+                    <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange2(index, e)} readOnly  required/>
                     <label>Total Rate</label>
-                    <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange2(index, e)} readOnly />
+                    <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange2(index, e)} readOnly  required/>
 
                   </div>
                 ))}
@@ -571,15 +579,15 @@ function DesignerHeadPOMaster() {
                 <hr />
                 <div className="form-group">
                   <label>CGST</label>
-                  <input value={9} type='number' name="total" className='form-control' readOnly />
+                  <input value={9} type='number' name="total" className='form-control' readOnly  required/>
                 </div>
                 <div className="form-group">
                   <label>SGST</label>
-                  <input value={9} type='number' name="total" className='form-control' readOnly />
+                  <input value={9} type='number' name="total" className='form-control' readOnly  required/>
                 </div>
                 <div className="form-group">
                   <label>Discount</label>
-                  <input value={singlePurchaseOrder.discount} onChange={onModalDiscountChange} type='number' name="total" className='form-control' readOnly />
+                  <input value={singlePurchaseOrder.discount} onChange={onModalDiscountChange} type='number' name="total" className='form-control' readOnly  required/>
                 </div>
 
                 <div className="form-group">
@@ -612,7 +620,7 @@ function DesignerHeadPOMaster() {
 
                       <div className='form-group'>
                         <label>Quotation</label>
-                        <select onChange={onQuotationChange} className='form-control' name="quotation">
+                        <select onChange={onQuotationChange} className='form-control' name="quotation" required>
                           <option>Select</option>
                           {quotationOption === undefined ? [] : quotationOption.data.map((quotation) => (
                             <option value={quotation.id} key={quotation.id}>{quotation.quotation}</option>
@@ -626,19 +634,19 @@ function DesignerHeadPOMaster() {
                             <div className="row" key={index}>
                               <div className='col-md-4'>
                                 <label>Description</label>
-                                <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange(index, e)} />
+                                <input name="description" className="form-control" type="text" value={element.description || ""} onChange={e => handleChange(index, e)}  required/>
                               </div>
                               <div className='col-md-4'>
                                 <label>Quantity</label>
-                                <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange(index, e)} />
+                                <input name="quantity" className="form-control" type="number" value={element.quantity || ""} onChange={e => handleChange(index, e)} required />
                               </div>
                               <div className='col-md-4'>
                                 <label>Rate</label>
-                                <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange(index, e)} />
+                                <input name="rate" className="form-control" type="number" value={element.rate || ""} onChange={e => handleChange(index, e)} required />
                               </div>
                               <div className='col-md-4'>
                                 <label>Total Rate</label>
-                                <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange(index, e)} readOnly/>
+                                <input name="total_rate" className="form-control" type="number" value={element.total_rate || ""} onChange={e => handleChange(index, e)} required readOnly/>
                               </div>
 
 
@@ -664,15 +672,15 @@ function DesignerHeadPOMaster() {
                         </div><br />
                         <div className="form-group">
                           <label>CGST</label>
-                          <input value={9} type='number' name="total" className='form-control' />
+                          <input value={9} type='number' name="total" className='form-control' required />
                         </div>
                         <div className="form-group">
                           <label>SGST</label>
-                          <input value={9} type='number' name="total" className='form-control' />
+                          <input value={9} type='number' name="total" className='form-control' required />
                         </div>
                         <div className="form-group">
                           <label>Discount</label>
-                          <input onChange={onDiscountChange} type='number' name="total" className='form-control' />
+                          <input onChange={onDiscountChange} type='number' name="total" className='form-control' required />
                         </div>
                         <div className="button-section">
                           <button onClick={calculateTotal} className="btn btn-success" type="button">Calculate Total</button>
@@ -680,7 +688,7 @@ function DesignerHeadPOMaster() {
                         </div>
                         <div className="form-group">
                           <label>Total</label>
-                          <input value={total} type='number' name="total" className='form-control' />
+                          <input value={total} type='number' name="total" className='form-control' required />
                         </div>
                       </div>
 

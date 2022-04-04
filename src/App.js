@@ -60,6 +60,7 @@ import HrmsEmployeeSalary from './components/hr/HrmsEmployeeSalary';
 import DesignerHeadQuotationMaster from './components/designer_head/DesignerHeadQuotationMaster';
 import DesignerHeadPOGeneration from './components/designer_head/DesignerHeadPOMaster';
 import DesignerHeadTaskAllocation from './components/designer_head/DesignerHeadTaskAllocation';
+import DesignerHeadThirdPartyTaskAllocation from './components/designer_head/DesignerHeadThirdPartyTaskAllocation';
 import DesignerHeadTask from './components/designer_head/DesignerHeadTask';
 import DesignerHeadMaterialTypeMaster from './components/designer_head/DesignerHeadMaterialTypeMaster';
 import DesignerHeadMaterialGradeMaster from './components/designer_head/DesignerHeadMaterialGradeMaster';
@@ -77,6 +78,11 @@ import DesignerHeadCompanyContact from './components/designer_head/DesignerHeadC
 import DesignerHeadLeadsDetails from './components/designer_head/DesignerHeadLeadsDetails';
 import DesignerHeadLeads from './components/designer_head/DesignerHeadLeads';
 import DesignerHeadAnalytics from './components/designer_head/DesignerHeadAnalytics';
+import PurchaseManagerDashboard from './components/purchase/PurchaseManagerDashboard';
+import PurchaseManagerVendorMaster from './components/purchase/PurchaseManagerVendorMaster';
+import PurchaseManagerStockRequirement from './components/purchase/PurchaseManagerStockRequirement';
+import PurchaseManagerAvailableStock from './components/purchase/PurchaseManagerAvailableStock';
+import DesignerHeadShift from './components/designer_head/DesignerHeadShift';
 
 
 function App() {
@@ -92,8 +98,10 @@ function App() {
             <ProtectedRoute exact path="/machine_operator_dashboard" component={MachineOperatorDashboard}  />
             <ProtectedRoute exact path="/programmer_dashboard" component={ProgrammerDashboard}  />
             <ProtectedRoute exact path="/stock_manager_dashboard" component={StockManagerDashboard}  />
+            <ProtectedRoute exact path="/purchase_manager_dashboard" component={PurchaseManagerDashboard}  />
             <ProtectedRoute exact path="/super_admin_dashboard" component={SuperAdminDashboard}  />
             <ProtectedRoute exact path="/transporter_dashboard" component={TransporterDashboard}  />
+
             <ProtectedRoute path='/quotation_master' component={QuotationMaster } />
             <ProtectedRoute path='/po_master' component={POMaster}></ProtectedRoute>
             <ProtectedRoute path='/task_allocation' component={TaskAllocation }></ProtectedRoute>
@@ -129,7 +137,7 @@ function App() {
             <ProtectedRoute path='/designer_head_available_stock' component={DesignerHeadAvailableStock }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_customer_feedback' component={DesignerHeadCustomerFeedback }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_third_party_contacts' component={DesignerHeadThirdPartyContacts }></ProtectedRoute>
-            <ProtectedRoute path='/designer_head_third_party_task_allocation' component={DesignerHeadTaskAllocation }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_third_party_task_allocation' component={DesignerHeadThirdPartyTaskAllocation }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_remote_inquiry' component={DesignerHeadRemoteInquiry}></ProtectedRoute>
             <ProtectedRoute path='/designer_head_payment' component={DesignerHeadPayment }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_individual_contact' component={DesignerHeadContacts }></ProtectedRoute>
@@ -139,6 +147,7 @@ function App() {
             <ProtectedRoute path='/designer_head_leads_details' component={DesignerHeadLeads }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_leads' component={DesignerHeadLeadsDetails}></ProtectedRoute>
             <ProtectedRoute path='/designer_head_analytics' component={DesignerHeadAnalytics }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_shift' component={DesignerHeadShift }></ProtectedRoute>
 
 
             <ProtectedRoute path='/hrms_attendance' component={Attendance }></ProtectedRoute>
@@ -167,6 +176,10 @@ function App() {
             <ProtectedRoute path='/stock_manager_vendor_master' component={StockManagerVendorMaster }></ProtectedRoute>
             <ProtectedRoute path='/stock_manager_stock_requirement' component={StockManagerStockRequirement }></ProtectedRoute>
             <ProtectedRoute path='/stock_manager_available_stock' component={StockManagerAvailableStock }></ProtectedRoute>
+            
+            <ProtectedRoute path='/purchase_manager_vendor_master' component={PurchaseManagerVendorMaster }></ProtectedRoute>
+            <ProtectedRoute path='/purchase_manager_stock_requirement' component={PurchaseManagerStockRequirement }></ProtectedRoute>
+            <ProtectedRoute path='/purchase_manager_available_stock' component={PurchaseManagerAvailableStock }></ProtectedRoute>
 
             <ProtectedRoute path='/super_admin_work_order' component={SuperAdminWorkOrder }></ProtectedRoute>
             <ProtectedRoute path='/super_admin_available_stock' component={SuperAdminAvailableStock }></ProtectedRoute>

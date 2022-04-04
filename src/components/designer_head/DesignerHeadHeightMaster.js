@@ -152,7 +152,7 @@ function DesignerHeadHeightMaster() {
                             </div>
                             <div className="form-group">
                                 <label>Material Type</label>
-                                <input defaultValue={singlematerialThickness.material_thickness} name="material_type" type="text" className="form-control" readOnly/>
+                                <input defaultValue={singlematerialThickness.material_thickness} name="material_type" type="text" className="form-control" readOnly required/>
                             </div>
                         </div>
                     </Form>
@@ -176,7 +176,7 @@ function DesignerHeadHeightMaster() {
                             </div>
                             <div className="form-group">
                                 <label>Material Type</label>
-                                <input onChange={onModalInputChange} defaultValue={modalmaterialThickness.material_thickness} name="material_thickness" type="text" className="form-control" />
+                                <input onChange={onModalInputChange} defaultValue={modalmaterialThickness.material_thickness} name="material_thickness" type="text" className="form-control" required/>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -206,7 +206,7 @@ function DesignerHeadHeightMaster() {
                                         <div className="card-body">
                                             <div className="form-group">
                                                 <label >Material Thickness</label>
-                                                <input onChange={onInputChange} name="material_thickness" type="text" className="form-control" />
+                                                <input onChange={onInputChange} name="material_thickness" type="text" className="form-control" required/>
                                             </div>
                                         </div>
                                         {/* /.card-body */}
