@@ -83,6 +83,7 @@ import PurchaseManagerVendorMaster from './components/purchase/PurchaseManagerVe
 import PurchaseManagerStockRequirement from './components/purchase/PurchaseManagerStockRequirement';
 import PurchaseManagerAvailableStock from './components/purchase/PurchaseManagerAvailableStock';
 import DesignerHeadShift from './components/designer_head/DesignerHeadShift';
+import DesignerHeadEmployeeShift from './components/designer_head/DesignerHeadEmployeeShift';
 
 
 function App() {
@@ -148,6 +149,7 @@ function App() {
             <ProtectedRoute path='/designer_head_leads' component={DesignerHeadLeadsDetails}></ProtectedRoute>
             <ProtectedRoute path='/designer_head_analytics' component={DesignerHeadAnalytics }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_shift' component={DesignerHeadShift }></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_employee_shift' component={DesignerHeadEmployeeShift }></ProtectedRoute>
 
 
             <ProtectedRoute path='/hrms_attendance' component={Attendance }></ProtectedRoute>

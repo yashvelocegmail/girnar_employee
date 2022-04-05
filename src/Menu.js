@@ -23,6 +23,7 @@ function Menu() {
     const [designerheaddrop8, setdesignerheadDrop8] = useState(false);
     const [designerheaddrop9, setdesignerheadDrop9] = useState(false);
     const [designerheaddrop10, setdesignerheadDrop10] = useState(false);
+    const [designerheaddrop11, setdesignerheadDrop11] = useState(false);
 
     const [hrdrop1, sethrDrop1] = useState(false);
 
@@ -573,6 +574,7 @@ function Menu() {
                                         </li>
                                     </ul> : null}
                                 </li>
+                                
                                 <li class="nav-header">Stock</li>
                                 <li class="nav-item">
                                     <p className='navlinkcustom' onClick={() => { setdesignerheadDrop9(!designerheaddrop9) }}>
@@ -619,6 +621,31 @@ function Menu() {
                                             <Link to="designer_head_third_party_task_allocation" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Third Task Allocation</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-header">Shift Master</li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop11(!designerheaddrop11) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Shift
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop11 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_shift" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Shift</p>
+                                            </Link>
+                                            <Link to="designer_head_employee_shift" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Employee Shift</p>
                                             </Link>
                                         </li>
                                     </ul> : null}

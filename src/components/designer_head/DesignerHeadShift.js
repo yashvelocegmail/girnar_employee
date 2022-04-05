@@ -19,18 +19,26 @@ function DesignerHeadShift() {
     //States
     const [shift, setShift] = useState({
         shift_name: "",
+        shift_from:"",
+        shift_to:""
     })
     const [readShift, setReadShift] = useState({
         id: "",
         shift_name: "",
+        shift_from:"",
+        shift_to:""
     })
     const [editShift, setEditShift] = useState({
         id: "",
         shift_name: "",
+        shift_from:"",
+        shift_to:""
     })
     const [singleShift, setSingleShift] = useState({
         id: "",
         shift_name: "",
+        shift_from:"",
+        shift_to:""
     })
     //Create
     const onInputChange = (e) => {
@@ -38,9 +46,9 @@ function DesignerHeadShift() {
     }
     const onFormSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost/girnar_backend/api/create_shift.php", shift)
+        axios.post(api_url+"create_shift.php", shift)
             .then(() => {
-                axios.get("http://localhost/girnar_backend/api/read_shift.php")
+                axios.get(api_url+"read_shift.php")
                 .then((res) => {
                     setReadShift(res.data)
                 })
@@ -50,7 +58,7 @@ function DesignerHeadShift() {
     }
     //Read
     useEffect(() => {
-        axios.get("http://localhost/girnar_backend/api/read_shift.php")
+        axios.get(api_url+"read_shift.php")
             .then((res) => {
                 setReadShift(res.data)
             })
@@ -63,6 +71,16 @@ function DesignerHeadShift() {
         {
             field: "shift_name",
             headerName: "Shift",
+            width: 150
+        },
+        {
+            field: "shift_from",
+            headerName: "Shift From",
+            width: 150
+        },
+        {
+            field: "shift_to",
+            headerName: "Shift To",
             width: 150
         },
         {
@@ -92,7 +110,9 @@ function DesignerHeadShift() {
         handleShow1()
         setSingleShift({
             id: row.id,
-            shift_name: row.shift_name
+            shift_name: row.shift_name,
+            shift_from: row.shift_from,
+            shift_to: row.shift_to
         })
     }
     //Update
@@ -100,7 +120,9 @@ function DesignerHeadShift() {
         handleShow()
         setEditShift({
             id: row.id,
-            shift_name: row.shift_name
+            shift_name: row.shift_name,
+            shift_from: row.shift_from,
+            shift_to: row.shift_to
         })
     }
     const onModalInputChange = (e) => {
@@ -146,10 +168,17 @@ function DesignerHeadShift() {
                                 <input defaultValue={singleShift.id} name="id" type="text" className="form-control" readOnly />
                             </div>
                             <div className="form-group">
-                                <label>Material Type</label>
+                                <label>Shift Name</label>
                                 <input defaultValue={singleShift.shift_name} name="shift_name" required type="text" className="form-control"readOnly />
                             </div>
-                            
+                            <div className="form-group">
+                                <label>Shift From</label>
+                                <input defaultValue={singleShift.shift_from} name="shift_from" required type="text" className="form-control"readOnly />
+                            </div>
+                            <div className="form-group">
+                                <label>Shift To</label>
+                                <input defaultValue={singleShift.shift_to} name="shift_to" required type="text" className="form-control"readOnly />
+                            </div>
                         </div>
                     </form>
                 </Modal.Body>
@@ -168,11 +197,19 @@ function DesignerHeadShift() {
                         <div className="card-body">
                             <div className="form-group">
                                 <label>Id</label>
-                                <input defaultValue={editShift.id} onChange={onModalInputChange} name="id" type="text" className="form-control" readOnly />
+                                <input defaultValue={editShift.id} onChange={onModalInputChange} name="id" type="text" className="form-control" readOnly required/>
                             </div>
                             <div className="form-group">
-                                <label>Material Type</label>
-                                <input defaultValue={editShift.shift_name} onChange={onModalInputChange} name="shift_name" required type="text" className="form-control" />
+                                <label>Shift Name</label>
+                                <input defaultValue={editShift.shift_name} onChange={onModalInputChange} name="shift_name"  type="text" className="form-control" required/>
+                            </div>
+                            <div className="form-group">
+                                <label>Shift From</label>
+                                <input defaultValue={editShift.shift_from} onChange={onModalInputChange} name="shift_from"  type="time" className="form-control" required />
+                            </div>
+                            <div className="form-group">
+                                <label>Shift To</label>
+                                <input defaultValue={editShift.shift_to} onChange={onModalInputChange} name="shift_to"  type="time" className="form-control" required />
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -203,6 +240,14 @@ function DesignerHeadShift() {
                                             <div className="form-group">
                                                 <label >Shift</label>
                                                 <input name="shift_name" onChange={onInputChange} type="text" className="form-control" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <label >From Time</label>
+                                                <input name="shift_from" onChange={onInputChange} type="time" className="form-control" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <label >To Time</label>
+                                                <input name="shift_to" onChange={onInputChange} type="time" className="form-control" required />
                                             </div>
                                         </div>
                                         {/* /.card-body */}
