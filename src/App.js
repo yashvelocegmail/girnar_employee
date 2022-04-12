@@ -84,6 +84,9 @@ import PurchaseManagerStockRequirement from './components/purchase/PurchaseManag
 import PurchaseManagerAvailableStock from './components/purchase/PurchaseManagerAvailableStock';
 import DesignerHeadShift from './components/designer_head/DesignerHeadShift';
 import DesignerHeadEmployeeShift from './components/designer_head/DesignerHeadEmployeeShift';
+import DesignerHeadTransportation from './components/designer_head/DesignerHeadTransportation';
+import TransporterTransportation from './components/transporter/TransporterTransportation';
+import DesignerHeadInspectionReport from './components/designer_head/DesignerHeadInspectionReport';
 
 
 function App() {
@@ -93,16 +96,17 @@ function App() {
       <BrowserRouter>
         <Switch>
             <Route exact path="/" component={Login} />
-            <ProtectedRoute exact path="/crm_dashboard" component={CrmDashboard}  />
-            <ProtectedRoute exact path="/designer_dashboard" component={DesignerDashboard}  />
-            <ProtectedRoute exact path="/hr_dashboard" component={HrDashboard}  />
-            <ProtectedRoute exact path="/machine_operator_dashboard" component={MachineOperatorDashboard}  />
-            <ProtectedRoute exact path="/programmer_dashboard" component={ProgrammerDashboard}  />
-            <ProtectedRoute exact path="/stock_manager_dashboard" component={StockManagerDashboard}  />
-            <ProtectedRoute exact path="/purchase_manager_dashboard" component={PurchaseManagerDashboard}  />
-            <ProtectedRoute exact path="/super_admin_dashboard" component={SuperAdminDashboard}  />
-            <ProtectedRoute exact path="/transporter_dashboard" component={TransporterDashboard}  />
+            
+            
+            
+            
+            
+            
+            
+            
+            
 
+            <ProtectedRoute exact path="/crm_dashboard" component={CrmDashboard}  />
             <ProtectedRoute path='/quotation_master' component={QuotationMaster } />
             <ProtectedRoute path='/po_master' component={POMaster}></ProtectedRoute>
             <ProtectedRoute path='/task_allocation' component={TaskAllocation }></ProtectedRoute>
@@ -125,8 +129,8 @@ function App() {
             <ProtectedRoute path='/leads' component={LeadsDetails}></ProtectedRoute>
             <ProtectedRoute path='/analytics' component={Analytics }></ProtectedRoute>
 
-            <ProtectedRoute exact path="/designer_head_dashboard" component={DesignerDashboard}  />
-            <ProtectedRoute path='/designer_head_quotation_master' component={DesignerHeadQuotationMaster } />
+            <ProtectedRoute path="/designer_head_dashboard" component={DesignerDashboard}></ProtectedRoute>
+            <ProtectedRoute path='/designer_head_quotation_master' component={DesignerHeadQuotationMaster }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_po_master' component={DesignerHeadPOGeneration}></ProtectedRoute>
             <ProtectedRoute path='/designer_head_task_allocation' component={DesignerHeadTaskAllocation }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_task' component={DesignerHeadTask }></ProtectedRoute>
@@ -150,8 +154,10 @@ function App() {
             <ProtectedRoute path='/designer_head_analytics' component={DesignerHeadAnalytics }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_shift' component={DesignerHeadShift }></ProtectedRoute>
             <ProtectedRoute path='/designer_head_employee_shift' component={DesignerHeadEmployeeShift }></ProtectedRoute>
+            <ProtectedRoute path="/designer_head_transportation" component={DesignerHeadTransportation}></ProtectedRoute>
+            <ProtectedRoute path="/designer_head_inspection_report" component={DesignerHeadInspectionReport}></ProtectedRoute>
 
-
+            <ProtectedRoute path="/hrms_dashboard" component={HrDashboard}></ProtectedRoute>
             <ProtectedRoute path='/hrms_attendance' component={Attendance }></ProtectedRoute>
             <ProtectedRoute path='/hrms_leave_tracker' component={LeaveTracker }></ProtectedRoute>
             <ProtectedRoute path='/hrms_employee_master' component={HrmsEmployeeMaster }></ProtectedRoute>
@@ -159,30 +165,38 @@ function App() {
             <ProtectedRoute path='/hrms_vacancies' component={HrmsVacancies }></ProtectedRoute>
             <ProtectedRoute path='/hrms_employee_salary' component={HrmsEmployeeSalary }></ProtectedRoute>
 
+            <ProtectedRoute path="/designer_dashboard" component={DesignerDashboard}></ProtectedRoute>
             <ProtectedRoute path='/designer_production' component={DesignerProduction }></ProtectedRoute>
             <ProtectedRoute path='/designer_attendance' component={DesignerAttendance }></ProtectedRoute>
             <ProtectedRoute path='/designer_leave_tracker' component={DesignerLeaveTracker }></ProtectedRoute>
 
+            <ProtectedRoute path="/programmer_dashboard" component={ProgrammerDashboard}></ProtectedRoute>
             <ProtectedRoute path='/programmer_production' component={ProgrammerProduction }></ProtectedRoute>
             <ProtectedRoute path='/programmer_attendance' component={ProgrammerAttendance }></ProtectedRoute>
             <ProtectedRoute path='/programmer_leave_tracker' component={ProgrammerLeaveTracker }></ProtectedRoute>
 
+            <ProtectedRoute path="/machine_operator_dashboard" component={MachineOperatorDashboard}></ProtectedRoute>
             <ProtectedRoute path='/machine_operator_production' component={MachineOperatorProduction }></ProtectedRoute>
             <ProtectedRoute path='/machine_operator_attendance' component={MachineOperatorAttendance }></ProtectedRoute>
             <ProtectedRoute path='/machine_operator_leave_tracker' component={MachineOperatorLeaveTracker }></ProtectedRoute>
 
+            <ProtectedRoute path="/transporter_dashboard" component={TransporterDashboard}></ProtectedRoute>
             <ProtectedRoute path='/transporter_production' component={TransporterProduction }></ProtectedRoute>
             <ProtectedRoute path='/transporter_attendance' component={TransporterAttendance }></ProtectedRoute>
             <ProtectedRoute path='/transporter_leave_tracker' component={TransporterLeaveTracker }></ProtectedRoute>
+            <ProtectedRoute path='/transporter_transportation' component={TransporterTransportation }></ProtectedRoute>
 
+            <ProtectedRoute path="/stock_manager_dashboard" component={StockManagerDashboard}></ProtectedRoute>
             <ProtectedRoute path='/stock_manager_vendor_master' component={StockManagerVendorMaster }></ProtectedRoute>
             <ProtectedRoute path='/stock_manager_stock_requirement' component={StockManagerStockRequirement }></ProtectedRoute>
             <ProtectedRoute path='/stock_manager_available_stock' component={StockManagerAvailableStock }></ProtectedRoute>
             
+            <ProtectedRoute path="/purchase_manager_dashboard" component={PurchaseManagerDashboard}></ProtectedRoute>
             <ProtectedRoute path='/purchase_manager_vendor_master' component={PurchaseManagerVendorMaster }></ProtectedRoute>
             <ProtectedRoute path='/purchase_manager_stock_requirement' component={PurchaseManagerStockRequirement }></ProtectedRoute>
             <ProtectedRoute path='/purchase_manager_available_stock' component={PurchaseManagerAvailableStock }></ProtectedRoute>
 
+            <ProtectedRoute path="/super_admin_dashboard" component={SuperAdminDashboard}></ProtectedRoute>
             <ProtectedRoute path='/super_admin_work_order' component={SuperAdminWorkOrder }></ProtectedRoute>
             <ProtectedRoute path='/super_admin_available_stock' component={SuperAdminAvailableStock }></ProtectedRoute>
         </Switch>

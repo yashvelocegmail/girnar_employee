@@ -39,19 +39,19 @@ function DesignerHeadTask() {
     let handleChange2 = (i, e) => {
         let newFormValues2 = [...formValues2];
         newFormValues2[i][e.target.name] = e.target.value;
-        setFormValues(newFormValues2);
+        setFormValues2(newFormValues2);
         setWorkOrder({ ...workOrder, programmer_description_status: newFormValues2 })
     }
     let handleChange3 = (i, e) => {
         let newFormValues3 = [...formValues3];
         newFormValues3[i][e.target.name] = e.target.value;
-        setFormValues(newFormValues3);
+        setFormValues3(newFormValues3);
         setWorkOrder({ ...workOrder, machine_operator_description_status: newFormValues3 })
     }
     let handleChange4 = (i, e) => {
         let newFormValues4 = [...formValues4];
         newFormValues4[i][e.target.name] = e.target.value;
-        setFormValues(newFormValues4);
+        setFormValues4(newFormValues4);
         setWorkOrder({ ...workOrder, transporter_description_status: newFormValues4 })
     }
     let handleChangeInspectionParameters = (i, e) => {
@@ -131,19 +131,19 @@ function DesignerHeadTask() {
     let editHandleChange2 = (i, e) => {
         let newFormValues2 = [...editFormValues2];
         newFormValues2[i][e.target.name] = e.target.value;
-        setEditFormValues(newFormValues2);
+        setEditFormValues2(newFormValues2);
         setEditWorkOrder({ ...editWorkOrder, programmer_description_status: newFormValues2 })
     }
     let editHandleChange3 = (i, e) => {
         let newFormValues3 = [...editFormValues3];
         newFormValues3[i][e.target.name] = e.target.value;
-        setEditFormValues(newFormValues3);
+        setEditFormValues3(newFormValues3);
         setEditWorkOrder({ ...editWorkOrder, machine_operator_description_status: newFormValues3 })
     }
     let editHandleChange4 = (i, e) => {
         let newFormValues4 = [...editFormValues4];
         newFormValues4[i][e.target.name] = e.target.value;
-        setEditFormValues(newFormValues4);
+        setEditFormValues4(newFormValues4);
         setEditWorkOrder({ ...editWorkOrder, transporter_description_status: newFormValues4 })
     }
     let editHandleChangeInspectionParameters = (i, e) => {
@@ -174,37 +174,37 @@ function DesignerHeadTask() {
         let newFormValues = [...editFormValues];
         newFormValues.splice(i, 1);
         setEditFormValues(newFormValues)
-        setEditWorkOrder({...editWorkOrder,designer_head_description_status:newFormValues})
+        setEditWorkOrder({ ...editWorkOrder, designer_head_description_status: newFormValues })
     }
     let removeEditFormFields1 = (i) => {
         let newFormValues1 = [...editFormValues1];
         newFormValues1.splice(i, 1);
         setEditFormValues1(newFormValues1)
-        setEditWorkOrder({...editWorkOrder,designer_description_status:newFormValues1})
+        setEditWorkOrder({ ...editWorkOrder, designer_description_status: newFormValues1 })
     }
     let removeEditFormFields2 = (i) => {
         let newFormValues2 = [...editFormValues2];
         newFormValues2.splice(i, 1);
         setEditFormValues2(newFormValues2)
-        setEditWorkOrder({...editWorkOrder,programmer_description_status:newFormValues2})
+        setEditWorkOrder({ ...editWorkOrder, programmer_description_status: newFormValues2 })
     }
     let removeEditFormFields3 = (i) => {
         let newFormValues3 = [...editFormValues3];
         newFormValues3.splice(i, 1);
         setEditFormValues3(newFormValues3)
-        setEditWorkOrder({...editWorkOrder,machine_operator_description_status:newFormValues3})
+        setEditWorkOrder({ ...editWorkOrder, machine_operator_description_status: newFormValues3 })
     }
     let removeEditFormFields4 = (i) => {
         let newFormValues4 = [...editFormValues4];
         newFormValues4.splice(i, 1);
         setEditFormValues4(newFormValues4)
-        setEditWorkOrder({...editWorkOrder,transporter_description_status:newFormValues4})
+        setEditWorkOrder({ ...editWorkOrder, transporter_description_status: newFormValues4 })
     }
     let removeEditFormFieldsInspectionParameters = (i) => {
         let newFormValues5 = [...editInspectionParametersFormValues];
         newFormValues5.splice(i, 1);
         setEditInspectionParametersFormValues(newFormValues5)
-        setEditWorkOrder({...editWorkOrder,machine_operator_parameter:newFormValues5})
+        setEditWorkOrder({ ...editWorkOrder, machine_operator_parameter: newFormValues5 })
     }
     //===========Form Values for read state
     const [readFormValues, setReadFormValues] = useState([{ description: "", status: "" }])
@@ -213,7 +213,7 @@ function DesignerHeadTask() {
     const [readFormValues3, setReadFormValues3] = useState([{ description3: "", status3: "" }])
     const [readFormValues4, setReadFormValues4] = useState([{ description4: "", status4: "" }])
     const [readInspectionParametersFormValues, setReadInspectionParametersFormValues] = useState([{ parameter: "", result: "" }])
-    
+
     //Get data for options table
     const [purchaseOrder, setPurchaseOrder] = useState();
     const [designerHead, setDesignerHead] = useState();
@@ -410,7 +410,7 @@ function DesignerHeadTask() {
     const onFormSubmit = (e) => {
         e.preventDefault()
         console.log(workOrder.designer_head_description_status)
-        
+
         const formData = new FormData();
         formData.append('id', workOrder.id);
         formData.append('purchase_order', workOrder.purchase_order);
@@ -432,9 +432,9 @@ function DesignerHeadTask() {
         formData.append('transporter_file', workOrder.transporter_file);
         const config = {
             headers: { 'content-type': 'application/json' }
-          }
-        console.log("------------------------------------------",formData)
-        axios.post(api_url + "create_work_order.php", formData,config)
+        }
+        console.log("------------------------------------------", formData)
+        axios.post(api_url + "create_work_order.php", formData, config)
             .then(() => {
                 axios.get(api_url + "read_work_order_by_crm.php")
                     .then((res) => {
@@ -447,35 +447,35 @@ function DesignerHeadTask() {
     //Edit
     const onEdit = (row) => {
         handleShow();
-        console.log("--------------",JSON.parse(row.designer_head_description_status.slice(1,-1)))
-        console.log("--+++++++++++++",row.designer_head_description_status)
+        console.log("--------------", JSON.parse(row.designer_head_description_status.slice(1, -1)))
+        console.log("--+++++++++++++", row.designer_head_description_status)
         setEditWorkOrder({
             id: row.id,
             work_order: row.work_order,
             purchase_order: row.purchase_order,
             designer_head: row.designer_head,
-            designer_head_description_status:JSON.parse(row.designer_head_description_status.slice(1,-1)),
-            designer_head_file:row.designer_head_file,
+            designer_head_description_status: JSON.parse(row.designer_head_description_status.slice(1, -1)),
+            designer_head_file: row.designer_head_file,
             designer: row.designer,
-            designer_description_status: JSON.parse(row.designer_description_status.slice(1,-1)),
-            designer_file:row.designer_file,
+            designer_description_status: JSON.parse(row.designer_description_status.slice(1, -1)),
+            designer_file: row.designer_file,
             programmer: row.programmer,
-            programmer_description_status: JSON.parse(row.programmer_description_status.slice(1,-1)),
-            programmer_file:row.programmer_file,
+            programmer_description_status: JSON.parse(row.programmer_description_status.slice(1, -1)),
+            programmer_file: row.programmer_file,
             machine_operator: row.machine_operator,
-            machine_operator_description_status: JSON.parse(row.machine_operator_description_status.slice(1,-1)),
-            machine_operator_parameter: JSON.parse(row.machine_operator_parameter.slice(1,-1)),
-            machine_operator_file:row.machine_operator_file,
+            machine_operator_description_status: JSON.parse(row.machine_operator_description_status.slice(1, -1)),
+            machine_operator_parameter: JSON.parse(row.machine_operator_parameter.slice(1, -1)),
+            machine_operator_file: row.machine_operator_file,
             transporter: row.transporter,
-            transporter_description_status: JSON.parse(row.transporter_description_status.slice(1,-1)),
-            transporter_file:row.transporter_file
+            transporter_description_status: JSON.parse(row.transporter_description_status.slice(1, -1)),
+            transporter_file: row.transporter_file
         })
-        setEditFormValues(JSON.parse(row.designer_head_description_status.slice(1,-1)))
-        setEditFormValues1(JSON.parse(row.designer_description_status.slice(1,-1)))
-        setEditFormValues2(JSON.parse(row.programmer_description_status.slice(1,-1)))
-        setEditFormValues3(JSON.parse(row.machine_operator_description_status.slice(1,-1)))
-        setEditInspectionParametersFormValues(JSON.parse(row.machine_operator_parameter.slice(1,-1)))
-        setEditFormValues4(JSON.parse(row.transporter_description_status.slice(1,-1)))
+        setEditFormValues(JSON.parse(row.designer_head_description_status.slice(1, -1)))
+        setEditFormValues1(JSON.parse(row.designer_description_status.slice(1, -1)))
+        setEditFormValues2(JSON.parse(row.programmer_description_status.slice(1, -1)))
+        setEditFormValues3(JSON.parse(row.machine_operator_description_status.slice(1, -1)))
+        setEditInspectionParametersFormValues(JSON.parse(row.machine_operator_parameter.slice(1, -1)))
+        setEditFormValues4(JSON.parse(row.transporter_description_status.slice(1, -1)))
         //console.log(editWorkOrder)
     }
     const onEditPurchaseOrderChange = (e) => {
@@ -496,7 +496,7 @@ function DesignerHeadTask() {
     const onEditTransporterChange = (e) => {
         setEditWorkOrder({ ...editWorkOrder, transporter: e.target.value })
     }
-    const onModalFormSubmit=(e)=>{
+    const onModalFormSubmit = (e) => {
         e.preventDefault();
         console.log(editWorkOrder.designer_description_status)
         const modalFormData = new FormData();
@@ -520,8 +520,8 @@ function DesignerHeadTask() {
         modalFormData.append('transporter_file', editWorkOrder.transporter_file);
         const config = {
             headers: { 'content-type': 'application/json' }
-          }
-        axios.post(api_url + "update_work_order.php", modalFormData,config)
+        }
+        axios.post(api_url + "update_work_order.php", modalFormData, config)
             .then(() => {
                 axios.get(api_url + "read_work_order_by_crm.php")
                     .then((res) => {
@@ -539,41 +539,41 @@ function DesignerHeadTask() {
             work_order: row.work_order,
             purchase_order: row.purchase_order,
             designer_head: row.designer_head,
-            designer_head_description_status:JSON.parse(row.designer_head_description_status.slice(1,-1)),
-            designer_head_file:row.designer_head_file,
+            designer_head_description_status: JSON.parse(row.designer_head_description_status.slice(1, -1)),
+            designer_head_file: row.designer_head_file,
             designer: row.designer,
-            designer_description_status: JSON.parse(row.designer_description_status.slice(1,-1)),
-            designer_file:row.designer_file,
+            designer_description_status: JSON.parse(row.designer_description_status.slice(1, -1)),
+            designer_file: row.designer_file,
             programmer: row.programmer,
-            programmer_description_status: JSON.parse(row.programmer_description_status.slice(1,-1)),
-            programmer_file:row.programmer_file,
+            programmer_description_status: JSON.parse(row.programmer_description_status.slice(1, -1)),
+            programmer_file: row.programmer_file,
             machine_operator: row.machine_operator,
-            machine_operator_description_status: JSON.parse(row.machine_operator_description_status.slice(1,-1)),
-            machine_operator_parameter: JSON.parse(row.machine_operator_parameter.slice(1,-1)),
-            machine_operator_file:row.machine_operator_file,
+            machine_operator_description_status: JSON.parse(row.machine_operator_description_status.slice(1, -1)),
+            machine_operator_parameter: JSON.parse(row.machine_operator_parameter.slice(1, -1)),
+            machine_operator_file: row.machine_operator_file,
             transporter: row.transporter,
-            transporter_description_status: JSON.parse(row.transporter_description_status.slice(1,-1)),
-            transporter_file:row.transporter_file
-            
+            transporter_description_status: JSON.parse(row.transporter_description_status.slice(1, -1)),
+            transporter_file: row.transporter_file
+
         })
-        setReadFormValues(JSON.parse(row.designer_head_description_status.slice(1,-1)))
-        setReadFormValues1(JSON.parse(row.designer_description_status.slice(1,-1)))
-        setReadFormValues2(JSON.parse(row.programmer_description_status.slice(1,-1)))
-        setReadFormValues3(JSON.parse(row.machine_operator_description_status.slice(1,-1)))
-        setReadInspectionParametersFormValues(JSON.parse(row.machine_operator_parameter.slice(1,-1)))
-        setReadFormValues4(JSON.parse(row.transporter_description_status.slice(1,-1)))
+        setReadFormValues(JSON.parse(row.designer_head_description_status.slice(1, -1)))
+        setReadFormValues1(JSON.parse(row.designer_description_status.slice(1, -1)))
+        setReadFormValues2(JSON.parse(row.programmer_description_status.slice(1, -1)))
+        setReadFormValues3(JSON.parse(row.machine_operator_description_status.slice(1, -1)))
+        setReadInspectionParametersFormValues(JSON.parse(row.machine_operator_parameter.slice(1, -1)))
+        setReadFormValues4(JSON.parse(row.transporter_description_status.slice(1, -1)))
     }
 
     //Delete
     const onDelete = (id) => {
-        axios.post(api_url + "delete_work_order.php", {id:id})
-        .then(() => {
-            axios.get(api_url + "read_work_order_by_crm.php")
-                .then((res) => {
-                    console.log(res.data)
-                    setReadWorkOrder(res.data)
-                })
-        })
+        axios.post(api_url + "delete_work_order.php", { id: id })
+            .then(() => {
+                axios.get(api_url + "read_work_order_by_crm.php")
+                    .then((res) => {
+                        console.log(res.data)
+                        setReadWorkOrder(res.data)
+                    })
+            })
     }
     //Read All Data
     useEffect(() => {
@@ -591,7 +591,7 @@ function DesignerHeadTask() {
         {
             field: "work_order",
             headerName: "Work Order",
-            width:500
+            width: 500
         },
         // {
         //     field: "designer_head_name",
@@ -635,7 +635,7 @@ function DesignerHeadTask() {
             }
         },
     ]
-    const rows = readWorkOrder===undefined?[]:readWorkOrder.data
+    const rows = readWorkOrder === undefined ? [] : readWorkOrder.data
     return (
         <>
             <Header />
@@ -666,7 +666,7 @@ function DesignerHeadTask() {
                                                 <option key={designerhead.id} value={designerhead.id}>{designerhead.name}</option>
                                             ))}
                                         </select>
-                                        <label>Download File</label><br/>
+                                        <label>Download File</label><br />
                                         <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.designer_head_file}`}>Download File</a></button>
                                         {editFormValues.map((element, index) => (
                                             <div className="form-group" key={index}>
@@ -700,13 +700,13 @@ function DesignerHeadTask() {
                                 <div class="card card-primary card-outline">
                                     <div class="card-header">
                                         <label >Designer</label>
-                                        <select  onChange={onEditDesignerChange} defaultValue={editWorkOrder.designer} className='form-control'>
+                                        <select onChange={onEditDesignerChange} defaultValue={editWorkOrder.designer} className='form-control'>
                                             <option>Select</option>
                                             {designer === undefined ? [] : designer.data.map((designer) => (
                                                 <option key={designer.id} value={designer.id}>{designer.name}</option>
                                             ))}
                                         </select>
-                                        <label>Download File</label><br/>
+                                        <label>Download File</label><br />
                                         <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.designer_file}`}>Download File</a></button>
                                         {editFormValues1.map((element, index) => (
                                             <div className="form-group" key={index}>
@@ -746,7 +746,7 @@ function DesignerHeadTask() {
                                                 <option key={programmer.id} value={programmer.id}>{programmer.name}</option>
                                             ))}
                                         </select>
-                                        <label>Download File</label><br/>
+                                        <label>Download File</label><br />
                                         <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.programmer_file}`}>Download File</a></button>
                                         {editFormValues2.map((element, index) => (
                                             <div className="form-group" key={index}>
@@ -780,13 +780,13 @@ function DesignerHeadTask() {
                                 <div class="card card-primary card-outline">
                                     <div class="card-header">
                                         <label >Machine Operator</label>
-                                        <select  onChange={onEditMachineOperatorChange} defaultValue={editWorkOrder.machine_operator} className='form-control'>
+                                        <select onChange={onEditMachineOperatorChange} defaultValue={editWorkOrder.machine_operator} className='form-control'>
                                             <option>Select</option>
                                             {machineOperator === undefined ? [] : machineOperator.data.map((machineoperator) => (
                                                 <option key={machineoperator.id} value={machineoperator.id}>{machineoperator.name}</option>
                                             ))}
                                         </select>
-                                        <label>Download File</label><br/>
+                                        <label>Download File</label><br />
                                         <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.machine_operator_file}`}>Download File</a></button>
                                         {editFormValues3.map((element, index) => (
                                             <div className="form-group" key={index}>
@@ -817,11 +817,18 @@ function DesignerHeadTask() {
                                                 <input className="form-control" type="number" name="parameter" value={element.parameter || ""} onChange={e => editHandleChangeInspectionParameters(index, e)} />
                                                 <label>Result</label>
                                                 {/* <input className="form-control" type="text" name="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)} /> */}
-                                                <select className="form-control" type="text" name="result" value={element.result || ""} onChange={e => editHandleChangeInspectionParameters(index, e)}>
+                                                {/* <select className="form-control" type="text" name="result" value={element.result || ""} onChange={e => editHandleChangeInspectionParameters(index, e)}>
                                                     <option>Select</option>
                                                     <option>Pass</option>
                                                     <option>Fail</option>
-                                                </select>
+                                                </select> */}
+                                                <input list="parameter_options" id="result" value={element.result || ""} onChange={e => editHandleChangeInspectionParameters(index, e)} className="form-control" type="text" name="result" />
+
+                                                <datalist id="parameter_options">
+                                                    <option>Select</option>
+                                                    <option>Fail</option>
+                                                    <option>Pass</option>
+                                                </datalist>
                                                 {
                                                     index ?
                                                         <button type="button" className="btn btn-danger" onClick={() => removeEditFormFieldsInspectionParameters(index)}>Remove</button>
@@ -849,7 +856,7 @@ function DesignerHeadTask() {
                                                 <option key={transporter.id} value={transporter.id}>{transporter.name}</option>
                                             ))}
                                         </select>
-                                        <label>Download File</label><br/>
+                                        <label>Download File</label><br />
                                         <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${editWorkOrder.transporter_file}`}>Download File</a></button>
                                         {editFormValues4.map((element, index) => (
                                             <div className="form-group" key={index}>
@@ -901,7 +908,7 @@ function DesignerHeadTask() {
                         <div className="card-body">
                             <div className="form-group">
                                 <label >PO-Id</label>
-                                <select defaultValue={singleWorkOrder.purchase_order} className='form-control'>
+                                <select defaultValue={singleWorkOrder.purchase_order} className='form-control' readOnly>
                                     <option>Select</option>
                                     {purchaseOrder === undefined ? [] : purchaseOrder.data.map((purchaseorder) => (
                                         <option disabled={true} key={purchaseorder.id} value={purchaseorder.id}>{purchaseorder.purchase_order}</option>
@@ -912,29 +919,29 @@ function DesignerHeadTask() {
                                 <div class="card card-primary card-outline">
                                     <div class="card-header">
                                         <label >Designer Head</label>
-                                        <select defaultValue={singleWorkOrder.designer_head} name="designer_head" className='form-control'>
+                                        <select defaultValue={singleWorkOrder.designer_head} name="designer_head" className='form-control' readOnly>
                                             <option>Select</option>
                                             {designerHead === undefined ? [] : designerHead.data.map((designerhead) => (
                                                 <option disabled={true} key={designerhead.id} value={designerhead.id}>{designerhead.name}</option>
                                             ))}
                                         </select>
-                                        <label>Download File</label><br/>
+                                        <label>Download File</label><br />
                                         <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.designer_head_file}`}>Download File</a></button>
                                         {readFormValues.map((element, index) => (
                                             <div className="form-group" key={index}>
                                                 <label>Description</label>
-                                                <input className="form-control" type="text" name="description" value={element.description || ""} readOnly/>
+                                                <input className="form-control" type="text" name="description" value={element.description || ""} readOnly />
                                                 <label>Status</label>
                                                 {/* <input className="form-control" type="text" name="status" value={element.status || ""} onChange={e => handleChange(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status" value={element.status || ""}  >
+                                                <select className="form-control" type="text" name="status" value={element.status || ""}  readOnly >
                                                     <option disabled={true}>Select</option>
                                                     <option disabled={true} value="assigned">Assigned</option>
-                                                    <option  disabled={true} value="completed">Completed</option>
+                                                    <option disabled={true} value="completed">Completed</option>
                                                 </select>
-                                                
+
                                             </div>
                                         ))}
-                                        
+
                                         {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
@@ -945,29 +952,29 @@ function DesignerHeadTask() {
                                 <div class="card card-primary card-outline">
                                     <div class="card-header">
                                         <label >Designer</label>
-                                        <select defaultValue={singleWorkOrder.designer} className='form-control'>
+                                        <select defaultValue={singleWorkOrder.designer} className='form-control' readOnly>
                                             <option>Select</option>
                                             {designer === undefined ? [] : designer.data.map((designer) => (
                                                 <option disabled={true} key={designer.id} value={designer.id}>{designer.name}</option>
                                             ))}
                                         </select>
-                                        <label>Download File</label><br/>
+                                        <label>Download File</label><br />
                                         <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.designer_file}`}>Download File</a></button>
                                         {readFormValues1.map((element, index) => (
                                             <div className="form-group" key={index}>
                                                 <label>Description</label>
-                                                <input className="form-control" type="text" name="description1" value={element.description1 || ""}  readOnly/>
+                                                <input className="form-control" type="text" name="description1" value={element.description1 || ""} readOnly />
                                                 <label>Status</label>
                                                 {/* <input className="form-control" type="text" name="status1" value={element.status1 || ""} onChange={e => handleChange1(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status1" value={element.status1 || ""}  >
+                                                <select className="form-control" type="text" name="status1" value={element.status1 || ""}  readOnly >
                                                     <option disabled={true}>Select</option>
-                                                    <option  disabled={true} value="assigned">Assigned</option>
+                                                    <option disabled={true} value="assigned">Assigned</option>
                                                     <option disabled={true} value="completed">Completed</option>
                                                 </select>
-                                                
+
                                             </div>
                                         ))}
-                                        
+
                                         {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
@@ -978,29 +985,29 @@ function DesignerHeadTask() {
                                 <div class="card card-primary card-outline">
                                     <div class="card-header">
                                         <label >Programmer</label>
-                                        <select defaultValue={singleWorkOrder.programmer} className='form-control'>
+                                        <select defaultValue={singleWorkOrder.programmer} className='form-control' readOnly>
                                             <option>Select</option>
                                             {programmer === undefined ? [] : programmer.data.map((programmer) => (
                                                 <option disabled={true} key={programmer.id} value={programmer.id}>{programmer.name}</option>
                                             ))}
                                         </select>
-                                        <label>Download File</label><br/>
+                                        <label>Download File</label><br />
                                         <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.programmer_file}`}>Download File</a></button>
                                         {readFormValues2.map((element, index) => (
                                             <div className="form-group" key={index}>
                                                 <label>Description</label>
-                                                <input className="form-control" type="text" name="description2" value={element.description2 || ""}  readOnly/>
+                                                <input className="form-control" type="text" name="description2" value={element.description2 || ""} readOnly />
                                                 <label>Status</label>
                                                 {/* <input className="form-control" type="text" name="status2" value={element.status2 || ""} onChange={e => handleChange2(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status2" value={element.status2 || ""} >
+                                                <select className="form-control" type="text" name="status2" value={element.status2 || ""} readOnly >
                                                     <option disabled={true}>Select</option>
                                                     <option disabled={true} value="assigned">Assigned</option>
                                                     <option disabled={true} value="completed">Completed</option>
                                                 </select>
-                                                
+
                                             </div>
                                         ))}
-                                        
+
                                         {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
@@ -1011,45 +1018,45 @@ function DesignerHeadTask() {
                                 <div class="card card-primary card-outline">
                                     <div class="card-header">
                                         <label >Machine Operator</label>
-                                        <select defaultValue={singleWorkOrder.machine_operator} className='form-control'>
+                                        <select defaultValue={singleWorkOrder.machine_operator} className='form-control' readOnly>
                                             <option>Select</option>
                                             {machineOperator === undefined ? [] : machineOperator.data.map((machineoperator) => (
                                                 <option disabled={true} key={machineoperator.id} value={machineoperator.id}>{machineoperator.name}</option>
                                             ))}
                                         </select>
-                                        <label>Download File</label><br/>
+                                        <label>Download File</label><br />
                                         <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.machine_operator_file}`}>Download File</a></button>
                                         {readFormValues3.map((element, index) => (
                                             <div className="form-group" key={index}>
                                                 <label>Description</label>
-                                                <input className="form-control" type="text" name="description3" value={element.description3 || ""} readOnly/>
+                                                <input className="form-control" type="text" name="description3" value={element.description3 || ""} readOnly />
                                                 <label>Status</label>
                                                 {/* <input className="form-control" type="text" name="status3" value={element.status3 || ""} onChange={e => handleChange3(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status3" value={element.status3 || ""} >
+                                                <select className="form-control" type="text" name="status3" value={element.status3 || ""} readOnly >
                                                     <option disabled={true}>Select</option>
                                                     <option disabled={true} value="assigned">Assigned</option>
                                                     <option disabled={true} value="completed">Completed</option>
                                                 </select>
-                                                
+
                                             </div>
                                         ))}
-                                       
+
                                         <hr />
                                         {readInspectionParametersFormValues.map((element, index) => (
                                             <div className="form-group" key={index}>
                                                 <label>Parameter</label>
-                                                <input className="form-control" type="number" name="parameter" value={element.parameter || ""} readOnly/>
+                                                <input className="form-control" type="number" name="parameter" value={element.parameter || ""} readOnly />
                                                 <label>Result</label>
-                                                {/* <input className="form-control" type="text" name="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)} /> */}
-                                                <select className="form-control" type="text" name="result" value={element.result || ""} >
+                                                <input className="form-control" type="text" name="result" value={element.result || ""} readOnly/>
+                                                {/* <select className="form-control" type="text" name="result" value={element.result || ""} >
                                                     <option disabled={true}>Select</option>
                                                     <option disabled={true}>Pass</option>
                                                     <option disabled={true}>Fail</option>
-                                                </select>
-                                               
+                                                </select> */}
+
                                             </div>
                                         ))}
-                                        
+
                                         {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
@@ -1060,29 +1067,29 @@ function DesignerHeadTask() {
                                 <div class="card card-primary card-outline">
                                     <div class="card-header">
                                         <label >Transporter</label>
-                                        <select defaultValue={singleWorkOrder.transporter} className='form-control'>
+                                        <select defaultValue={singleWorkOrder.transporter} className='form-control' readOnly>
                                             <option>Select</option>
                                             {transporter === undefined ? [] : transporter.data.map((transporter) => (
                                                 <option disabled={true} key={transporter.id} value={transporter.id}>{transporter.name}</option>
                                             ))}
                                         </select>
-                                        <label>Download File</label><br/>
+                                        <label>Download File</label><br />
                                         <button className='btn btn-success'><a href={`http://localhost/girnar_backend/assets/images/${singleWorkOrder.transporter_file}`}>Download File</a></button>
                                         {readFormValues4.map((element, index) => (
                                             <div className="form-group" key={index}>
                                                 <label>Description</label>
-                                                <input className="form-control" type="text" name="description4" value={element.description4 || ""} readOnly/>
+                                                <input className="form-control" type="text" name="description4" value={element.description4 || ""} readOnly />
                                                 <label>Status</label>
                                                 {/* <input className="form-control" type="text" name="status4" value={element.status4 || ""} onChange={e => handleChange4(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status4" value={element.status4 || ""}>
+                                                <select className="form-control" type="text" name="status4" value={element.status4 || ""} readOnly>
                                                     <option disabled={true}>Select</option>
                                                     <option disabled={true} value="assigned">Assigned</option>
                                                     <option disabled={true} value="completed">Completed</option>
                                                 </select>
-                                               
+
                                             </div>
                                         ))}
-                                        
+
                                         {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
 
@@ -1091,7 +1098,7 @@ function DesignerHeadTask() {
                             </div>
                         </div>
                         {/* /.card-body */}
-                        
+
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
@@ -1285,11 +1292,13 @@ function DesignerHeadTask() {
                                                                 <input className="form-control" type="number" name="parameter" value={element.parameter || ""} onChange={e => handleChangeInspectionParameters(index, e)} />
                                                                 <label>Result</label>
                                                                 {/* <input className="form-control" type="text" name="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)} /> */}
-                                                                <select className="form-control" type="text" name="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)}>
+                                                                <input list="parameter_options" id="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)} className="form-control" type="text" name="result" />
+
+                                                                <datalist id="parameter_options">
                                                                     <option>Select</option>
-                                                                    <option>Pass</option>
                                                                     <option>Fail</option>
-                                                                </select>
+                                                                    <option>Pass</option>
+                                                                </datalist>
                                                                 {
                                                                     index ?
                                                                         <button type="button" className="btn btn-danger" onClick={() => removeFormFieldsInspectionParameters(index)}>Remove</button>
@@ -1317,7 +1326,7 @@ function DesignerHeadTask() {
                                                                 <option key={transporter.id} value={transporter.id}>{transporter.name}</option>
                                                             ))}
                                                         </select>
-                                                        
+
                                                         <label>Transporter File</label>
                                                         <input onChange={onTransporterFileChange} type="file" className='form-control' name="transporter_file" />
                                                         {formValues4.map((element, index) => (
@@ -1390,7 +1399,7 @@ function DesignerHeadTask() {
                                     </div>
                                     <div class="card-body">
                                         <div style={{ height: 300, width: '100%' }}>
-                                            <DataGrid rows={rows===undefined?[]:rows} columns={columns} components={{
+                                            <DataGrid rows={rows === undefined ? [] : rows} columns={columns} components={{
                                                 Toolbar: GridToolbar,
                                             }} />
                                         </div>

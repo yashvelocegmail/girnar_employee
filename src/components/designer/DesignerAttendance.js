@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import Header from '../../Header'
 import Menu from '../../Menu'
+import { api_url } from '../ApiUrl';
 // import Timer from './Timer/Timer';
 
 function DesignerAttendance() {
@@ -26,7 +27,7 @@ function DesignerAttendance() {
         setTodaydate(todaydate.getDate() + '-' + (todaydate.getMonth() + 1) + '-' + todaydate.getFullYear());
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        axios.post("http://localhost/girnar_backend/api/read_check_approval.php", { date: date, employee: localStorage.getItem('employee_id') })
+        axios.post(api_url+"read_check_approval.php", { date: date, employee: localStorage.getItem('employee_id') })
             .then((res) => {
                 setEmployeeAttendance(res.data)
                 //console.log(res.data.data[0].check_out)
@@ -82,7 +83,7 @@ function DesignerAttendance() {
         var check_in = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         
         var employee = localStorage.getItem('employee_id');
-        axios.post("http://localhost/girnar_backend/api/employee_check_in.php", { date: date, check_in: check_in, employee: employee })
+        axios.post(api_url+"employee_check_in.php", { date: date, check_in: check_in, employee: employee })
             .then((res) => {
                 const obj = new Date();
                 localStorage.seconds = obj.getHours() * 60 * 60 + obj.getMinutes() * 60 + obj.getSeconds()
@@ -125,7 +126,7 @@ function DesignerAttendance() {
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var check_out = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         var employee = localStorage.getItem('employee_id');
-        axios.post("http://localhost/girnar_backend/api/employee_check_out.php", { date: date, check_in:checkIn, check_out: check_out, employee: employee })
+        axios.post(api_url+"employee_check_out.php", { date: date, check_in:checkIn, check_out: check_out, employee: employee })
             .then((res) => {
                 //timer
                 // setIsStopTimer(true);

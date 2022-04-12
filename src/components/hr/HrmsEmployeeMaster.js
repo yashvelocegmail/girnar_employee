@@ -142,7 +142,7 @@ function HrmsEmployeeMaster() {
 
         // <h1>Hello</h1>
         
-        axios.post('http://localhost/girnar_backend/api/create_employee_user.php', formData)
+        axios.post(api_url+'create_employee_user.php', formData)
             .then(() => {
                 toast.configure();
                 toast.success('Successfully Inserted');
@@ -254,7 +254,7 @@ function HrmsEmployeeMaster() {
         modalFormData.append('account_no', modalEmployee.account_no);
         modalFormData.append('photo', modalEmployee.photo);
         modalFormData.append('salary', modalEmployee.salary);
-        axios.post('http://localhost/girnar_backend/api/update_employee_user.php', modalFormData)
+        axios.post(api_url+'update_employee_user.php', modalFormData)
             .then(() => {
                 axios.get(api_url+"read_employee_user.php")
                     .then((res) => {
@@ -266,7 +266,7 @@ function HrmsEmployeeMaster() {
         handleClose();
     }
     const onDelete = (row) => {
-        axios.post('http://localhost/girnar_backend/api/delete_employee_user.php', { id: row })
+        axios.post(api_url+'delete_employee_user.php', { id: row })
             .then(() => {
                 axios.get(api_url+"read_employee_user.php")
                     .then((res) => {

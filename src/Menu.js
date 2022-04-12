@@ -24,6 +24,8 @@ function Menu() {
     const [designerheaddrop9, setdesignerheadDrop9] = useState(false);
     const [designerheaddrop10, setdesignerheadDrop10] = useState(false);
     const [designerheaddrop11, setdesignerheadDrop11] = useState(false);
+    const [designerheaddrop12, setdesignerheadDrop12] = useState(false);
+    const [designerheaddrop13, setdesignerheadDrop13] = useState(false);
 
     const [hrdrop1, sethrDrop1] = useState(false);
 
@@ -38,6 +40,7 @@ function Menu() {
 
     const [transporterdrop1, settransporterDrop1] = useState(false);
     const [transporterdrop2, settransporterDrop2] = useState(false);
+    const [transporterdrop3, settransporterDrop3] = useState(false);
 
     const [stockmanagerdrop1, setstockmanagerDrop1] = useState(false);
     const [stockmanagerdrop2, setstockmanagerDrop2] = useState(false);
@@ -48,6 +51,7 @@ function Menu() {
     const [superadmindrop1, setsuperadminDrop1] = useState(false);
     const [superadmindrop2, setsuperadminDrop2] = useState(false);
 
+    //user=crm
     if (localStorage.getItem("user_type") === "crm") {
         return (
             <div>
@@ -87,7 +91,7 @@ function Menu() {
                                 <li class="nav-item menu-open">
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <Link to="" className="nav-link">
+                                            <Link to="/crm_dashboard" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Dashboard</p>
                                             </Link>
@@ -341,6 +345,7 @@ function Menu() {
 
         )
     }
+    //user=designer_head
     else if (localStorage.getItem("user_type") === "designer_head") {
         return (
             <div>
@@ -380,7 +385,7 @@ function Menu() {
                                 <li class="nav-item menu-open">
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <Link to="" className="nav-link">
+                                            <Link to="/designer_head_dashboard" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Dashboard</p>
                                             </Link>
@@ -650,6 +655,48 @@ function Menu() {
                                         </li>
                                     </ul> : null}
                                 </li>
+                                <li class="nav-header">Transportation</li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop12(!designerheaddrop12) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Transportation
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop12 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_transportation" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Transportation</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-header">Reports</li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop13(!designerheaddrop13) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Reports
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop13 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_inspection_report" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Inspection Report</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
                             </ul>
                         </nav>
                         {/* /.sidebar-menu */}
@@ -660,6 +707,7 @@ function Menu() {
 
         )
     }
+    //user=hr
     else if (localStorage.getItem("user_type") === "hr") {
         return (
             <div>
@@ -699,7 +747,7 @@ function Menu() {
                                 <li class="nav-item menu-open">
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <Link to="" className="nav-link">
+                                            <Link to="/hrms_dashboard" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Dashboard</p>
                                             </Link>
@@ -757,6 +805,7 @@ function Menu() {
 
         )
     }
+    //user=designer
     else if (localStorage.getItem("user_type") === "designer") {
         return (
             <div>
@@ -796,7 +845,7 @@ function Menu() {
                                 <li class="nav-item menu-open">
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <Link to="" className="nav-link">
+                                            <Link to="/designer_dashboard" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Dashboard</p>
                                             </Link>
@@ -859,6 +908,7 @@ function Menu() {
 
         )
     }
+    //user=programmer
     else if (localStorage.getItem("user_type") === "programmer") {
         return (
             <div>
@@ -898,7 +948,7 @@ function Menu() {
                                 <li class="nav-item menu-open">
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <Link to="" className="nav-link">
+                                            <Link to="/programmer_dashboard" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Dashboard</p>
                                             </Link>
@@ -961,6 +1011,7 @@ function Menu() {
 
         )
     }
+    //user=machine_operator
     else if (localStorage.getItem("user_type") === "machine_operator") {
         return (
             <div>
@@ -1000,7 +1051,7 @@ function Menu() {
                                 <li class="nav-item menu-open">
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <Link to="" className="nav-link">
+                                            <Link to="/machine_operator_dashboard" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Dashboard</p>
                                             </Link>
@@ -1063,7 +1114,7 @@ function Menu() {
 
         )
     }
-
+    //user=transporter
     else if (localStorage.getItem("user_type") === "transporter") {
         return (
             <div>
@@ -1103,7 +1154,7 @@ function Menu() {
                                 <li class="nav-item menu-open">
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <Link to="" className="nav-link">
+                                            <Link to="/transporter_dashboard" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Dashboard</p>
                                             </Link>
@@ -1145,13 +1196,34 @@ function Menu() {
                                         padding: '0'
                                     }}>
                                         <li class="nav-item">
-                                            <Link to="machine_operator_attendance" className="nav-link">
+                                            <Link to="transporter_leave_tracker" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Attendance</p>
                                             </Link>
-                                            <Link to="machine_operator_leave_tracker" className="nav-link">
+                                            <Link to="transporter_leave_tracker" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Leave Tracker</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-header">Transportation</li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' id="dropdown2" onClick={() => { settransporterDrop3(!transporterdrop3) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Transportation
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {transporterdrop3 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="transporter_transportation" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Transportation</p>
                                             </Link>
                                         </li>
                                     </ul> : null}
@@ -1166,6 +1238,7 @@ function Menu() {
 
         )
     }
+    //user=stock_manager
     else if (localStorage.getItem("user_type") === "stock_manager") {
         return (
             <div>
@@ -1205,7 +1278,7 @@ function Menu() {
                                 <li class="nav-item menu-open">
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <Link to="" className="nav-link">
+                                            <Link to="/stock_manager_dashboard" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Dashboard</p>
                                             </Link>
@@ -1268,6 +1341,7 @@ function Menu() {
 
         )
     }
+    //user=purchase_manager
     else if (localStorage.getItem("user_type") === "purchase_manager") {
         return (
             <div>
@@ -1307,7 +1381,7 @@ function Menu() {
                                 <li class="nav-item menu-open">
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <Link to="" className="nav-link">
+                                            <Link to="/purchase_manager_dashboard" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Dashboard</p>
                                             </Link>
@@ -1370,6 +1444,7 @@ function Menu() {
 
         )
     }
+    //user=super_admin
     else if (localStorage.getItem("user_type") === "super_admin") {
         return (
             <div>
@@ -1409,19 +1484,19 @@ function Menu() {
                                 <li class="nav-item menu-open">
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <Link to="" className="nav-link">
+                                            <Link to="/super_admin_dashboard" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Dashboard</p>
                                             </Link>
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-header">Available Stock</li>
+                                <li class="nav-header">Work Order</li>
                                 <li class="nav-item">
                                     <p className='navlinkcustom' onClick={() => { setsuperadminDrop1(!superadmindrop1) }}>
                                         <i class="nav-icon far fa-envelope"></i>
                                         <p className='navitemcustom'>
-                                            Vendor Master
+                                            Work Order
                                             {/* <i class="fas fa-angle-left right"></i> */}
                                         </p>
                                     </p>
@@ -1442,7 +1517,7 @@ function Menu() {
                                     <p className='navlinkcustom' id="dropdown1" onClick={() => { setsuperadminDrop2(!superadmindrop2) }}>
                                         <i class="nav-icon far fa-envelope"></i>
                                         <p className='navitemcustom'>
-                                            HRMS
+                                            Stock
                                             {/* <i class="fas fa-angle-left right"></i> */}
                                         </p>
                                     </p>

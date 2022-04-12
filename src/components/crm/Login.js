@@ -53,7 +53,7 @@ function Login() {
           }
           else if(response.data.data[0].user_type==="hr")
           {
-            history.push("/hr_dashboard")
+            history.push("/hrms_dashboard")
           }
           else if(response.data.data[0].user_type==="machine_operator")
           {

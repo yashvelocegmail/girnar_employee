@@ -130,9 +130,9 @@ function DesignerHeadShift() {
     }
     const onModalFormSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost/girnar_backend/api/update_shift.php", editShift)
+        axios.post(api_url+"update_shift.php", editShift)
             .then(() => {
-                axios.get("http://localhost/girnar_backend/api/read_shift.php")
+                axios.get(api_url+"read_shift.php")
                     .then((res) => {
                         setReadShift(res.data)
                     })
@@ -142,9 +142,9 @@ function DesignerHeadShift() {
         handleClose();
     }
     const onDelete = (id) => {
-        axios.post("http://localhost/girnar_backend/api/delete_shift.php", { id: id })
+        axios.post(api_url+"delete_shift.php", { id: id })
             .then(() => {
-                axios.get("http://localhost/girnar_backend/api/read_shift.php")
+                axios.get(api_url+"read_shift.php")
                     .then((res) => {
                         setReadShift(res.data)
                     })

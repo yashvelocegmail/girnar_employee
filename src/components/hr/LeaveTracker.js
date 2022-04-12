@@ -112,7 +112,7 @@ function DesignerLeaveTracker() {
         handleClose();
     }
     const onDelete=(rowid)=>{
-        axios.post('http://localhost/girnar_backend/api/delete_leave_tracker_hr.php',{id:rowid})
+        axios.post(api_url+'delete_leave_tracker_hr.php',{id:rowid})
         .then(()=>{
             axios.post(api_url+"read_leave_tracker_hr.php")
             .then((res) => {
