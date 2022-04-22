@@ -22,7 +22,7 @@ function DesignerHeadTask() {
     const [formValues2, setFormValues2] = useState([{ description2: "", status2: "" }])
     const [formValues3, setFormValues3] = useState([{ description3: "", status3: "" }])
     const [formValues4, setFormValues4] = useState([{ description4: "", status4: "" }])
-    const [inspectionParametersFormValues, setInspectionParametersFormValues] = useState([{ parameter: 0, result: "" }])
+    const [inspectionParametersFormValues, setInspectionParametersFormValues] = useState([{ parameter: 0, result: "initial", reason: "" }])
     let handleChange = (i, e) => {
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
@@ -76,7 +76,7 @@ function DesignerHeadTask() {
         setFormValues4([...formValues4, { description4: "", status4: "" }])
     }
     let addFormFieldsInspectionParameters = () => {
-        setInspectionParametersFormValues([...inspectionParametersFormValues, { parameter: 0, result: "" }])
+        setInspectionParametersFormValues([...inspectionParametersFormValues, { parameter: 0, result: "initial" }])
     }
     let removeFormFields = (i) => {
         let newFormValues = [...formValues];
@@ -114,7 +114,7 @@ function DesignerHeadTask() {
     const [editFormValues2, setEditFormValues2] = useState([{ description2: "", status2: "" }])
     const [editFormValues3, setEditFormValues3] = useState([{ description3: "", status3: "" }])
     const [editFormValues4, setEditFormValues4] = useState([{ description4: "", status4: "" }])
-    const [editInspectionParametersFormValues, setEditInspectionParametersFormValues] = useState([{ parameter: "", result: "" }])
+    const [editInspectionParametersFormValues, setEditInspectionParametersFormValues] = useState([{ parameter: "", result: "", reason: "" }])
     let editHandleChange = (i, e) => {
         let newFormValues = [...editFormValues];
         newFormValues[i][e.target.name] = e.target.value;
@@ -212,7 +212,7 @@ function DesignerHeadTask() {
     const [readFormValues2, setReadFormValues2] = useState([{ description2: "", status2: "" }])
     const [readFormValues3, setReadFormValues3] = useState([{ description3: "", status3: "" }])
     const [readFormValues4, setReadFormValues4] = useState([{ description4: "", status4: "" }])
-    const [readInspectionParametersFormValues, setReadInspectionParametersFormValues] = useState([{ parameter: "", result: "" }])
+    const [readInspectionParametersFormValues, setReadInspectionParametersFormValues] = useState([{ parameter: "", result: "", reason: "" }])
 
     //Get data for options table
     const [purchaseOrder, setPurchaseOrder] = useState();
@@ -825,10 +825,13 @@ function DesignerHeadTask() {
                                                 <input list="parameter_options" id="result" value={element.result || ""} onChange={e => editHandleChangeInspectionParameters(index, e)} className="form-control" type="text" name="result" />
 
                                                 <datalist id="parameter_options">
-                                                    <option>Select</option>
-                                                    <option>Fail</option>
-                                                    <option>Pass</option>
+                                                    <option>not_ok</option>
+                                                    <option>ok</option>
                                                 </datalist>
+                                                {element.result === "ok" ? "" :
+                                                        element.result === "initial" ? "" :
+                                                            <><label>Reason</label>
+                                                                <input list="reason" id="reason" value={element.reason || ""} onChange={e => editHandleChangeInspectionParameters(index, e)} className="form-control" type="text" name="reason" /></>}
                                                 {
                                                     index ?
                                                         <button type="button" className="btn btn-danger" onClick={() => removeEditFormFieldsInspectionParameters(index)}>Remove</button>
@@ -933,7 +936,7 @@ function DesignerHeadTask() {
                                                 <input className="form-control" type="text" name="description" value={element.description || ""} readOnly />
                                                 <label>Status</label>
                                                 {/* <input className="form-control" type="text" name="status" value={element.status || ""} onChange={e => handleChange(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status" value={element.status || ""}  readOnly >
+                                                <select className="form-control" type="text" name="status" value={element.status || ""} readOnly >
                                                     <option disabled={true}>Select</option>
                                                     <option disabled={true} value="assigned">Assigned</option>
                                                     <option disabled={true} value="completed">Completed</option>
@@ -966,7 +969,7 @@ function DesignerHeadTask() {
                                                 <input className="form-control" type="text" name="description1" value={element.description1 || ""} readOnly />
                                                 <label>Status</label>
                                                 {/* <input className="form-control" type="text" name="status1" value={element.status1 || ""} onChange={e => handleChange1(index, e)} /> */}
-                                                <select className="form-control" type="text" name="status1" value={element.status1 || ""}  readOnly >
+                                                <select className="form-control" type="text" name="status1" value={element.status1 || ""} readOnly >
                                                     <option disabled={true}>Select</option>
                                                     <option disabled={true} value="assigned">Assigned</option>
                                                     <option disabled={true} value="completed">Completed</option>
@@ -1047,13 +1050,21 @@ function DesignerHeadTask() {
                                                 <label>Parameter</label>
                                                 <input className="form-control" type="number" name="parameter" value={element.parameter || ""} readOnly />
                                                 <label>Result</label>
-                                                <input className="form-control" type="text" name="result" value={element.result || ""} readOnly/>
+                                                {/* <input className="form-control" type="text" name="result" value={element.result || ""} readOnly /> */}
                                                 {/* <select className="form-control" type="text" name="result" value={element.result || ""} >
                                                     <option disabled={true}>Select</option>
                                                     <option disabled={true}>Pass</option>
                                                     <option disabled={true}>Fail</option>
                                                 </select> */}
-
+                                                <input list="parameter_options" id="result" value={element.result || ""} className="form-control" type="text" name="result" readOnly />
+                                                <datalist id="parameter_options">
+                                                    <option>not_ok</option>
+                                                    <option>ok</option>
+                                                </datalist>
+                                                {element.result === "ok" ? "" :
+                                                    element.result === "initial" ? "" :
+                                                        <><label>Reason</label>
+                                                            <input list="reason" id="reason" value={element.reason || ""} className="form-control" type="text" name="reason" readOnly /></>}
                                             </div>
                                         ))}
 
@@ -1290,9 +1301,9 @@ function DesignerHeadTask() {
                                                             <div className="form-group" key={index}>
                                                                 <label>Parameter</label>
                                                                 <input className="form-control" type="number" name="parameter" value={element.parameter || ""} onChange={e => handleChangeInspectionParameters(index, e)} />
-                                                                <label>Result</label>
+                                                                {/* <label>Result</label> */}
                                                                 {/* <input className="form-control" type="text" name="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)} /> */}
-                                                                <input list="parameter_options" id="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)} className="form-control" type="text" name="result" />
+                                                                {/* <input list="parameter_options" id="result" value={element.result || ""} onChange={e => handleChangeInspectionParameters(index, e)} className="form-control" type="text" name="result" />
 
                                                                 <datalist id="parameter_options">
                                                                     <option>Select</option>
@@ -1303,7 +1314,7 @@ function DesignerHeadTask() {
                                                                     index ?
                                                                         <button type="button" className="btn btn-danger" onClick={() => removeFormFieldsInspectionParameters(index)}>Remove</button>
                                                                         : null
-                                                                }
+                                                                } */}
                                                             </div>
                                                         ))}
                                                         <div className="button-section">

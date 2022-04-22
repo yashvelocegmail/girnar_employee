@@ -163,28 +163,33 @@ function ProgrammerProduction() {
         designer_head_approval_by_crm_operator: "",
         designer_head_approval_by_super_admin: "",
         designer_head_file: "",
+        designer_head_comment: "",
         designer: "",
         designer_name: "",
         designer_description_status: [],
         designer_approval_by_designer_head: "",
         designer_file: "",
+        designer_comment: "",
         programmer: "",
         rogrammer_name: "",
         programmer_description_status: [],
         programmer_approval_by_designer: "",
         programmer_approval_by_designer_head: "",
         programmer_file: "",
+        programmer_comment: "",
         machine_operator: "",
         machine_operator_name: "",
         machine_operator_description_status: "",
         machine_operator_approval_by_designer: "",
         machine_operator_file: "",
         machine_operator_parameter: "",
+        machine_operator_comment: "",
         transporter: "",
         transporter_name: "",
         transporter_description_status: "",
         transporter_approval_by_crm_operator: "",
         transporter_file: "",
+        transporter_comment: ""
     })
     const [singleWorkOrder, setSingleWorkOrder] = useState({
         id: "",
@@ -196,28 +201,33 @@ function ProgrammerProduction() {
         designer_head_approval_by_crm_operator: "",
         designer_head_approval_by_super_admin: "",
         designer_head_file: "",
+        designer_head_comment: "",
         designer: "",
         designer_name: "",
         designer_description_status: [],
         designer_approval_by_designer_head: "",
         designer_file: "",
+        designer_comment: "",
         programmer: "",
         rogrammer_name: "",
         programmer_description_status: [],
         programmer_approval_by_designer: "",
         programmer_approval_by_designer_head: "",
         programmer_file: "",
+        programmer_comment: "",
         machine_operator: "",
         machine_operator_name: "",
         machine_operator_description_status: "",
         machine_operator_approval_by_designer: "",
         machine_operator_file: "",
         machine_operator_parameter: "",
+        machine_operator_comment: "",
         transporter: "",
         transporter_name: "",
         transporter_description_status: "",
         transporter_approval_by_crm_operator: "",
         transporter_file: "",
+        transporter_comment: ""
     })
     const [editWorkOrder, setEditWorkOrder] = useState({
         id: "",
@@ -229,28 +239,33 @@ function ProgrammerProduction() {
         designer_head_approval_by_crm_operator: "",
         designer_head_approval_by_super_admin: "",
         designer_head_file: "",
+        designer_head_comment: "",
         designer: "",
         designer_name: "",
         designer_description_status: [],
         designer_approval_by_designer_head: "",
         designer_file: "",
+        designer_comment: "",
         programmer: "",
         rogrammer_name: "",
         programmer_description_status: [],
         programmer_approval_by_designer: "",
         programmer_approval_by_designer_head: "",
         programmer_file: "",
+        programmer_comment: "",
         machine_operator: "",
         machine_operator_name: "",
         machine_operator_description_status: "",
         machine_operator_approval_by_designer: "",
         machine_operator_file: "",
         machine_operator_parameter: "",
+        machine_operator_comment: "",
         transporter: "",
         transporter_name: "",
         transporter_description_status: "",
         transporter_approval_by_crm_operator: "",
         transporter_file: "",
+        transporter_comment: ""
     })
     //Read
     const [readFormValues, setReadFormValues] = useState([{ description: "", status: "" }])
@@ -268,19 +283,24 @@ function ProgrammerProduction() {
             designer_head: row.designer_head,
             designer_head_description_status: JSON.parse(row.designer_head_description_status.slice(1, -1)),
             designer_head_file: row.designer_head_file,
+            designer_head_comment: row.designer_head_comment,
             designer: row.designer,
             designer_description_status: JSON.parse(row.designer_description_status.slice(1, -1)),
             designer_file: row.designer_file,
+            designer_comment: row.designer_comment,
             programmer: row.programmer,
             programmer_description_status: JSON.parse(row.programmer_description_status.slice(1, -1)),
             programmer_file: row.programmer_file,
+            programmer_comment: row.programmer_comment,
             machine_operator: row.machine_operator,
             machine_operator_description_status: JSON.parse(row.machine_operator_description_status.slice(1, -1)),
             machine_operator_parameter: JSON.parse(row.machine_operator_parameter.slice(1, -1)),
             machine_operator_file: row.machine_operator_file,
+            machine_operator_comment: row.machine_operator_comment,
             transporter: row.transporter,
             transporter_description_status: JSON.parse(row.transporter_description_status.slice(1, -1)),
-            transporter_file: row.transporter_file
+            transporter_file: row.transporter_file,
+            transporter_comment: row.transporter_comment
 
         })
         setReadFormValues(JSON.parse(row.designer_head_description_status.slice(1, -1)))
@@ -303,19 +323,24 @@ function ProgrammerProduction() {
             designer_head: row.designer_head,
             designer_head_description_status: JSON.parse(row.designer_head_description_status.slice(1, -1)),
             designer_head_file: row.designer_head_file,
+            designer_head_comment: row.designer_head_comment,
             designer: row.designer,
             designer_description_status: JSON.parse(row.designer_description_status.slice(1, -1)),
             designer_file: row.designer_file,
+            designer_comment: row.designer_comment,
             programmer: row.programmer,
             programmer_description_status: JSON.parse(row.programmer_description_status.slice(1, -1)),
             programmer_file: row.programmer_file,
+            programmer_comment: row.programmer_comment,
             machine_operator: row.machine_operator,
             machine_operator_description_status: JSON.parse(row.machine_operator_description_status.slice(1, -1)),
             machine_operator_parameter: JSON.parse(row.machine_operator_parameter.slice(1, -1)),
             machine_operator_file: row.machine_operator_file,
+            machine_operator_comment: row.machine_operator_comment,
             transporter: row.transporter,
             transporter_description_status: JSON.parse(row.transporter_description_status.slice(1, -1)),
-            transporter_file: row.transporter_file
+            transporter_file: row.transporter_file,
+            transporter_comment: row.transporter_comment
 
         })
         setEditFormValues(JSON.parse(row.designer_head_description_status.slice(1, -1)))
@@ -335,12 +360,15 @@ function ProgrammerProduction() {
     const onEditDesignerChange = (e) => {
         setEditWorkOrder({ ...editWorkOrder, designer: e.target.value })
     }
-    
+
     const onEditProgrammerChange = (e) => {
         setEditWorkOrder({ ...editWorkOrder, programmer: e.target.value })
     }
-    const onEditProgrammerFileChange=(e)=>{
-        setEditWorkOrder({...editWorkOrder,programmer_file:e.target.files[0]})
+    const onEditProgrammerFileChange = (e) => {
+        setEditWorkOrder({ ...editWorkOrder, programmer_file: e.target.files[0] })
+    }
+    const onEditProgrammerCommentChange = (e) => {
+        setEditWorkOrder({ ...editWorkOrder, programmer_comment: e.target.value })
     }
     const onEditMachineOperatorChange = (e) => {
         setEditWorkOrder({ ...editWorkOrder, machine_operator: e.target.value })
@@ -357,19 +385,24 @@ function ProgrammerProduction() {
         modalFormData.append('designer_head', editWorkOrder.designer_head);
         modalFormData.append('designer_head_description_status', JSON.stringify(editWorkOrder.designer_head_description_status));
         modalFormData.append('designer_head_file', editWorkOrder.designer_head_file);
+        modalFormData.append('designer_head_comment', editWorkOrder.designer_head_comment);
         modalFormData.append('designer', editWorkOrder.designer);
         modalFormData.append('designer_description_status', JSON.stringify(editWorkOrder.designer_description_status));
         modalFormData.append('designer_file', editWorkOrder.designer_file);
+        modalFormData.append('designer_comment', editWorkOrder.designer_comment);
         modalFormData.append('programmer', editWorkOrder.programmer);
         modalFormData.append('programmer_description_status', JSON.stringify(editWorkOrder.programmer_description_status));
         modalFormData.append('programmer_file', editWorkOrder.programmer_file);
+        modalFormData.append('programmer_comment', editWorkOrder.programmer_comment);
         modalFormData.append('machine_operator', editWorkOrder.machine_operator);
         modalFormData.append('machine_operator_description_status', JSON.stringify(editWorkOrder.machine_operator_description_status));
         modalFormData.append('machine_operator_parameter', JSON.stringify(editWorkOrder.machine_operator_parameter));
         modalFormData.append('machine_operator_file', editWorkOrder.machine_operator_file);
+        modalFormData.append('machine_operator_comment', editWorkOrder.machine_operator_comment);
         modalFormData.append('transporter', editWorkOrder.transporter);
         modalFormData.append('transporter_description_status', JSON.stringify(editWorkOrder.transporter_description_status));
         modalFormData.append('transporter_file', editWorkOrder.transporter_file);
+        modalFormData.append('transporter_comment', editWorkOrder.transporter_comment);
         const config = {
             headers: { 'content-type': 'application/json' }
         }
@@ -518,7 +551,7 @@ function ProgrammerProduction() {
                                                         <option disabled={true}>Select</option>
                                                         <option disabled={true} value="assigned">Assigned</option>
                                                         <option disabled={true} value="completed">Completed</option>
-                                                        
+
                                                     </select>
                                                     {/* {
                                                         index ?
@@ -575,7 +608,8 @@ function ProgrammerProduction() {
                                             </div> */}
                                             {/* <label >File Uploaded</label>
                                                     <img src="https://picsum.photos/200/35" alt="File" /> */}
-
+                                            <label>Comment</label>
+                                            <input type="text" name="programmer_comment" className='form-control' defaultValue={editWorkOrder.programmer_comment} onChange={onEditProgrammerCommentChange} />
                                         </div>
                                     </div>
                                 </div>
@@ -594,7 +628,7 @@ function ProgrammerProduction() {
                                             {editFormValues3.map((element, index) => (
                                                 <div className="form-group" key={index}>
                                                     <label>Description</label>
-                                                    <input className="form-control" type="text" name="description3" value={element.description3 || ""} onChange={e => editHandleChange3(index, e)} readOnly/>
+                                                    <input className="form-control" type="text" name="description3" value={element.description3 || ""} onChange={e => editHandleChange3(index, e)} readOnly />
                                                     <label>Status</label>
                                                     {/* <input className="form-control" type="text" name="status3" value={element.status3 || ""} onChange={e => handleChange3(index, e)} /> */}
                                                     <select className="form-control" type="text" name="status3" value={element.status3 || ""} onChange={e => editHandleChange3(index, e)} readOnly>

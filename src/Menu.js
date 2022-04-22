@@ -26,6 +26,7 @@ function Menu() {
     const [designerheaddrop11, setdesignerheadDrop11] = useState(false);
     const [designerheaddrop12, setdesignerheadDrop12] = useState(false);
     const [designerheaddrop13, setdesignerheadDrop13] = useState(false);
+    const [designerheaddrop14, setdesignerheadDrop14] = useState(false);
 
     const [hrdrop1, sethrDrop1] = useState(false);
 
@@ -418,6 +419,10 @@ function Menu() {
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Material Grade Master</p>
                                             </Link>
+                                            <Link to="designer_head_site_master" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Site Master</p>
+                                            </Link>
                                         </li>
                                     </ul> : null}
                                 </li>
@@ -693,6 +698,35 @@ function Menu() {
                                             <Link to="designer_head_inspection_report" className="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Inspection Report</p>
+                                            </Link>
+                                        </li>
+                                    </ul> : null}
+                                </li>
+                                <li class="nav-header">Inward Outward</li>
+                                <li class="nav-item">
+                                    <p className='navlinkcustom' onClick={() => { setdesignerheadDrop14(!designerheaddrop14) }}>
+                                        <i class="nav-icon far fa-envelope"></i>
+                                        <p className='navitemcustom'>
+                                            Inward Outward
+                                            {/* <i class="fas fa-angle-left right"></i> */}
+                                        </p>
+                                    </p>
+                                    {designerheaddrop14 === true ? <ul class="nav nav-treeview" style={{
+                                        display: 'block', listStyle: 'none',
+                                        padding: '0'
+                                    }}>
+                                        <li class="nav-item">
+                                            <Link to="designer_head_inward_outward_third_party" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Inward Outward Third Party</p>
+                                            </Link>
+                                            <Link to="designer_head_inward_outward_site" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Inward Outward Site</p>
+                                            </Link>
+                                            <Link to="designer_head_inward_outward_third_party_site_product" className="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Inward Outward</p>
                                             </Link>
                                         </li>
                                     </ul> : null}

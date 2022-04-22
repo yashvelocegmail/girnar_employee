@@ -87,6 +87,10 @@ import DesignerHeadEmployeeShift from './components/designer_head/DesignerHeadEm
 import DesignerHeadTransportation from './components/designer_head/DesignerHeadTransportation';
 import TransporterTransportation from './components/transporter/TransporterTransportation';
 import DesignerHeadInspectionReport from './components/designer_head/DesignerHeadInspectionReport';
+import DesignerHeadInwardOutwardThirdParty from './components/designer_head/DesignerHeadInwardOutwardThirdParty';
+import DesignerHeadSiteMaster from './components/designer_head/DesignerHeadSiteMaster';
+import DesignerHeadInwardOutwardSite from './components/designer_head/DesignerHeadInwardOutwardSite';
+import DesignerHeadInwardOutwardThirdPartySiteProduct from './components/designer_head/DesignerHeadInwardOutwardThirdPartySiteProduct';
 
 
 function App() {
@@ -156,7 +160,11 @@ function App() {
             <ProtectedRoute path='/designer_head_employee_shift' component={DesignerHeadEmployeeShift }></ProtectedRoute>
             <ProtectedRoute path="/designer_head_transportation" component={DesignerHeadTransportation}></ProtectedRoute>
             <ProtectedRoute path="/designer_head_inspection_report" component={DesignerHeadInspectionReport}></ProtectedRoute>
-
+            <ProtectedRoute path="/designer_head_inward_outward_third_party" component={DesignerHeadInwardOutwardThirdParty}></ProtectedRoute>
+            <ProtectedRoute path="/designer_head_inward_outward_site" component={DesignerHeadInwardOutwardSite}></ProtectedRoute>
+            <ProtectedRoute path="/designer_head_site_master" component={DesignerHeadSiteMaster}></ProtectedRoute>
+            <ProtectedRoute path="/designer_head_inward_outward_third_party_site_product" component={DesignerHeadInwardOutwardThirdPartySiteProduct}></ProtectedRoute>
+            
             <ProtectedRoute path="/hrms_dashboard" component={HrDashboard}></ProtectedRoute>
             <ProtectedRoute path='/hrms_attendance' component={Attendance }></ProtectedRoute>
             <ProtectedRoute path='/hrms_leave_tracker' component={LeaveTracker }></ProtectedRoute>
